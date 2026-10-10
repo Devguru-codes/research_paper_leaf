@@ -1,0 +1,7 @@
+# Own leaf masker (trained on our leaves composited on DTD textures) + DIMPSAR cross-domain test build
+pip: []
+extra_sources: [jmexpert/describable-textures-dataset-dtd, aryashah2k/indian-medicinal-leaves-dataset]
+jobs:
+  - chain:
+      - [src.train_maskhead, --epochs, 12, --out, /kaggle/working/results/maskhead]
+      - [src.crossdomain, build, --masker, /kaggle/working/results/maskhead/maskhead.pt, --out, /kaggle/working/dimpsar]

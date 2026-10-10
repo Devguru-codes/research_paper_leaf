@@ -1,0 +1,338 @@
+pip:
+- lpips
+kernel_sources:
+- maskhead
+common:
+  exp: ablations
+  protocol: grouped
+  epochs: 40
+  batch_size: 32
+  workers: 3
+jobs:
+- backbone: convnext_tiny
+  fold: 0
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: esa
+  token: euler
+  tag: eu
+- backbone: convnext_tiny
+  fold: 0
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: esa
+  token: hadwiger
+  tag: had
+- backbone: convnext_tiny
+  fold: 0
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_bladeonly
+  use_vein: false
+- backbone: convnext_tiny
+  fold: 0
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_veinonly
+  use_blade: false
+- backbone: convnext_tiny
+  fold: 0
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_unitw
+  weights: unit
+- backbone: convnext_tiny
+  fold: 0
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_permw
+  weights: permuted
+- backbone: convnext_tiny
+  fold: 0
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_globalattn
+  attn: global
+- backbone: convnext_tiny
+  fold: 0
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_K16T8
+  K: 16
+  T: 8
+- backbone: convnext_tiny
+  fold: 0
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_kappa1
+  kappa: 1.0
+- backbone: convnext_tiny
+  fold: 0
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_kappa16
+  kappa: 16.0
+- backbone: convnext_tiny
+  fold: 1
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: esa
+  token: euler
+  tag: eu
+- backbone: convnext_tiny
+  fold: 1
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: esa
+  token: hadwiger
+  tag: had
+- backbone: convnext_tiny
+  fold: 1
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_bladeonly
+  use_vein: false
+- backbone: convnext_tiny
+  fold: 1
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_veinonly
+  use_blade: false
+- backbone: convnext_tiny
+  fold: 1
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_unitw
+  weights: unit
+- backbone: convnext_tiny
+  fold: 1
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_permw
+  weights: permuted
+- backbone: convnext_tiny
+  fold: 1
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_globalattn
+  attn: global
+- backbone: convnext_tiny
+  fold: 1
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_K16T8
+  K: 16
+  T: 8
+- backbone: convnext_tiny
+  fold: 1
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_kappa1
+  kappa: 1.0
+- backbone: convnext_tiny
+  fold: 1
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_kappa16
+  kappa: 16.0
+- backbone: convnext_tiny
+  fold: 2
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: esa
+  token: euler
+  tag: eu
+- backbone: convnext_tiny
+  fold: 2
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: esa
+  token: hadwiger
+  tag: had
+- backbone: convnext_tiny
+  fold: 2
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_bladeonly
+  use_vein: false
+- backbone: convnext_tiny
+  fold: 2
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_veinonly
+  use_blade: false
+- backbone: convnext_tiny
+  fold: 2
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_unitw
+  weights: unit
+- backbone: convnext_tiny
+  fold: 2
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_permw
+  weights: permuted
+- backbone: convnext_tiny
+  fold: 2
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_globalattn
+  attn: global
+- backbone: convnext_tiny
+  fold: 2
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_K16T8
+  K: 16
+  T: 8
+- backbone: convnext_tiny
+  fold: 2
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_kappa1
+  kappa: 1.0
+- backbone: convnext_tiny
+  fold: 2
+  seed: 0
+  evals:
+  - rotation
+  - topodestroy
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap_kappa16
+  kappa: 16.0

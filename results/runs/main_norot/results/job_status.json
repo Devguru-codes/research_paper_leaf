@@ -1,0 +1,472 @@
+{
+ "0": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"plain\"",
+    "tag=\"norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.35,
+  "gpu": 0
+ },
+ "1": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"strip\"",
+    "tag=\"norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.38,
+  "gpu": 1
+ },
+ "2": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"esa\"",
+    "token=\"none\"",
+    "tag=\"slabonly_norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 19.03,
+  "gpu": 0
+ },
+ "3": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.75,
+  "gpu": 1
+ },
+ "4": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"plain\"",
+    "tag=\"norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.98,
+  "gpu": 0
+ },
+ "5": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"strip\"",
+    "tag=\"norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.11,
+  "gpu": 1
+ },
+ "6": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"esa\"",
+    "token=\"none\"",
+    "tag=\"slabonly_norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 19.09,
+  "gpu": 0
+ },
+ "7": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.81,
+  "gpu": 1
+ },
+ "8": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"plain\"",
+    "tag=\"norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.07,
+  "gpu": 0
+ },
+ "9": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"strip\"",
+    "tag=\"norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.26,
+  "gpu": 1
+ },
+ "10": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"esa\"",
+    "token=\"none\"",
+    "tag=\"slabonly_norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 19.28,
+  "gpu": 0
+ },
+ "11": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 21.2,
+  "gpu": 1
+ },
+ "12": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"plain\"",
+    "tag=\"norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.05,
+  "gpu": 0
+ },
+ "13": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"strip\"",
+    "tag=\"norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.33,
+  "gpu": 1
+ },
+ "14": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"esa\"",
+    "token=\"none\"",
+    "tag=\"slabonly_norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 19.57,
+  "gpu": 0
+ },
+ "15": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 21.45,
+  "gpu": 1
+ },
+ "16": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"plain\"",
+    "tag=\"norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.2,
+  "gpu": 0
+ },
+ "17": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"strip\"",
+    "tag=\"norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.51,
+  "gpu": 1
+ },
+ "18": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"esa\"",
+    "token=\"none\"",
+    "tag=\"slabonly_norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 19.15,
+  "gpu": 0
+ },
+ "19": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"norot\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "rot_aug=false",
+    "evals=[\"rotation\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.12,
+  "gpu": 1
+ }
+}

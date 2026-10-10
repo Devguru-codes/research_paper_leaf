@@ -1,0 +1,279 @@
+{
+ "0": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"pilot2r\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=0",
+    "variant=\"esa\"",
+    "token=\"hadwiger\"",
+    "tag=\"had\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 30.51,
+  "gpu": 0
+ },
+ "1": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"pilot2r\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=0",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 30.51,
+  "gpu": 1
+ },
+ "2": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"pilot2r\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=0",
+    "variant=\"global\"",
+    "token=\"hadwiger\"",
+    "tag=\"had\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 28.64,
+  "gpu": 0
+ },
+ "3": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"pilot2r\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=1",
+    "variant=\"esa\"",
+    "token=\"hadwiger\"",
+    "tag=\"had\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 30.07,
+  "gpu": 1
+ },
+ "4": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"pilot2r\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=1",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 29.58,
+  "gpu": 0
+ },
+ "5": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"pilot2r\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=1",
+    "variant=\"global\"",
+    "token=\"hadwiger\"",
+    "tag=\"had\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 28.96,
+  "gpu": 1
+ },
+ "6": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"pilot2r\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=1",
+    "variant=\"plain\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 26.61,
+  "gpu": 0
+ },
+ "7": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"pilot2r\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=1",
+    "variant=\"esa\"",
+    "token=\"euler\"",
+    "tag=\"eu\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 30.93,
+  "gpu": 1
+ },
+ "8": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"pilot2r\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=0",
+    "variant=\"plain\"",
+    "rot_aug=false",
+    "tag=\"norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 26.64,
+  "gpu": 0
+ },
+ "9": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"pilot2r\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=0",
+    "variant=\"esa\"",
+    "token=\"hadwiger\"",
+    "rot_aug=false",
+    "tag=\"had_norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 30.52,
+  "gpu": 1
+ },
+ "10": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"pilot2r\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=0",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "rot_aug=false",
+    "tag=\"ap_norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 29.81,
+  "gpu": 0
+ },
+ "11": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"pilot2r\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=0",
+    "variant=\"global\"",
+    "token=\"hadwiger\"",
+    "rot_aug=false",
+    "tag=\"had_norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 27.25,
+  "gpu": 1
+ }
+}

@@ -1,0 +1,181 @@
+{
+ "n_images": 1835,
+ "n_classes": 30,
+ "n_exact_duplicate_pairs": 10,
+ "n_after_exact_dedup": 1825,
+ "exact_duplicate_pairs": [
+  [
+   "Carissa Carandas (Karanda)/CC-S-037.jpg",
+   "Carissa Carandas (Karanda)/CC-S-047.jpg"
+  ],
+  [
+   "Carissa Carandas (Karanda)/CC-S-038.jpg",
+   "Carissa Carandas (Karanda)/CC-S-049.jpg"
+  ],
+  [
+   "Carissa Carandas (Karanda)/CC-S-039.jpg",
+   "Carissa Carandas (Karanda)/CC-S-050.jpg"
+  ],
+  [
+   "Carissa Carandas (Karanda)/CC-S-040.jpg",
+   "Carissa Carandas (Karanda)/CC-S-051.jpg"
+  ],
+  [
+   "Carissa Carandas (Karanda)/CC-S-041.jpg",
+   "Carissa Carandas (Karanda)/CC-S-052.jpg"
+  ],
+  [
+   "Carissa Carandas (Karanda)/CC-S-042.jpg",
+   "Carissa Carandas (Karanda)/CC-S-056.jpg"
+  ],
+  [
+   "Carissa Carandas (Karanda)/CC-S-043.jpg",
+   "Carissa Carandas (Karanda)/CC-S-048.jpg"
+  ],
+  [
+   "Carissa Carandas (Karanda)/CC-S-044.jpg",
+   "Carissa Carandas (Karanda)/CC-S-055.jpg"
+  ],
+  [
+   "Carissa Carandas (Karanda)/CC-S-045.jpg",
+   "Carissa Carandas (Karanda)/CC-S-054.jpg"
+  ],
+  [
+   "Carissa Carandas (Karanda)/CC-S-046.jpg",
+   "Carissa Carandas (Karanda)/CC-S-053.jpg"
+  ]
+ ],
+ "n_raw_dhash_links": 12,
+ "raw_dhash_cross_class_links": 0,
+ "n_sift_links": 24,
+ "sift_links": [
+  [
+   "Azadirachta Indica (Neem)/AI-S-031.jpg",
+   "Azadirachta Indica (Neem)/AI-S-049.jpg",
+   193
+  ],
+  [
+   "Azadirachta Indica (Neem)/AI-S-031.jpg",
+   "Azadirachta Indica (Neem)/AI-S-050.jpg",
+   99
+  ],
+  [
+   "Azadirachta Indica (Neem)/AI-S-049.jpg",
+   "Azadirachta Indica (Neem)/AI-S-050.jpg",
+   99
+  ],
+  [
+   "Azadirachta Indica (Neem)/AI-S-056.jpg",
+   "Azadirachta Indica (Neem)/AI-S-057.jpg",
+   170
+  ],
+  [
+   "Basella Alba (Basale)/BA-S-017.jpg",
+   "Basella Alba (Basale)/BA-S-022.jpg",
+   190
+  ],
+  [
+   "Basella Alba (Basale)/BA-S-044.jpg",
+   "Basella Alba (Basale)/BA-S-046.jpg",
+   249
+  ],
+  [
+   "Basella Alba (Basale)/BA-S-093.jpg",
+   "Basella Alba (Basale)/BA-S-097.jpg",
+   108
+  ],
+  [
+   "Brassica Juncea (Indian Mustard)/BJ-S-017.jpg",
+   "Brassica Juncea (Indian Mustard)/BJ-S-018.jpg",
+   62
+  ],
+  [
+   "Carissa Carandas (Karanda)/CC-S-042.jpg",
+   "Carissa Carandas (Karanda)/CC-S-056.jpg",
+   45
+  ],
+  [
+   "Carissa Carandas (Karanda)/CC-S-066.jpg",
+   "Carissa Carandas (Karanda)/CC-S-069.jpg",
+   40
+  ],
+  [
+   "Ficus Auriculata (Roxburgh fig)/FA-S-002.jpg",
+   "Ficus Auriculata (Roxburgh fig)/FA-S-030.jpg",
+   122
+  ],
+  [
+   "Ficus Auriculata (Roxburgh fig)/FA-S-013.jpg",
+   "Ficus Auriculata (Roxburgh fig)/FA-S-015.jpg",
+   88
+  ],
+  [
+   "Ficus Auriculata (Roxburgh fig)/FA-S-016.jpg",
+   "Ficus Auriculata (Roxburgh fig)/FA-S-018.jpg",
+   203
+  ],
+  [
+   "Ficus Auriculata (Roxburgh fig)/FA-S-021.jpg",
+   "Ficus Auriculata (Roxburgh fig)/FA-S-023.jpg",
+   122
+  ],
+  [
+   "Ficus Auriculata (Roxburgh fig)/FA-S-040.jpg",
+   "Ficus Auriculata (Roxburgh fig)/FA-S-041.jpg",
+   122
+  ],
+  [
+   "Jasminum (Jasmine)/J-S-066.jpg",
+   "Jasminum (Jasmine)/J-S-067.jpg",
+   42
+  ],
+  [
+   "Jasminum (Jasmine)/J-S-070.jpg",
+   "Jasminum (Jasmine)/J-S-071.jpg",
+   82
+  ],
+  [
+   "Mentha (Mint)/M-S-036.jpg",
+   "Mentha (Mint)/M-S-042.jpg",
+   158
+  ],
+  [
+   "Nyctanthes Arbor-tristis (Parijata)/NA-S-014.jpg",
+   "Nyctanthes Arbor-tristis (Parijata)/NA-S-018.jpg",
+   44
+  ],
+  [
+   "Nyctanthes Arbor-tristis (Parijata)/NA-S-033.jpg",
+   "Nyctanthes Arbor-tristis (Parijata)/NA-S-037.jpg",
+   47
+  ],
+  [
+   "Piper Betle (Betel)/PB-S-011.jpg",
+   "Piper Betle (Betel)/PB-S-012.jpg",
+   77
+  ],
+  [
+   "Piper Betle (Betel)/PB-S-023.jpg",
+   "Piper Betle (Betel)/PB-S-025.jpg",
+   588
+  ],
+  [
+   "Pongamia Pinnata (Indian Beech)/PP-S-002.jpg",
+   "Pongamia Pinnata (Indian Beech)/PP-S-003.jpg",
+   67
+  ],
+  [
+   "Punica Granatum (Pomegranate)/PG-S-060.jpg",
+   "Punica Granatum (Pomegranate)/PG-S-061.jpg",
+   66
+  ]
+ ],
+ "n_leaf_groups": 1802,
+ "n_multi_image_groups": 22,
+ "n_images_in_multi_groups": 45,
+ "largest_group": 3,
+ "min_class": 34,
+ "max_class": 122,
+ "prefix_collisions": 130,
+ "multi_component_masks": 5
+}

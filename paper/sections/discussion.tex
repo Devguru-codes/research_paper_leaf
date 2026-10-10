@@ -1,0 +1,42 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{When does structure help?} The clearest pattern in our results is a dependence on the
+backbone. For an ImageNet CNN, measuring area and boundary length along an object-centred sweep, with
+cell weights conditioned on appearance, turns a model that transfers poorly from studio to field
+photographs (34\%) into one that transfers substantially better (49\%), and it does so without
+needing rotation augmentation. For ViT-S the module is neutral, and for BioCLIP~2, whose
+pre-training already covers millions of organism images, no structural module changes anything.
+Practitioners with access to a biology foundation model should use it; the structural module is
+useful where such a model is unavailable or too large, e.g.\ for on-device CNNs.
+
+\paragraph{What the ablations say about the mechanism.} Our initial hypothesis was that
+\emph{co-registration}, i.e.\ attending only within the slab whose geometry is measured, would be
+the key ingredient. The ablations do not support this as the main driver: once the tokens carry
+valuations, global attention performs within noise of slab-restricted attention. What matters is
+(i)~appearance-conditioned weights, which let the network decide which parts of the blade and
+venation count towards the measured geometry, and (ii)~a fine sweep. Restricting attention to the
+slab matters when the slab is the \emph{only} structural information (slab-only model). We report
+co-registration as a design choice of \SVA{} and not as the source of its gains.
+
+\paragraph{Topology is measurable but not what transfers.} Euler-characteristic tokens make a
+model demonstrably sensitive to holes in the blade, which none of the other models are, yet they
+transfer worse to field photographs than metric valuations. For species identification the metric
+profile of a leaf (how its width and margin length vary along each direction) is more informative and
+more robust than its connectivity. This is consistent with botanical practice, where outline and
+margin are primary characters, and with recent findings that leaf outlines are highly informative
+of other leaf traits~\citep{ayub2026ectplants}.
+
+\paragraph{Benchmark saturation.} Clean accuracy on this dataset is saturated even after removing
+duplicates and grouping re-shots of the same leaf, and so are rotation robustness under rotation
+augmentation and several corruption families. Reports of 98--100\% on studio leaf benchmarks should
+therefore be read as a lower bar; transfer to field photographs remains far from solved
+(49\% for the best ImageNet model and 82\% for BioCLIP~2 on 20 species).
+
+\paragraph{Limitations.} (i)~One studio dataset and one field dataset with 20 shared species;
+field labels come from vernacular folder names that we mapped and checked visually. (ii)~ViT-S and
+BioCLIP~2 were run with one seed, ablations with one seed on three folds; effects below about
+3 points in those settings are within seed noise. (iii)~The venation field is learned from
+ridge-filter pseudo-labels and is not a validated vein segmentation. (iv)~Hazard tiers are an
+explicit assumption table; the conformal layer (\cref{app:conformal}) is limited by the small
+number of calibration images for toxic species and gives no guarantee under shift.

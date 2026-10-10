@@ -1,0 +1,51 @@
+% Venue-neutral manuscript. To switch template: replace the preamble with elsarticle / IEEEtran /
+% sn-jnl and keep \input{sections/...}. Numbers in tables/figures are generated from results/*.json.
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,bm}
+\usepackage{graphicx}
+\usepackage{booktabs,multirow,makecell}
+\usepackage{xcolor}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+\usepackage{siunitx}
+\usepackage{caption,subcaption}
+
+\newcommand{\dchi}{\Delta\chi}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ESA}{ESA}
+\newcommand{\SVA}{SVA}
+\newcommand{\SVF}{SV-Former}
+\newcommand{\ESF}{ES-Former}
+\newtheorem{proposition}{Proposition}
+% placeholders filled when the last runs finish (shown in red until then)
+\newcommand{\NOROTSEEDS}{\textcolor{red}{[Seeds 1--2 of the no-augmentation arm pending.]}}
+\newcommand{\LEAKAGE}{\textcolor{red}{[Leakage-audit numbers (DeepHerb / dual-branch reproductions, random vs.\ grouped) pending.]}}
+
+\title{When Does Leaf Geometry Help? Sweep-Valuation Attention for\\
+Studio-to-Field Medicinal Leaf Identification}
+\author{Author names withheld}
+\date{}
+
+\begin{document}
+\maketitle
+
+\input{sections/abstract}
+\input{sections/introduction}
+\input{sections/related}
+\input{sections/data}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\bibliographystyle{unsrtnat}
+\bibliography{refs}
+
+\appendix
+\input{sections/appendix}
+\end{document}

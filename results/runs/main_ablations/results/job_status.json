@@ -1,0 +1,719 @@
+{
+ "0": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"esa\"",
+    "token=\"euler\"",
+    "tag=\"eu\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 25.07,
+  "gpu": 0
+ },
+ "1": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"esa\"",
+    "token=\"hadwiger\"",
+    "tag=\"had\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 25.08,
+  "gpu": 1
+ },
+ "2": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_bladeonly\"",
+    "use_vein=false"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 21.69,
+  "gpu": 0
+ },
+ "3": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_veinonly\"",
+    "use_blade=false"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.72,
+  "gpu": 1
+ },
+ "4": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_unitw\"",
+    "weights=\"unit\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 21.01,
+  "gpu": 0
+ },
+ "5": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_permw\"",
+    "weights=\"permuted\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 24.2,
+  "gpu": 1
+ },
+ "6": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_globalattn\"",
+    "attn=\"global\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.02,
+  "gpu": 0
+ },
+ "7": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_K16T8\"",
+    "K=16",
+    "T=8"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 21.77,
+  "gpu": 1
+ },
+ "8": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_kappa1\"",
+    "kappa=1.0"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.01,
+  "gpu": 0
+ },
+ "9": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_kappa16\"",
+    "kappa=16.0"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.92,
+  "gpu": 1
+ },
+ "10": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"esa\"",
+    "token=\"euler\"",
+    "tag=\"eu\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.28,
+  "gpu": 0
+ },
+ "11": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"esa\"",
+    "token=\"hadwiger\"",
+    "tag=\"had\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.95,
+  "gpu": 1
+ },
+ "12": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_bladeonly\"",
+    "use_vein=false"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.08,
+  "gpu": 0
+ },
+ "13": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_veinonly\"",
+    "use_blade=false"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 23.11,
+  "gpu": 1
+ },
+ "14": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_unitw\"",
+    "weights=\"unit\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 21.38,
+  "gpu": 0
+ },
+ "15": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_permw\"",
+    "weights=\"permuted\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 24.54,
+  "gpu": 1
+ },
+ "16": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_globalattn\"",
+    "attn=\"global\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 21.98,
+  "gpu": 0
+ },
+ "17": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_K16T8\"",
+    "K=16",
+    "T=8"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 21.6,
+  "gpu": 1
+ },
+ "18": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_kappa1\"",
+    "kappa=1.0"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.2,
+  "gpu": 0
+ },
+ "19": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_kappa16\"",
+    "kappa=16.0"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.85,
+  "gpu": 1
+ },
+ "20": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"esa\"",
+    "token=\"euler\"",
+    "tag=\"eu\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.73,
+  "gpu": 0
+ },
+ "21": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"esa\"",
+    "token=\"hadwiger\"",
+    "tag=\"had\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 23.08,
+  "gpu": 1
+ },
+ "22": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_bladeonly\"",
+    "use_vein=false"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.35,
+  "gpu": 0
+ },
+ "23": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_veinonly\"",
+    "use_blade=false"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 23.03,
+  "gpu": 1
+ },
+ "24": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_unitw\"",
+    "weights=\"unit\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 21.43,
+  "gpu": 0
+ },
+ "25": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_permw\"",
+    "weights=\"permuted\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 24.23,
+  "gpu": 1
+ },
+ "26": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_globalattn\"",
+    "attn=\"global\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.37,
+  "gpu": 0
+ },
+ "27": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_K16T8\"",
+    "K=16",
+    "T=8"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.33,
+  "gpu": 1
+ },
+ "28": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_kappa1\"",
+    "kappa=1.0"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.51,
+  "gpu": 0
+ },
+ "29": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "evals=[\"rotation\", \"topodestroy\", \"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_kappa16\"",
+    "kappa=16.0"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.07,
+  "gpu": 1
+ }
+}

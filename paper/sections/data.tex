@@ -1,0 +1,49 @@
+\section{Data and leakage-audited protocol}
+\label{sec:data}
+
+\paragraph{Dataset.} We use the segmented subset of the Medicinal Leaf Dataset of Roopashree and
+Anitha~\citep{roopashree2020dataset} (CC BY 4.0): 1{,}835 RGB photographs ($1600\times1200$) of
+single leaves from 30 Indian medicinal species on a white background, with 34--122 images per
+species (3.6$\times$ imbalance). The leaf covers 4.4--68.5\% of the frame (median 34.8\%). The
+species span 28 genera, 19 families and 12 orders of the APG~IV system, with genuine sibling groups
+(e.g.\ Apocynaceae: \textit{Nerium}, \textit{Tabernaemontana}, \textit{Carissa}; Myrtaceae:
+\textit{Psidium} and two \textit{Syzygium}; Moraceae: two \textit{Ficus} and \textit{Artocarpus};
+Lamiaceae: \textit{Mentha}, \textit{Ocimum}, \textit{Plectranthus}); see \cref{tab:taxonomy}.
+
+\paragraph{Audit.} Reported accuracies on this dataset are near saturation
+(97.5--99.7\%~\citep{roopashree2021deepherb,ffncacnn2025}) and use random image-level splits. Our
+audit found three issues.
+(i)~\emph{Exact duplicates}: 10 pairs of identical photographs saved under different names, all in
+\textit{Carissa carandas} (1{,}825 images remain after removal).
+(ii)~\emph{Re-shots of the same physical leaf}: some leaves were photographed more than once, at times
+under different illumination or orientation. Hashing alone cannot separate these from merely similar
+leaves (e.g.\ lanceolate \textit{Alpinia} silhouettes), so we link two images when their raw-frame
+1024-bit dHash distance is $\le 20$, or when SIFT matching with RANSAC yields $\ge40$ geometrically
+consistent inliers whose similarity transform has scale in $[0.8,1.25]$ and whose convex hull covers
+$\ge25\%$ of the leaf. These criteria were set by visual inspection and reject hub matches caused by
+repetitive texture (e.g.\ \textit{Mentha}). The resulting 22 multi-image groups (45 images, at most 3
+per group) are kept intact across splits. Over-grouping is conservative: it constrains splits but
+cannot leak.
+(iii)~\emph{Filename collisions}: \textit{Psidium guajava} and \textit{Punica granatum} share the
+\texttt{PG-S-xxx} prefix (65 colliding names), so files must be indexed by class and name.
+
+\paragraph{Protocol.} All results use stratified, group-aware 5-fold cross-validation on the 1{,}825
+de-duplicated images. Inside each training part, one group-aware stratified holdout ($\approx$1/6)
+serves as the calibration set for conformal prediction and for monitoring only. Epoch count and
+hyper-parameters are fixed in advance, with no model selection on test or calibration data. With
+random image-level splits, 2--4\% of test images per fold have a duplicate or re-shot in the training
+part (\cref{sec:results}).
+
+\paragraph{Preprocessing.} The leaf mask is obtained by thresholding the white background
+(all channels $<235$) followed by morphological cleaning. Each image is cropped to a square
+centred on the leaf whose inscribed circle contains the whole leaf, so that any rotation about the
+centre is lossless, and resized to $448^2$ (training input $384^2$). Vein pseudo-labels are
+multiscale Sato ridge responses on CLAHE-normalised luminance inside the eroded mask.
+
+\paragraph{Cross-domain test set.} For transfer to field photographs we use DIMPSAR~\citep{pushpa2023dimpsar}
+(CC BY 4.0), whose single-leaf subset was captured with smartphones against varied backgrounds (tiles,
+soil, cloth, paper). Vernacular folder names were mapped to species and checked visually. Twenty
+species overlap ours; note that Kannada \emph{Arali} denotes \textit{Ficus religiosa} (peepal), not
+\textit{Nerium oleander}. Leaves are localised with our own masker, a ConvNeXt-T FPN trained only on
+our leaves composited onto DTD textures~\citep{cimpoi2014dtd} and procedural backgrounds; no
+third-party segmentation model is used.

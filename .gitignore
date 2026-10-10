@@ -1,0 +1,25 @@
+# data and derived images are not redistributed
+data/*
+!data/README.md
+!data/audit/
+cache/
+dimpsar/
+# model weights, staged kernels, local caches
+*.pt
+*.pth
+kaggle/_stage/
+__pycache__/
+*.pyc
+.pytest_cache/
+# LaTeX build files
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg
+paper/*.toc
+paper/*.synctex.gz
+# credentials must never be committed
+kaggle.json
+access_token
+*.pid

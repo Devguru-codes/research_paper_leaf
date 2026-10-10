@@ -1,0 +1,16 @@
+# bisect: pilotdbg + gpu_aug (default) + workers 3 + save_model, 3 epochs, no evals except rotation
+pip: [lpips]
+common:
+  exp: bisect
+  backbone: convnext_tiny
+  protocol: grouped
+  fold: 0
+  seed: 0
+  epochs: 3
+  batch_size: 32
+  workers: 3
+  save_model: true
+  evals: [rotation]
+jobs:
+  - {variant: esa}
+  - {variant: plain}

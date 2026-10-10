@@ -1,0 +1,59 @@
+\section{Related work}
+\label{sec:related}
+
+\paragraph{Medicinal leaf identification.} Work on Indian medicinal leaves has moved from
+hand-crafted shape, colour and texture descriptors to transfer learning. DeepHerb combined Xception
+features with SVMs~\citep{roopashree2021deepherb}; later CNN, hybrid CNN--transformer and feature-fusion
+models report 98.9--99.7\% on this and related datasets~\citep{ffncacnn2025}, typically with random
+image-level splits. Closest to our biological motivation, a dual-branch network fuses an RGB branch
+with a branch on skeletonised veins by late concatenation~\citep{dualbranch2026}. A cascaded
+taxonomic classifier targets open-world medicinal plants~\citep{openworld2025medicinal}. We reproduce
+DeepHerb-style and dual-branch pipelines under our leakage-audited protocol.
+
+\paragraph{Euler characteristic transforms.} The ECT and the persistent homology transform encode a
+shape through sublevel-set topology along all directions~\citep{turner2014pht}. DECT makes the ECT
+differentiable by sigmoid relaxation and learns directions end-to-end~\citep{roell2024dect}. WECT
+weights cells by image intensity~\citep{cisewski2023wect}. Blaser et al.\ encode the ECT as
+per-direction token sequences, including convolutional and complex-valued variants that are
+equivariant to planar rotations~\citep{blaser2026encoding}. For plants, Ayub et al.\ show that ECT
+images of \emph{blade contours} classify complex leaf shapes and even predict venation from blade
+geometry~\citep{ayub2026ectplants}. Their ECT is computed on the outline only; venation is a
+prediction target, and appearance is not used. We build on DECT's relaxation and on these encodings.
+We do not claim weighted, tokenised or rotation-equivariant ECTs, or ECTs of leaves, as contributions.
+
+\paragraph{Topology meets attention.} Topological summaries are increasingly fused with deep
+features. PHG-Net injects persistence-diagram features into CNN/transformer classifiers~\citep{phgnet2023};
+TDA-ViT fuses topological and ViT features~\citep{tdavit2026}; GraPHFormer aligns graph topology
+and vision representations~\citep{shah2026graphformer}. Gu et al.\ process multi-filtration cubical
+persistence diagrams with cross-attention and fuse the embedding with CNN/transformer
+features~\citep{gu2026multifiltration}. TopoFormer slices graphs along filtrations into
+attention-friendly topological token sequences~\citep{uddin2026topoformer}. For time series, Faghihi and Saki add persistent-homology and directional Euler
+statistics of each input window as additive biases on attention logits~\citep{faghihi2026topoattn}; the
+topology summarises the whole window rather than defining where each query may attend. In these methods the
+topological signal enters as a \emph{global} descriptor or as tokens among themselves, so where the
+visual model looks is not tied to where the topology was measured. \SVA{} differs in exactly this
+respect: each filtration slab yields both a valuation increment and the spatial support of that token's
+attention. Our controls (global fusion of the same valuations; slab attention without valuations)
+separate the two ingredients.
+
+\paragraph{Intrinsic volumes and directional pooling.} Area, boundary length and Euler characteristic
+(the planar intrinsic volumes, or Minkowski functionals) are classical morphological descriptors with
+efficient digital estimators~\citep{mecke1994,legland2007minkowski}, and the perimeter of a planar shape
+can be recovered from its ECT~\citep{gacias2026convexect}; by Hadwiger's theorem they span all
+continuous motion-invariant valuations~\citep{hadwiger1957,klain1997}. We use them as filtration
+increments along a sweep, not as global descriptors, and do not claim them as new features. Strip
+pooling~\citep{hou2020strip} and axial attention aggregate features along image rows and columns.
+Our strip control instantiates this family; unlike \SVA{}, its strips are fixed to the image axes,
+carry no measured geometry and are not defined by a filtration of the object.
+
+\paragraph{Taxonomy and uncertainty.} Hyperbolic and hierarchy-aware embeddings have been applied
+to plant and biological taxonomies~\citep{shah2025hprotonet,hyperbolictaxonomies2025}, and BioCLIP~2
+learns hierarchical contrastive representations at scale~\citep{gu2026bioclip2}. Conformal prediction
+for long-tailed plant identification~\citep{ding2026conformal} and for hierarchical
+labels~\citep{hcc2025,hierarchicalcp2025} is established. Our deployment layer uses these ideas;
+its only addition is a hazard-asymmetric Mondrian calibration for toxic look-alikes. We treat it as an
+application component, not as a methodological contribution.
+
+\paragraph{Shape versus texture.} ImageNet CNNs are biased towards texture~\citep{geirhos2019texture}.
+We adapt the cue-conflict paradigm to leaves (silhouette of one species filled with the lamina of
+another) and add a topology-destruction probe, in order to test what \SVF{} actually relies on.

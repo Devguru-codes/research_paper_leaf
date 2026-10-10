@@ -1,0 +1,137 @@
+{
+ "1": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"controls\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=0",
+    "variant=\"strip\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 27.3,
+  "gpu": 1
+ },
+ "0": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"controls\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=0",
+    "variant=\"esa\"",
+    "token=\"none\"",
+    "tag=\"slabonly\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 28.03,
+  "gpu": 0
+ },
+ "3": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"controls\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=1",
+    "variant=\"strip\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 26.89,
+  "gpu": 0
+ },
+ "2": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"controls\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=1",
+    "variant=\"esa\"",
+    "token=\"none\"",
+    "tag=\"slabonly\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 29.08,
+  "gpu": 1
+ },
+ "5": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"controls\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=0",
+    "variant=\"strip\"",
+    "rot_aug=false",
+    "tag=\"norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 27.71,
+  "gpu": 1
+ },
+ "4": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"controls\"",
+    "backbone=\"convnext_tiny\"",
+    "protocol=\"grouped\"",
+    "seed=0",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "fold=0",
+    "variant=\"esa\"",
+    "token=\"none\"",
+    "rot_aug=false",
+    "tag=\"slabonly_norot\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 29.22,
+  "gpu": 0
+ }
+}

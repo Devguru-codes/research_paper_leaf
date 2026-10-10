@@ -1,0 +1,6 @@
+pip: [lpips, open_clip_torch]
+kernel_sources: [maskhead]
+common: {exp: smoke6, protocol: grouped, fold: 0, seed: 0, epochs: 2, batch_size: 32, workers: 3, classes: 8, max_per_class: 20, evals: [rotation, crossdomain]}
+jobs:
+  - {backbone: bioclip2, variant: slabstat, token: ap, tag: ap, img_size: 224, lr_backbone: 3.0e-5}
+  - {backbone: bioclip2, variant: plain, img_size: 224, lr_backbone: 3.0e-5}

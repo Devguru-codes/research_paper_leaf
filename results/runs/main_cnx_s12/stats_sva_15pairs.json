@@ -1,0 +1,326 @@
+[
+ {
+  "a": "sva",
+  "b": "plain",
+  "backbone": "convnext_tiny",
+  "n_pairs": 15,
+  "test.acc": {
+   "n": 15,
+   "mean_diff": 0.00036529680365296653,
+   "wins": 3,
+   "losses": 1,
+   "p": 0.19364643126922065
+  },
+  "test.bal_acc": {
+   "n": 15,
+   "mean_diff": 0.0004444444444444547,
+   "wins": 3,
+   "losses": 1,
+   "p": 0.19364643126922065
+  },
+  "test.macro_f1": {
+   "n": 15,
+   "mean_diff": 0.00044555834029516757,
+   "wins": 3,
+   "losses": 1,
+   "p": 0.19364643126922065
+  },
+  "test.ece": {
+   "n": 15,
+   "mean_diff": 0.006686374702656784,
+   "wins": 15,
+   "losses": 0,
+   "p": 6.103515625e-05
+  },
+  "rotation.mean_acc": {
+   "n": 5,
+   "mean_diff": 0.00013761215703729236,
+   "wins": 2,
+   "losses": 1,
+   "p": 0.5
+  },
+  "rotation.min_acc": {
+   "n": 5,
+   "mean_diff": 0.0005509476674983027,
+   "wins": 2,
+   "losses": 1,
+   "p": 0.5
+  },
+  "corruptions.mean_corrupted_acc": {
+   "n": 5,
+   "mean_diff": 0.07418745288945161,
+   "wins": 5,
+   "losses": 0,
+   "p": 0.0625
+  },
+  "cueconflict.all.shape_bias": {
+   "n": 5,
+   "mean_diff": 0.025482078667728236,
+   "wins": 5,
+   "losses": 0,
+   "p": 0.0625
+  },
+  "crossdomain.masked.acc20": {
+   "n": 15,
+   "mean_diff": 0.08023333333333334,
+   "wins": 15,
+   "losses": 0,
+   "p": 6.103515625e-05
+  },
+  "crossdomain.raw.acc20": {
+   "n": 15,
+   "mean_diff": 0.15796666666666667,
+   "wins": 15,
+   "losses": 0,
+   "p": 0.0006533107814151377
+  },
+  "mcnemar": {
+   "a_only": 3,
+   "b_only": 1,
+   "p": 0.625
+  }
+ },
+ {
+  "a": "sva",
+  "b": "global",
+  "backbone": "convnext_tiny",
+  "n_pairs": 15,
+  "test.acc": {
+   "n": 15,
+   "mean_diff": 0.000183147441175735,
+   "wins": 2,
+   "losses": 1,
+   "p": 0.27630291733748347
+  },
+  "test.bal_acc": {
+   "n": 15,
+   "mean_diff": 0.0003137254901960892,
+   "wins": 2,
+   "losses": 1,
+   "p": 0.27630291733748347
+  },
+  "test.macro_f1": {
+   "n": 15,
+   "mean_diff": 0.0002959137462061223,
+   "wins": 2,
+   "losses": 1,
+   "p": 0.27630291733748347
+  },
+  "test.ece": {
+   "n": 15,
+   "mean_diff": 0.006550827353322797,
+   "wins": 15,
+   "losses": 0,
+   "p": 6.103515625e-05
+  },
+  "rotation.mean_acc": {
+   "n": 5,
+   "mean_diff": 0.0009156240994327325,
+   "wins": 3,
+   "losses": 1,
+   "p": 0.375
+  },
+  "rotation.min_acc": {
+   "n": 5,
+   "mean_diff": 0.002199299315849945,
+   "wins": 3,
+   "losses": 1,
+   "p": 0.25
+  },
+  "corruptions.mean_corrupted_acc": {
+   "n": 5,
+   "mean_diff": 0.07528776171803342,
+   "wins": 5,
+   "losses": 0,
+   "p": 0.0625
+  },
+  "cueconflict.all.shape_bias": {
+   "n": 5,
+   "mean_diff": 0.02025863650371743,
+   "wins": 5,
+   "losses": 0,
+   "p": 0.0625
+  },
+  "crossdomain.masked.acc20": {
+   "n": 15,
+   "mean_diff": 0.0819,
+   "wins": 15,
+   "losses": 0,
+   "p": 6.103515625e-05
+  },
+  "crossdomain.raw.acc20": {
+   "n": 15,
+   "mean_diff": 0.15646666666666664,
+   "wins": 15,
+   "losses": 0,
+   "p": 6.103515625e-05
+  },
+  "mcnemar": {
+   "a_only": 2,
+   "b_only": 1,
+   "p": 1.0
+  }
+ },
+ {
+  "a": "sva",
+  "b": "strip",
+  "backbone": "convnext_tiny",
+  "n_pairs": 15,
+  "test.acc": {
+   "n": 15,
+   "mean_diff": -0.00018214936247723152,
+   "wins": 0,
+   "losses": 1,
+   "p": 0.31731050786291415
+  },
+  "test.bal_acc": {
+   "n": 15,
+   "mean_diff": -0.00013071895424836554,
+   "wins": 0,
+   "losses": 1,
+   "p": 0.31731050786291415
+  },
+  "test.macro_f1": {
+   "n": 15,
+   "mean_diff": -0.00014964459408904526,
+   "wins": 0,
+   "losses": 1,
+   "p": 0.31731050786291415
+  },
+  "test.ece": {
+   "n": 15,
+   "mean_diff": -0.0016112578518544113,
+   "wins": 1,
+   "losses": 14,
+   "p": 0.0001220703125
+  },
+  "rotation.mean_acc": {
+   "n": 5,
+   "mean_diff": -4.5537340619317136e-05,
+   "wins": 0,
+   "losses": 1,
+   "p": 1.0
+  },
+  "rotation.min_acc": {
+   "n": 5,
+   "mean_diff": 0.0,
+   "wins": 0,
+   "losses": 0,
+   "p": NaN
+  },
+  "corruptions.mean_corrupted_acc": {
+   "n": 5,
+   "mean_diff": 0.00928989716773232,
+   "wins": 4,
+   "losses": 1,
+   "p": 0.125
+  },
+  "cueconflict.all.shape_bias": {
+   "n": 5,
+   "mean_diff": -0.0004829113732298052,
+   "wins": 2,
+   "losses": 3,
+   "p": 1.0
+  },
+  "crossdomain.masked.acc20": {
+   "n": 15,
+   "mean_diff": 0.002266666666666665,
+   "wins": 9,
+   "losses": 6,
+   "p": 0.93408203125
+  },
+  "crossdomain.raw.acc20": {
+   "n": 15,
+   "mean_diff": 0.015233333333333337,
+   "wins": 10,
+   "losses": 5,
+   "p": 0.15142822265625
+  },
+  "mcnemar": {
+   "a_only": 0,
+   "b_only": 1,
+   "p": 1.0
+  }
+ },
+ {
+  "a": "sva",
+  "b": "slabonly",
+  "backbone": "convnext_tiny",
+  "n_pairs": 15,
+  "test.acc": {
+   "n": 15,
+   "mean_diff": 4.990393492517361e-07,
+   "wins": 1,
+   "losses": 1,
+   "p": 0.6547208460185769
+  },
+  "test.bal_acc": {
+   "n": 15,
+   "mean_diff": 9.15032679738618e-05,
+   "wins": 1,
+   "losses": 1,
+   "p": 0.6547208460185769
+  },
+  "test.macro_f1": {
+   "n": 15,
+   "mean_diff": 7.313457605853854e-05,
+   "wins": 1,
+   "losses": 1,
+   "p": 0.6547208460185769
+  },
+  "test.ece": {
+   "n": 15,
+   "mean_diff": -0.001657587418777587,
+   "wins": 1,
+   "losses": 14,
+   "p": 0.00018310546875
+  },
+  "rotation.mean_acc": {
+   "n": 5,
+   "mean_diff": -9.107468123861206e-05,
+   "wins": 0,
+   "losses": 1,
+   "p": 1.0
+  },
+  "rotation.min_acc": {
+   "n": 5,
+   "mean_diff": -0.0005464480874316946,
+   "wins": 0,
+   "losses": 1,
+   "p": 1.0
+  },
+  "corruptions.mean_corrupted_acc": {
+   "n": 5,
+   "mean_diff": -0.008368549333741381,
+   "wins": 1,
+   "losses": 4,
+   "p": 0.125
+  },
+  "cueconflict.all.shape_bias": {
+   "n": 5,
+   "mean_diff": 0.01606311474359177,
+   "wins": 4,
+   "losses": 1,
+   "p": 0.1875
+  },
+  "crossdomain.masked.acc20": {
+   "n": 15,
+   "mean_diff": 0.009266666666666675,
+   "wins": 10,
+   "losses": 5,
+   "p": 0.389404296875
+  },
+  "crossdomain.raw.acc20": {
+   "n": 15,
+   "mean_diff": 0.03623333333333333,
+   "wins": 12,
+   "losses": 3,
+   "p": 0.00262451171875
+  },
+  "mcnemar": {
+   "a_only": 1,
+   "b_only": 1,
+   "p": 1.0
+  }
+ }
+]

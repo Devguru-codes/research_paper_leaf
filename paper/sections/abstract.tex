@@ -1,0 +1,18 @@
+\begin{abstract}
+Medicinal-leaf classifiers report near-perfect accuracy on studio images, but little is known about
+what they rely on or how they transfer to field photographs. We propose \emph{sweep-valuation
+attention} (\SVA{}), a backbone-agnostic module that sweeps a leaf along many directions and, for
+every slab of the sweep, measures the area and boundary length that enter a weighted cubical complex
+of the blade and of a learned venation field. Each measurement becomes a token that attends to the
+image patches of the same slab. We study \SVA{} against matched controls (global fusion of the same
+measurements, slab attention without measurements, and strip pooling) on three backbones
+(ConvNeXt-T, ViT-S, BioCLIP~2), using a de-duplicated, leaf-grouped protocol for the 30-species
+Medicinal Leaf Dataset and transfer to 20 species of the DIMPSAR field photographs. Clean accuracy is
+saturated for all models. With ConvNeXt-T, \SVA{} raises field-photo accuracy from 33.5\% to 49.3\%
+(15/15 runs) and keeps this gain without rotation augmentation, where it exceeds strip pooling and
+slab-only attention by 5--6 points. The gain disappears for ViT-S and for BioCLIP~2, which reaches
+81\% without any module. Ablations show that appearance-conditioned weights and a fine sweep drive the
+effect, whereas restricting attention to the slab adds little; Euler-characteristic tokens make
+models sensitive to holes in the blade but transfer worse. All code, run outputs, statistics and the paper sources are available at
+\url{https://github.com/Devguru-codes/research_paper_leaf}.
+\end{abstract}

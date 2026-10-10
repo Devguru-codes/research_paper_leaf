@@ -1,0 +1,19 @@
+# Essential controls after re-pilot: slab geometry without valuation content; strip pooling (axis-aligned)
+pip: [lpips]
+kernel_sources: [maskhead]
+common:
+  exp: controls
+  backbone: convnext_tiny
+  protocol: grouped
+  seed: 0
+  epochs: 40
+  batch_size: 32
+  workers: 3
+  evals: [rotation, corruptions, cueconflict, topodestroy, crossdomain]
+jobs:
+  - {fold: 0, variant: esa, token: none, tag: slabonly}
+  - {fold: 0, variant: strip}
+  - {fold: 1, variant: esa, token: none, tag: slabonly}
+  - {fold: 1, variant: strip}
+  - {fold: 0, variant: esa, token: none, rot_aug: false, tag: slabonly_norot}
+  - {fold: 0, variant: strip, rot_aug: false, tag: norot}

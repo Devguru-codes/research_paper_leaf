@@ -1,0 +1,582 @@
+{
+ "0": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=true",
+    "variant=\"plain\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 27.54,
+  "gpu": 0
+ },
+ "1": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=false",
+    "variant=\"global\"",
+    "token=\"ap\"",
+    "tag=\"ap\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 28.07,
+  "gpu": 1
+ },
+ "2": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=false",
+    "variant=\"strip\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 27.3,
+  "gpu": 0
+ },
+ "3": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=false",
+    "variant=\"esa\"",
+    "token=\"none\"",
+    "tag=\"slabonly\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 28.1,
+  "gpu": 1
+ },
+ "5": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=true",
+    "variant=\"plain\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 26.85,
+  "gpu": 1
+ },
+ "4": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=true",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 30.77,
+  "gpu": 0
+ },
+ "6": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=false",
+    "variant=\"global\"",
+    "token=\"ap\"",
+    "tag=\"ap\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 29.26,
+  "gpu": 1
+ },
+ "7": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=false",
+    "variant=\"strip\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 27.11,
+  "gpu": 0
+ },
+ "8": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=false",
+    "variant=\"esa\"",
+    "token=\"none\"",
+    "tag=\"slabonly\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 28.25,
+  "gpu": 1
+ },
+ "9": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=true",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 30.8,
+  "gpu": 0
+ },
+ "10": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=true",
+    "variant=\"plain\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 26.93,
+  "gpu": 1
+ },
+ "11": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=false",
+    "variant=\"global\"",
+    "token=\"ap\"",
+    "tag=\"ap\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 29.7,
+  "gpu": 0
+ },
+ "12": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=false",
+    "variant=\"strip\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 26.15,
+  "gpu": 1
+ },
+ "13": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=false",
+    "variant=\"esa\"",
+    "token=\"none\"",
+    "tag=\"slabonly\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 28.12,
+  "gpu": 0
+ },
+ "14": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=true",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 29.55,
+  "gpu": 1
+ },
+ "15": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=true",
+    "variant=\"plain\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 26.94,
+  "gpu": 0
+ },
+ "16": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=false",
+    "variant=\"global\"",
+    "token=\"ap\"",
+    "tag=\"ap\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 29.22,
+  "gpu": 1
+ },
+ "17": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=false",
+    "variant=\"strip\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 27.38,
+  "gpu": 0
+ },
+ "18": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=false",
+    "variant=\"esa\"",
+    "token=\"none\"",
+    "tag=\"slabonly\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 28.5,
+  "gpu": 1
+ },
+ "19": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=true",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 31.04,
+  "gpu": 0
+ },
+ "20": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=true",
+    "variant=\"plain\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 27.04,
+  "gpu": 1
+ },
+ "21": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=false",
+    "variant=\"global\"",
+    "token=\"ap\"",
+    "tag=\"ap\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 29.96,
+  "gpu": 0
+ },
+ "22": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=false",
+    "variant=\"strip\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 27.17,
+  "gpu": 1
+ },
+ "23": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=false",
+    "variant=\"esa\"",
+    "token=\"none\"",
+    "tag=\"slabonly\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 29.31,
+  "gpu": 0
+ },
+ "24": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "evals=[\"rotation\", \"corruptions\", \"cueconflict\", \"topodestroy\", \"crossdomain\"]",
+    "save_model=true",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 27.01,
+  "gpu": 1
+ }
+}

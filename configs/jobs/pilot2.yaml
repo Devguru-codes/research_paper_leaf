@@ -1,0 +1,18 @@
+# Go/no-go pilot (plan: one fold, ConvNeXt-T, four variants, mechanism evals)
+pip: [lpips]
+common:
+  exp: pilot
+  backbone: convnext_tiny
+  protocol: grouped
+  fold: 0
+  seed: 0
+  epochs: 40
+  batch_size: 32
+  workers: 3
+  save_model: true
+  evals: [rotation, corruptions, cueconflict, topodestroy]
+jobs:
+  - {variant: esa}
+  - {variant: plain}
+  - {variant: slabstat}
+  - {variant: global}

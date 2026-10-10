@@ -1,0 +1,34 @@
+{
+ "blade_bites": {
+  "flip_rate": 0.0,
+  "mean_kl": 0.002180599348604551,
+  "mean_dp_true": 0.011647498184214525,
+  "mean_rmse": 11.039401910995526,
+  "mean_lpips": 0.028877847082404002,
+  "mean_dchi": 0.0
+ },
+ "blade_holes": {
+  "flip_rate": 0.0,
+  "mean_kl": 0.0009056953275150014,
+  "mean_dp_true": 0.007797206522988491,
+  "mean_rmse": 11.523058347363289,
+  "mean_lpips": 0.05253163569662822,
+  "mean_dchi": -3.0
+ },
+ "vein_control": {
+  "flip_rate": 0.0,
+  "mean_kl": 1.1703615159218774e-05,
+  "mean_dp_true": 0.00020233236375402232,
+  "mean_rmse": 0.23339867749622936,
+  "mean_lpips": 0.00017963094540048542,
+  "mean_dchi": 0.0
+ },
+ "vein_sever": {
+  "flip_rate": 0.0,
+  "mean_kl": 0.00017682462328201206,
+  "mean_dp_true": 0.0013384529150248876,
+  "mean_rmse": 1.0239217967772094,
+  "mean_lpips": 0.003562553325189116,
+  "mean_dchi": 0.0
+ }
+}

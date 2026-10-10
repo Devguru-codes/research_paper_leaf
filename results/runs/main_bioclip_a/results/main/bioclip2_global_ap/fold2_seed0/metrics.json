@@ -1,0 +1,206 @@
+{
+ "cfg": {
+  "exp": "main",
+  "backbone": "bioclip2",
+  "variant": "global",
+  "protocol": "grouped",
+  "fold": 2,
+  "seed": 0,
+  "img_size": 224,
+  "grid": 96,
+  "epochs": 20,
+  "batch_size": 32,
+  "lr_backbone": 3e-05,
+  "lr_new": 0.001,
+  "weight_decay": 0.05,
+  "warmup_epochs": 2,
+  "label_smoothing": 0.1,
+  "vein_weight": 0.2,
+  "amp": true,
+  "workers": 3,
+  "pretrained": true,
+  "d": 192,
+  "K": 32,
+  "T": 16,
+  "R": 2.0,
+  "kappa": 4.0,
+  "nbins": 256,
+  "heads": 4,
+  "depth": 2,
+  "weights": "learned",
+  "attn": "slab",
+  "use_blade": true,
+  "use_vein": true,
+  "save_model": false,
+  "tag": "ap",
+  "evals": [
+   "rotation",
+   "corruptions",
+   "cueconflict",
+   "topodestroy",
+   "crossdomain"
+  ],
+  "max_per_class": 0,
+  "classes": 0,
+  "grad_accum": 1,
+  "gpu_aug": true,
+  "token": "ap",
+  "rot_aug": true
+ },
+ "leakage": {
+  "test_in_train_leaf_group": 0,
+  "test_in_train_exact": 0
+ },
+ "n_train": 1217,
+ "n_cal": 243,
+ "n_test": 365,
+ "train_time_s": 557.8443553447723,
+ "log": [
+  {
+   "epoch": 0,
+   "train_ce": 2.302293559438304,
+   "train_vein": 0.4306836018436833,
+   "time": 25.464114904403687
+  },
+  {
+   "epoch": 1,
+   "train_ce": 0.7970197247831445,
+   "train_vein": 0.313041079985468,
+   "time": 50.0034716129303
+  },
+  {
+   "epoch": 2,
+   "train_ce": 0.7436221885053735,
+   "train_vein": 0.3018925009589446,
+   "time": 74.54868292808533
+  },
+  {
+   "epoch": 3,
+   "train_ce": 0.7188662572910911,
+   "train_vein": 0.2973606257062209,
+   "time": 99.37292408943176
+  },
+  {
+   "epoch": 4,
+   "train_ce": 0.7007181299360175,
+   "train_vein": 0.29472133752546814,
+   "time": 124.61882615089417,
+   "cal_acc": 0.9876543209876543
+  },
+  {
+   "epoch": 5,
+   "train_ce": 0.6957377665921262,
+   "train_vein": 0.29286553436204005,
+   "time": 158.37649774551392
+  },
+  {
+   "epoch": 6,
+   "train_ce": 0.6961462340856853,
+   "train_vein": 0.29148497628538234,
+   "time": 183.56057715415955
+  },
+  {
+   "epoch": 7,
+   "train_ce": 0.6867867676835311,
+   "train_vein": 0.29063002529897186,
+   "time": 209.25898337364197
+  },
+  {
+   "epoch": 8,
+   "train_ce": 0.6810620160479295,
+   "train_vein": 0.28952361721741526,
+   "time": 234.757141828537
+  },
+  {
+   "epoch": 9,
+   "train_ce": 0.6753425833426023,
+   "train_vein": 0.2891109883785248,
+   "time": 261.14522409439087,
+   "cal_acc": 1.0
+  },
+  {
+   "epoch": 10,
+   "train_ce": 0.675665452292091,
+   "train_vein": 0.28873889226662486,
+   "time": 297.81671667099
+  },
+  {
+   "epoch": 11,
+   "train_ce": 0.6734536462708524,
+   "train_vein": 0.2885685123895344,
+   "time": 323.9019703865051
+  },
+  {
+   "epoch": 12,
+   "train_ce": 0.6689904567442442,
+   "train_vein": 0.28747866655650894,
+   "time": 351.57464051246643
+  },
+  {
+   "epoch": 13,
+   "train_ce": 0.6674599537723943,
+   "train_vein": 0.2869057325940383,
+   "time": 378.55912137031555
+  },
+  {
+   "epoch": 14,
+   "train_ce": 0.665768480614612,
+   "train_vein": 0.28659350385791377,
+   "time": 405.3578419685364,
+   "cal_acc": 1.0
+  },
+  {
+   "epoch": 15,
+   "train_ce": 0.6637035765145954,
+   "train_vein": 0.2867637723684311,
+   "time": 441.34866166114807
+  },
+  {
+   "epoch": 16,
+   "train_ce": 0.663515451707338,
+   "train_vein": 0.286347633129672,
+   "time": 468.06293749809265
+  },
+  {
+   "epoch": 17,
+   "train_ce": 0.6633832266456202,
+   "train_vein": 0.2861706261572085,
+   "time": 495.40941977500916
+  },
+  {
+   "epoch": 18,
+   "train_ce": 0.6628632874865281,
+   "train_vein": 0.28611313041887787,
+   "time": 522.0934579372406
+  },
+  {
+   "epoch": 19,
+   "train_ce": 0.6633950675788679,
+   "train_vein": 0.2860786742285678,
+   "time": 549.3447258472443,
+   "cal_acc": 1.0
+  }
+ ],
+ "params_total": 306351329,
+ "params_fusion": 1721474,
+ "cal_time_s": 8.43503713607788,
+ "cal": {
+  "acc": 1.0,
+  "bal_acc": 1.0,
+  "macro_f1": 1.0,
+  "nll": 0.2562905251979828,
+  "ece": 0.21427378082962198,
+  "mistake_severity": 0.0,
+  "n": 243
+ },
+ "test_time_s": 15.27228856086731,
+ "test": {
+  "acc": 1.0,
+  "bal_acc": 1.0,
+  "macro_f1": 1.0,
+  "nll": 0.25643491744995117,
+  "ece": 0.21367320736793624,
+  "mistake_severity": 0.0,
+  "n": 365
+ }
+}

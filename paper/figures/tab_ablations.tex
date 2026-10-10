@@ -1,0 +1,17 @@
+\begin{tabular}{lcccc}
+\toprule
+Variant & Clean & Rot.\ min & Field (mask) & Field (raw) \\
+\midrule
+SVA (full) & 99.9\,$\pm$\,0.2 & 99.9\,$\pm$\,0.2 & 47.0\,$\pm$\,0.7 & 53.1\,$\pm$\,2.7 \\
+softer relaxation ($\kappa{=}1$) & 100.0\,$\pm$\,0.0 & 99.9\,$\pm$\,0.2 & 46.8\,$\pm$\,1.1 & 52.5\,$\pm$\,2.1 \\
+attention over all leaf patches & 100.0\,$\pm$\,0.0 & 100.0\,$\pm$\,0.0 & 47.1\,$\pm$\,1.1 & 52.0\,$\pm$\,2.5 \\
+weights permuted within the leaf & 100.0\,$\pm$\,0.0 & 100.0\,$\pm$\,0.0 & 44.5\,$\pm$\,0.8 & 50.8\,$\pm$\,1.1 \\
+venation field only & 99.9\,$\pm$\,0.2 & 99.8\,$\pm$\,0.2 & 45.3\,$\pm$\,0.6 & 50.7\,$\pm$\,2.5 \\
+sharper relaxation ($\kappa{=}16$) & 100.0\,$\pm$\,0.0 & 99.9\,$\pm$\,0.2 & 46.5\,$\pm$\,2.6 & 50.6\,$\pm$\,3.8 \\
+blade only & 100.0\,$\pm$\,0.0 & 99.9\,$\pm$\,0.2 & 43.8\,$\pm$\,2.0 & 48.4\,$\pm$\,4.1 \\
+coarse sweep ($K{=}16,T{=}8$) & 100.0\,$\pm$\,0.0 & 99.9\,$\pm$\,0.2 & 43.2\,$\pm$\,1.2 & 46.8\,$\pm$\,1.0 \\
+Euler token & 100.0\,$\pm$\,0.0 & 100.0\,$\pm$\,0.0 & 43.0\,$\pm$\,0.7 & 45.7\,$\pm$\,2.8 \\
+Hadwiger token (area, perimeter, Euler) & 100.0\,$\pm$\,0.0 & 100.0\,$\pm$\,0.0 & 38.9\,$\pm$\,1.1 & 44.3\,$\pm$\,1.5 \\
+unit cell weights & 99.9\,$\pm$\,0.2 & 99.8\,$\pm$\,0.2 & 41.5\,$\pm$\,1.2 & 43.5\,$\pm$\,0.7 \\
+\bottomrule
+\end{tabular}

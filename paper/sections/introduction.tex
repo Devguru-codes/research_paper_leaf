@@ -1,0 +1,53 @@
+\section{Introduction}
+\label{sec:intro}
+
+Medicinal plants are identified in the field mostly from their leaves, and errors are not equally
+costly: confusing two culinary herbs is harmless, but confusing a remedy with a toxic look-alike, such
+as \textit{Nerium oleander} with other Apocynaceae, can be dangerous~\citep{farkhondeh2020oleander}.
+Deep networks report 97.5--99.7\% accuracy on Indian medicinal leaf
+benchmarks~\citep{roopashree2021deepherb,ffncacnn2025}. Those numbers, however, are obtained on
+single leaves photographed on white backgrounds, typically with random image-level splits. They say
+little about what the models rely on or how they behave when the leaf is rotated, degraded or
+photographed in the field.
+
+Botanists describe a leaf by its geometry: how wide the blade is along its length, where it tapers,
+how ragged its margin is, how its veins branch. These are measured \emph{at particular places} and
+judged together with what the tissue looks like there. Standard CNN and ViT classifiers have no
+built-in notion of such object-centred, localised geometry. Topological and morphological summaries
+can supply it, and recent work fuses persistence diagrams or Euler characteristic transforms with deep
+features~\citep{phgnet2023,tdavit2026,gu2026multifiltration,blaser2026encoding}. In these designs,
+however, the geometric signal enters as a global descriptor, so the place where geometry is measured
+is decoupled from the place where the visual model looks.
+
+We propose \emph{Sweep-Valuation Attention} (\SVA{}), which couples the two. A directional sweep
+partitions the leaf into ordered slabs along $K$ directions. For each slab, \SVA{} measures how much
+area and boundary length of two weighted cubical complexes, the blade and a learned venation field,
+enter the filtration there. These quantities are the metric intrinsic volumes, which together with the
+Euler characteristic span all motion-invariant planar valuations. The measurement forms the query of a
+sweep token, and the token's cross-attention to backbone patches is restricted by \emph{the same}
+soft slab membership that defines the measurement. The resulting module (\SVF{}) is differentiable,
+backbone-agnostic and costs one histogram and one matrix product per complex.
+
+Because our questions are about mechanism, we design controls that hold everything else fixed: the same
+valuations fused globally (no co-registration), slab attention without valuations (geometry without
+measurement), and strip pooling~\citep{hou2020strip} (localised directional pooling without an
+object-centred filtration). We also audit the data: we find exact duplicates and re-shots of the same
+leaf, and evaluate all models under a grouped protocol.
+
+\paragraph{Contributions.}
+\begin{enumerate}
+\item \textbf{\SVA{}}, a module whose tokens carry filtration increments of the intrinsic volumes of
+  appearance-weighted cubical complexes (blade and learned venation field) along a fine directional
+  sweep, and attend within the corresponding filtration slab. To the best of our knowledge, we did not
+  find prior work that explicitly co-registers filtration-derived valuation increments with attention
+  restricted to the corresponding filtration slab.
+\item \textbf{A controlled study} with matched controls on three backbones and five probes. With an
+  ImageNet CNN, \SVA{} improves studio-to-field transfer by 16 points and keeps this gain without
+  rotation augmentation, where it beats strip pooling and slab-only attention by 5--6 points. We also
+  report where it does not help: on ViT-S and BioCLIP~2 the gain vanishes, and the ablations show that
+  appearance-conditioned weights and a fine sweep, not slab-restricted attention, drive the effect.
+\item \textbf{A leakage-audited protocol and probes} for the Medicinal Leaf Dataset: duplicate and
+  re-shot grouping, a corruption suite (MedLeaf-C), a leaf cue-conflict set and a topology-destruction
+  test with perceptually matched edits.
+\end{enumerate}
+Code, splits, probes and all run outputs are released.

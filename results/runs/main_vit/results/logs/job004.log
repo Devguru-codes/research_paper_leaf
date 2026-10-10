@@ -1,0 +1,57 @@
+src.train --set exp="main" protocol="grouped" epochs=40 batch_size=32 workers=3 backbone="vit_small" fold=0 seed=0 evals=["rotation", "corruptions", "cueconflict", "topodestroy", "crossdomain"] lr_backbone=5e-05 variant="slabstat" token="ap" tag="ap"
+/kaggle/working/proj/src/train.py:154: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  sched.step()
+{"epoch": 0, "train_ce": 3.107668535129444, "train_vein": 0.3829711289019198, "time": 22.13098120689392}
+{"epoch": 1, "train_ce": 0.9376306839891382, "train_vein": 0.31429810620642995, "time": 43.28977346420288}
+{"epoch": 2, "train_ce": 0.797067534279179, "train_vein": 0.30106687223589096, "time": 62.957226276397705}
+{"epoch": 3, "train_ce": 0.7575106491913667, "train_vein": 0.29409212357289083, "time": 82.15632653236389}
+{"epoch": 4, "train_ce": 0.7246768941750398, "train_vein": 0.2895783258450998, "time": 101.89581251144409, "cal_acc": 0.9959183673469387}
+{"epoch": 5, "train_ce": 0.7111112330410931, "train_vein": 0.28703021680986557, "time": 129.40168571472168}
+{"epoch": 6, "train_ce": 0.703342584339348, "train_vein": 0.28468307047276886, "time": 149.45918035507202}
+{"epoch": 7, "train_ce": 0.6935334366721075, "train_vein": 0.28348629297436895, "time": 169.13672065734863}
+{"epoch": 8, "train_ce": 0.691760955630122, "train_vein": 0.2820296996348613, "time": 188.72741436958313}
+{"epoch": 9, "train_ce": 0.6865019363325995, "train_vein": 0.28186852948085683, "time": 208.53215718269348, "cal_acc": 1.0}
+{"epoch": 10, "train_ce": 0.6838490850216633, "train_vein": 0.2807626667860392, "time": 235.36291456222534}
+{"epoch": 11, "train_ce": 0.6770259447999902, "train_vein": 0.2797728946080079, "time": 255.46721863746643}
+{"epoch": 12, "train_ce": 0.6771398718292648, "train_vein": 0.27874771727098, "time": 275.26337814331055}
+{"epoch": 13, "train_ce": 0.6741551321906012, "train_vein": 0.2780343874080761, "time": 294.9304518699646}
+{"epoch": 14, "train_ce": 0.6707172474345645, "train_vein": 0.27774081600678935, "time": 314.690958738327, "cal_acc": 1.0}
+{"epoch": 15, "train_ce": 0.6674378385414949, "train_vein": 0.27747200952993856, "time": 341.4789357185364}
+{"epoch": 16, "train_ce": 0.6662127746118082, "train_vein": 0.27746388799435384, "time": 361.76765513420105}
+{"epoch": 17, "train_ce": 0.665900926332216, "train_vein": 0.2768495952760851, "time": 381.6705620288849}
+{"epoch": 18, "train_ce": 0.6646052389531523, "train_vein": 0.27650117632505056, "time": 401.5324110984802}
+{"epoch": 19, "train_ce": 0.6617493548908749, "train_vein": 0.2761980875118359, "time": 421.1006693840027, "cal_acc": 1.0}
+{"epoch": 20, "train_ce": 0.6607731274656348, "train_vein": 0.2754770807317785, "time": 448.72405886650085}
+{"epoch": 21, "train_ce": 0.6588515043258667, "train_vein": 0.2756145878418072, "time": 469.0786180496216}
+{"epoch": 22, "train_ce": 0.659682347967818, "train_vein": 0.2751833023251714, "time": 488.9476087093353}
+{"epoch": 23, "train_ce": 0.6583947813188707, "train_vein": 0.2748461639558947, "time": 508.47046184539795}
+{"epoch": 24, "train_ce": 0.6575497823792535, "train_vein": 0.27453350134798, "time": 528.4232757091522, "cal_acc": 1.0}
+{"epoch": 25, "train_ce": 0.6568429824468252, "train_vein": 0.27439334183125885, "time": 556.1163127422333}
+{"epoch": 26, "train_ce": 0.6562524711763537, "train_vein": 0.27525628418535797, "time": 576.3595538139343}
+{"epoch": 27, "train_ce": 0.6563893637141666, "train_vein": 0.27401345243325104, "time": 596.0532553195953}
+{"epoch": 28, "train_ce": 0.6557083951460349, "train_vein": 0.2739432123867241, "time": 616.0297863483429}
+{"epoch": 29, "train_ce": 0.6551368139885567, "train_vein": 0.2736596932282319, "time": 635.8979952335358, "cal_acc": 1.0}
+{"epoch": 30, "train_ce": 0.655627742006972, "train_vein": 0.273574962003811, "time": 663.4678580760956}
+{"epoch": 31, "train_ce": 0.6550061815493816, "train_vein": 0.2726206114968738, "time": 683.5577499866486}
+{"epoch": 32, "train_ce": 0.6541616095078958, "train_vein": 0.2732478992359058, "time": 703.3688671588898}
+{"epoch": 33, "train_ce": 0.6541020129178021, "train_vein": 0.27249022029541636, "time": 723.0505781173706}
+{"epoch": 34, "train_ce": 0.6543390283713469, "train_vein": 0.2729250426227982, "time": 742.9202334880829, "cal_acc": 1.0}
+{"epoch": 35, "train_ce": 0.6543606116965011, "train_vein": 0.27280970038594426, "time": 770.9126992225647}
+{"epoch": 36, "train_ce": 0.6541585954459938, "train_vein": 0.27257952335718516, "time": 790.9961030483246}
+{"epoch": 37, "train_ce": 0.653872092027922, "train_vein": 0.2727687310528111, "time": 810.8193995952606}
+{"epoch": 38, "train_ce": 0.6537717161951838, "train_vein": 0.2733293546212686, "time": 830.5998477935791}
+{"epoch": 39, "train_ce": 0.6541656255722046, "train_vein": 0.27307351054372014, "time": 850.405749797821, "cal_acc": 1.0}
+TEST {"acc": 1.0, "bal_acc": 1.0, "macro_f1": 1.0, "nll": 0.10275577753782272, "ece": 0.09732053970378605, "mistake_severity": 0.0, "n": 366}
+EVAL rotation {"per_angle": {"0": {"acc": 1.0, "bal_acc": 1.0, "macro_f1": 1.0, "nll": 0.10275577008724213, "ece": 0.09732052374407242, "mistake_severity": 0.0, "n": 366}, "30": {"acc": 1.0, "bal_acc": 1.0, "macro_f1": 1.0, "nll": 0.1124170646071434, "ece": 0.1057979669727263, "mistake_severity": 0.0, "n": 366}, "60": {"acc": 1.0, "bal_acc": 1.0, "macro_f1": 1.0, "nll": 0.11238867044448853, "ece": 0.10572369486
+EVAL corruptions {"clean": 1.0, "gaussian_noise/1": 0.9972677595628415, "gaussian_noise/2": 0.9699453551912568, "gaussian_noise/3": 0.8797814207650273, "gaussian_blur/1": 1.0, "gaussian_blur/2": 0.9781420765027322, "gaussian_blur/3": 0.7978142076502732, "jpeg/1": 1.0, "jpeg/2": 0.9508196721311475, "jpeg/3": 0.7486338797814208, "low_resolution/1": 0.9890710382513661, "low_resolution/2": 0.9207650273224044, "low_res
+EVAL cueconflict {"all": {"shape_frac": 0.06830601092896176, "texture_frac": 0.6994535519125683, "shape_bias": 0.08896797153024912, "n": 366}, "moderate_stretch": {"shape_frac": 0.036231884057971016, "texture_frac": 0.8188405797101449, "shape_bias": 0.0423728813559322, "n": 276}}
+/usr/local/lib/python3.13/dist-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/usr/local/lib/python3.13/dist-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+EVAL topodestroy {"blade_bites": {"flip_rate": 0.0, "mean_kl": 0.008059032885066302, "mean_dp_true": 0.026425862898592088, "mean_rmse": 11.028037606692704, "mean_lpips": 0.02855638175174757, "mean_dchi": 0.0}, "blade_holes": {"flip_rate": 0.0, "mean_kl": 0.0038171785810567588, "mean_dp_true": 0.015069934025488264, "mean_rmse": 11.507593665618062, "mean_lpips": 0.05291217540853906, "mean_dchi": -3.0}, "vein_control
+/usr/local/lib/python3.13/dist-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/usr/local/lib/python3.13/dist-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+EVAL crossdomain {"n": 2000, "masked": {"acc30": 0.466, "bal_acc30": 0.43024503609450065, "acc20": 0.5265, "bal_acc20": 0.4973296414844618, "macro_f1_20": 0.48840808014411874, "ece30": 0.14910624842718245}, "raw": {"acc30": 0.565, "bal_acc30": 0.5260371394546335, "acc20": 0.608, "bal_acc20": 0.5813900635845022, "macro_f1_20": 0.5599592815884649, "ece30": 0.21822881748899814}}

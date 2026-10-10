@@ -1,0 +1,26 @@
+2026-10-08 22:37:05 push main_vit attempt 1: ['Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/devgurucodes/medleaf-esa-main-vit']
+2026-10-08 22:48:53 main_vit already KernelWorkerStatus.RUNNING; waiting without re-pushing
+2026-10-08 22:53:35 push main_bioclip_a attempt 1: ['Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/devgurucodes/medleaf-esa-main-bioclip-a']
+2026-10-09 01:19:15 main_bioclip_a finished: KernelWorkerStatus.COMPLETE
+2026-10-09 01:19:20 pull main_bioclip_a failed: HTTPSConnectionPool(host='api.kaggle.com', port=443): Max retries exceeded with url: /v1/kernels.KernelsApiService/ListKernelSessionOutput (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate in certificate chain (_ssl.c:1002)'))); retrying
+2026-10-09 01:20:23 pull main_bioclip_a failed: HTTPSConnectionPool(host='api.kaggle.com', port=443): Max retries exceeded with url: /v1/kernels.KernelsApiService/ListKernelSessionOutput (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate in certificate chain (_ssl.c:1002)'))); retrying
+2026-10-09 01:21:23 pull main_bioclip_a failed: HTTPSConnectionPool(host='api.kaggle.com', port=443): Max retries exceeded with url: /v1/kernels.KernelsApiService/ListKernelSessionOutput (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate in certificate chain (_ssl.c:1002)'))); retrying
+2026-10-09 01:22:23 pull main_bioclip_a: FAILED
+2026-10-09 01:25:07 push main_bioclip_b attempt 1: ["HTTPSConnectionPool(host='api.kaggle.com', port=443): Max retries exceeded with url: /v1/kernels.KernelsApiService/SaveKernel (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate in certificate chain (_ssl.c:1002)')))"]
+2026-10-09 02:08:25 main_vit already KernelWorkerStatus.RUNNING; waiting without re-pushing
+2026-10-09 16:21:17 main_vit already COMPLETE, not pulled yet; pulling: ok
+2026-10-09 16:24:02 push main_ablations attempt 1: ['Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/devgurucodes/medleaf-esa-main-ablations']
+2026-10-09 16:24:19 main_vit already COMPLETE and pulled; skipping
+2026-10-09 16:24:21 main_ablations already KernelWorkerStatus.RUNNING; waiting without re-pushing
+2026-10-09 16:28:19 main_bioclip_a already COMPLETE, not pulled yet; pulling: ok
+2026-10-09 16:31:03 push main_bioclip_b attempt 1: ['Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/devgurucodes/medleaf-esa-main-bioclip-b']
+2026-10-09 18:58:15 main_bioclip_b finished: KernelWorkerStatus.COMPLETE
+2026-10-09 19:00:10 pull main_bioclip_b: ok
+2026-10-09 19:02:55 push main_norot attempt 1: ['Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/devgurucodes/medleaf-esa-main-norot']
+2026-10-09 22:13:38 main_ablations finished: KernelWorkerStatus.COMPLETE
+2026-10-09 22:17:39 pull main_ablations: ok
+2026-10-09 22:20:25 push main_p1 attempt 1: ['Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/devgurucodes/medleaf-esa-main-p1']
+2026-10-09 22:21:54 main_norot finished: KernelWorkerStatus.COMPLETE
+2026-10-09 22:23:54 pull main_norot: ok
+2026-10-09 22:23:54 QUEUE DONE
+2026-10-09 22:58:10 push main_norot_s1 attempt 1: ['Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/devgurucodes/medleaf-esa-main-norot-s1']

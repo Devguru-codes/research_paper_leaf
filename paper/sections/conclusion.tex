@@ -1,0 +1,20 @@
+\section{Conclusion}
+\label{sec:conclusion}
+We introduced sweep-valuation attention, which turns a directional filtration of a leaf into tokens
+that carry the area and boundary length entering each slab, weighted by appearance, and attend to
+the matching image region. In a controlled study with matched controls on three backbones, it gives
+an ImageNet CNN a large and statistically robust gain in studio-to-field transfer (+16 points) and
+keeps that gain without rotation augmentation, where strip pooling does not. The same study shows the
+limits: the gain vanishes for a ViT and for the BioCLIP~2 foundation model, co-registered attention
+is not its main source, and Euler-characteristic tokens, although they make the model sensitive to
+topology, transfer worse than metric valuations. We release the leakage-audited protocol, the
+corruption, cue-conflict and topology-destruction probes, and all code and run outputs.
+
+\section*{Code and data availability}
+All code, configurations, unit tests, the outputs of every training run (metrics, probe results,
+per-image predictions and logs), the statistical analyses and the \LaTeX{} sources of this paper are
+publicly available at \url{https://github.com/Devguru-codes/research_paper_leaf}. Every number
+reported here is regenerated from those run outputs by the scripts in the repository, and the
+properties stated in \cref{sec:method} are verified by its unit tests (\cref{app:tests}). The image
+datasets are not redistributed; they are available from their original sources
+(\cref{sec:data})~\citep{roopashree2020dataset,pushpa2023dimpsar}.

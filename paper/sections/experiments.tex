@@ -1,0 +1,53 @@
+\section{Experimental setup}
+\label{sec:experiments}
+
+\paragraph{Backbones and training.} The main backbones are ConvNeXt-T (ImageNet-1k), ViT-S/16
+(AugReg, ImageNet-21k$\to$1k) and the BioCLIP~2 ViT-L/14 visual tower (all but the last two blocks
+frozen). All variants of a backbone share the recipe: AdamW (new modules lr $10^{-3}$, weight decay
+$0.05$), 2 warm-up epochs then cosine decay, batch 32, mixed precision, label smoothing $0.1$. The
+backbone lr is $10^{-4}$ for ConvNeXt-T and $5\times10^{-5}$ for ViT-S, both trained 40 epochs at
+$384^2$; BioCLIP~2 uses lr $3\times10^{-5}$, 20 epochs and $224^2$ input. Inputs are converted to
+each backbone's own normalisation statistics. Augmentation uses uniform
+rotation in $[-180^\circ,180^\circ]$, scale $[0.85,1.15]$, translation $\pm5\%$, horizontal flips and
+mild colour jitter. Geometric transforms are applied jointly to image, mask and vein pseudo-label. No
+early stopping or test-time augmentation is used. Runs use Kaggle T4 GPUs.
+
+\paragraph{Metrics and statistics.} We report accuracy, balanced accuracy, macro-F1, expected
+calibration error (15 bins) and \emph{mistake severity}, i.e.\ the mean taxonomic distance (1 = same
+genus \ldots\ 4 = different order) between predicted and true species over errors. All splits are
+grouped stratified 5-fold cross-validation over the deduplicated, leaf-grouped data (\cref{sec:data}).
+For ConvNeXt-T the five models are trained with 3 seeds per fold (15 runs each); the full probe suite
+is run on seed 0 and the cross-domain test on all seeds. ViT-S and BioCLIP~2 use one seed per fold.
+Ablations use ConvNeXt-T, seed 0, folds 0--2. Paired comparisons use the Wilcoxon signed-rank test
+over fold--seed pairs and McNemar's test on pooled predictions.
+
+\paragraph{Ablations.} Starting from \SVA{}: Euler-only and full-Hadwiger tokens; blade-only and
+vein-only fields; unit cell weights; \emph{permuted} learned weights (the same weight values shuffled
+within the leaf before computing the valuations, which keeps their distribution but destroys the
+weight--location correspondence); global instead of slab-restricted attention; a coarser sweep
+($K{=}16$, $T{=}8$); and a softer or sharper relaxation ($\kappa\in\{1,16\}$). A separate arm trains
+plain, strip, slab-only and \SVA{} on all folds and three seeds \emph{without} rotation augmentation,
+to measure robustness that is built in rather than learned from data.
+
+\paragraph{Mechanistic probes.} All probes are applied to each fold's test images with fixed seeds.
+\begin{itemize}
+\item \textbf{Rotation sweep}: accuracy at $0^\circ,30^\circ,\dots,330^\circ$ and the fraction of
+images whose prediction is identical at all 12 angles.
+\item \textbf{MedLeaf-C}: ten corruptions $\times$ three severities: Gaussian noise, blur, JPEG,
+low resolution, darkening, contrast loss, hue shift (yellowing), desaturation (severity 3 is
+grayscale), occluders, and pasted procedural/soil-like backgrounds. Masks are the oracle masks
+transformed consistently.
+\item \textbf{Cue conflict}: the silhouette of a test leaf $A$ is filled with the lamina of a test
+leaf $B$ of another species. $B$ is aligned by principal axes and enlarged until it covers $A$, so
+that $B$'s outline contributes no shape cue. Shape bias $=n_A/(n_A+n_B)$ where $n_A$ ($n_B$) counts
+predictions of $A$'s ($B$'s) species. We also report it on pairs with anisotropic stretch $\le2$.
+\item \textbf{Topology destruction}: appearance-preserving edits that change topology versus matched
+controls that do not. For the blade: three interior holes (exact $\Delta\chi=-3$, verified) versus
+three boundary bites of equal removed area ($\Delta\chi=0$, verified). For venation: inpainting eight
+small disks on strong veins versus eight on vein-free lamina. Every edit records LPIPS, pixel RMSE and
+a colour-histogram distance. The response (KL divergence between clean and edited predictions) is
+analysed by regression on visual distance with a topology-changing indicator.
+\item \textbf{Cross-domain}: models trained on the segmented images are tested on the 20 overlapping
+DIMPSAR species, both on auto-masked crops with the background whitened and on raw crops with the
+background kept (30-way and 20-way-restricted accuracy).
+\end{itemize}

@@ -1,0 +1,18 @@
+# Smoke: untested backbones (timm ViT-S, open_clip BioCLIP 2) + DeepHerb reproduction (full, cheap)
+pip: [lpips, open_clip_torch]
+kernel_sources: [maskhead]
+common:
+  exp: smoke3
+  protocol: grouped
+  fold: 0
+  seed: 0
+  epochs: 1
+  batch_size: 16
+  workers: 3
+  classes: 5
+  max_per_class: 12
+  evals: [rotation, crossdomain]
+jobs:
+  - {backbone: vit_small, variant: slabstat, token: ap, tag: ap, lr_backbone: 5.0e-5}
+  - {backbone: bioclip2, variant: slabstat, token: ap, tag: ap, img_size: 224, lr_backbone: 3.0e-5}
+  - {backbone: vit_small, variant: strip, lr_backbone: 5.0e-5}
