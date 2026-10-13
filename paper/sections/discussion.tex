@@ -1,42 +1,43 @@
 \section{Discussion}
 \label{sec:discussion}
 
-\paragraph{When does structure help?} The clearest pattern in our results is a dependence on the
-backbone. For an ImageNet CNN, measuring area and boundary length along an object-centred sweep, with
-cell weights conditioned on appearance, turns a model that transfers poorly from studio to field
-photographs (34\%) into one that transfers substantially better (49\%), and it does so without
-needing rotation augmentation. For ViT-S the module is neutral, and for BioCLIP~2, whose
-pre-training already covers millions of organism images, no structural module changes anything.
-Practitioners with access to a biology foundation model should use it; the structural module is
-useful where such a model is unavailable or too large, e.g.\ for on-device CNNs.
+\paragraph{What closes the studio-to-field gap.} For an ImageNet CNN trained on studio leaves, two
+simple properties of the pooling account for the whole architectural gain we observed: knowing where
+the leaf is, and pooling locally within it. Each is worth 5--8 points on raw field photographs, they
+add up to 12--14 points, and both survive without rotation augmentation and on top of strong
+background-compositing augmentation. Background compositing and mask pooling act similarly (each lifts
+plain ConvNeXt-T to about 41--42\%), which supports the reading that the first part is about discounting
+the background. The second part, localisation, helps on raw photographs and on texture corruptions but
+hardly on whitened photographs, so it seems to make features robust to clutter and texture loss inside
+and around the leaf rather than to add shape information; shape bias barely changes.
 
-\paragraph{What the ablations say about the mechanism.} Our initial hypothesis was that
-\emph{co-registration}, i.e.\ attending only within the slab whose geometry is measured, would be
-the key ingredient. The ablations do not support this as the main driver: once the tokens carry
-valuations, global attention performs within noise of slab-restricted attention. What matters is
-(i)~appearance-conditioned weights, which let the network decide which parts of the blade and
-venation count towards the measured geometry, and (ii)~a fine sweep. Restricting attention to the
-slab matters when the slab is the \emph{only} structural information (slab-only model). We report
-co-registration as a design choice of \SVA{} and not as the source of its gains.
+\paragraph{What does not.} We expected measured leaf geometry to matter: an object-centred sweep,
+per-slab area and boundary length of the blade and venation, and attention restricted to the slab
+being measured. None of these ingredients improves transfer beyond localised pooling. Object-centred
+slabs are no better than image-axis strips, the same measurements fused globally give nothing, and
+restricting attention to the measured slab can be replaced by global attention. Within \SVA{}, a fine
+sweep and learned weights matter, but only relative to weaker versions of \SVA{} itself. Euler
+tokens make a model sensitive to holes in the blade, yet transfer worse. Within the limits of our
+design, the effect we can detect is about \emph{where} features are pooled, not about measuring the
+leaf. We report \SVA{} because a well-controlled negative result for a natural and increasingly
+popular idea, fusing topological and geometric measurements with deep features, is useful, and
+because its localised variant is among the best models we trained.
 
-\paragraph{Topology is measurable but not what transfers.} Euler-characteristic tokens make a
-model demonstrably sensitive to holes in the blade, which none of the other models are, yet they
-transfer worse to field photographs than metric valuations. For species identification the metric
-profile of a leaf (how its width and margin length vary along each direction) is more informative and
-more robust than its connectivity. This is consistent with botanical practice, where outline and
-margin are primary characters, and with recent findings that leaf outlines are highly informative
-of other leaf traits~\citep{ayub2026ectplants}.
+\paragraph{Practical recommendations.} (i)~Evaluate leaf classifiers on field photographs; studio
+accuracy is saturated and uninformative (98--100\% for every model). (ii)~With an ImageNet CNN, pool
+over the leaf and locally within it, e.g.\ with strip pooling, which is simpler and cheaper than \SVA{}
+(\cref{app:cost}), and combine it with background-compositing augmentation; together they raised
+field accuracy from 34\% to 53--55\%. (iii)~Where a biology foundation model such as BioCLIP~2 can be
+used, use it: it reaches 81\% without any module, and none of the modules changes it.
 
-\paragraph{Benchmark saturation.} Clean accuracy on this dataset is saturated even after removing
-duplicates and grouping re-shots of the same leaf, and so are rotation robustness under rotation
-augmentation and several corruption families. Reports of 98--100\% on studio leaf benchmarks should
-therefore be read as a lower bar; transfer to field photographs remains far from solved
-(49\% for the best ImageNet model and 82\% for BioCLIP~2 on 20 species).
-
-\paragraph{Limitations.} (i)~One studio dataset and one field dataset with 20 shared species;
-field labels come from vernacular folder names that we mapped and checked visually. (ii)~ViT-S and
-BioCLIP~2 were run with one seed, ablations with one seed on three folds; effects below about
-3 points in those settings are within seed noise. (iii)~The venation field is learned from
-ridge-filter pseudo-labels and is not a validated vein segmentation. (iv)~Hazard tiers are an
-explicit assumption table; the conformal layer (\cref{app:conformal}) is limited by the small
-number of calibration images for toxic species and gives no guarantee under shift.
+\paragraph{Limitations.} (i)~One studio dataset and one field dataset with 20 shared species. Field
+labels come from vernacular folder names that we mapped to species and checked visually; residual
+label noise would lower all models alike. The 20-way accuracy uses the knowledge of which species can
+occur. (ii)~The masked field condition and all localised models depend on our masker, whose accuracy
+on field photographs we could not measure without ground-truth masks; the raw-photo results, which the
+plain model obtains without any mask, are the primary outcome. (iii)~ConvNeXt-T results use five
+seeds, EfficientNet-B0 and the key ablations three, ViT-S and BioCLIP~2 one; differences of 2--3 points
+between localised models are not resolved by our design, and the ViT results are indicative only.
+(iv)~One fixed training recipe was used for all models of a backbone; a recipe tuned per model could
+shift individual numbers. (v)~The venation field is learned from ridge-filter pseudo-labels and is not
+validated against traced veins.

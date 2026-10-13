@@ -88,6 +88,10 @@ def run(name):
                 break
             time.sleep(3600)
         time.sleep(90)
+        for _ in range(10):  # right after a re-push Kaggle may still report the previous version's ERROR
+            if any(k in status(name) for k in ("RUNNING", "QUEUED")):
+                break
+            time.sleep(90)
         while True:
             s = status(name)
             if any(k in s for k in ("COMPLETE", "ERROR", "CANCEL")):

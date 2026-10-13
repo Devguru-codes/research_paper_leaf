@@ -8,7 +8,7 @@ import sys
 
 def main(names):
     for n in names:
-        if n.startswith("convnext"):
+        if n.startswith("convnext") or n.startswith("efficientnet"):
             import torchvision.models as tvm
             getattr(tvm, n)(weights="DEFAULT")
         elif n == "vit_small":

@@ -1,0 +1,24 @@
+\begin{tabular}{llrrrrr}
+\toprule
+Backbone & Model & Params (M) & Added (M) & GFLOPs & GPU ms & CPU ms \\
+\midrule
+ConvNeXt-T & Plain & 27.9 & 0.12 & 27.9 & 16 & 341 \\
+ & Mask pooling & 28.1 & 0.23 & 28.0 & 21 & 347 \\
+ & Strip pooling & 28.9 & 1.11 & 28.0 & 18 & 318 \\
+ & Slab-only & 29.1 & 1.26 & 29.3 & 26 & 661 \\
+ & SVA & 29.1 & 1.30 & 29.3 & 30 & 621 \\
+ & Global fusion & 29.6 & 1.79 & 28.1 & 28 & 411 \\
+\midrule
+EfficientNet-B0 & Plain & 4.1 & 0.09 & 3.2 & 23 & 270 \\
+ & Strip pooling & 5.0 & 1.03 & 3.2 & 25 & 294 \\
+ & Slab-only & 5.1 & 1.12 & 4.3 & 31 & 386 \\
+ & SVA & 5.2 & 1.16 & 4.3 & 49 & 431 \\
+ & Global fusion & 5.8 & 1.75 & 3.3 & 39 & 348 \\
+\midrule
+ViT-S/16 & Plain & 22.1 & 0.27 & 29.6 & 16 & 462 \\
+ & Strip pooling & 23.1 & 1.27 & 29.7 & 17 & 510 \\
+ & Slab-only & 23.2 & 1.42 & 31.2 & 22 & 479 \\
+ & SVA & 23.3 & 1.46 & 31.3 & 30 & 635 \\
+ & Global fusion & 23.8 & 1.96 & 30.1 & 32 & 569 \\
+\bottomrule
+\end{tabular}

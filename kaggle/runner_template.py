@@ -15,6 +15,8 @@ CODE_B64 = "__CODE_B64__"
 JOBS = json.loads(r'''__JOBS_JSON__''')
 PIP = __PIP__
 
+T0 = time.time()
+STOP_NEW_AFTER_H = 10.3  # Kaggle kills sessions at 12 h; stop starting jobs early so outputs are saved
 WORK = "/kaggle/working"
 PROJ = os.path.join(WORK, "proj")
 zipfile.ZipFile(io.BytesIO(base64.b64decode(CODE_B64))).extractall(PROJ)
@@ -61,6 +63,10 @@ def worker(gpu):
             i, args = q.get_nowait()
         except queue.Empty:
             return
+        if time.time() - T0 > STOP_NEW_AFTER_H * 3600:
+            status[i] = dict(args=args, rc="skipped_time", minutes=0, gpu=gpu)
+            print(f"job {i} skipped: {STOP_NEW_AFTER_H} h session budget reached", flush=True)
+            continue
         env = dict(os.environ, CUDA_VISIBLE_DEVICES=str(gpu))
         log = os.path.join(WORK, "results", "logs", f"job{i:03d}.log")
         t = time.time()

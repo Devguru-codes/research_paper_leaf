@@ -40,7 +40,7 @@ def collect(root: Path) -> pd.DataFrame:
         m = json.loads(mj.read_text())
         cfg = m["cfg"]
         row = dict(run_dir=str(run), exp=cfg["exp"], backbone=cfg["backbone"], model=model_name(cfg), variant=cfg["variant"],
-                   tag=cfg.get("tag", ""), rot_aug=cfg.get("rot_aug", True),
+                   tag=cfg.get("tag", ""), rot_aug=cfg.get("rot_aug", True), strong_aug=cfg.get("strong_aug", False),
                    protocol=cfg["protocol"], fold=cfg["fold"], seed=cfg["seed"], train_min=m["train_time_s"] / 60,
                    params_fusion=m.get("params_fusion", 0), leak_test_in_train=m["leakage"]["test_in_train_leaf_group"])
         row.update(flatten(m["test"], "test."))

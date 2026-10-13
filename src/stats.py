@@ -22,9 +22,41 @@ METRICS = ["test.acc", "test.bal_acc", "test.macro_f1", "test.ece", "rotation.me
            "crossdomain.raw.acc20"]
 
 
-def select(df, model, backbone, exp, rot_aug=True, protocol="grouped"):
+def corrected_ttest(d: np.ndarray, test_train_ratio: float = 0.3) -> dict:
+    """Nadeau & Bengio (2003) corrected resampled t-test for paired differences from (repeated) k-fold CV.
+    The variance is inflated by n_test/n_train to account for overlapping training sets; df = n - 1.
+    Returns mean, corrected 95% CI and two-sided p."""
+    from scipy.stats import t as tdist
+    d = np.asarray(d, float)
+    n = len(d)
+    if n < 2:
+        return dict(mean=float(d.mean()) if n else float("nan"), lo=float("nan"), hi=float("nan"), p=float("nan"))
+    var = d.var(ddof=1)
+    se = np.sqrt((1.0 / n + test_train_ratio) * var)
+    if se == 0:
+        return dict(mean=float(d.mean()), lo=float(d.mean()), hi=float(d.mean()), p=0.0 if d.mean() != 0 else 1.0)
+    tval = d.mean() / se
+    q = tdist.ppf(0.975, n - 1)
+    return dict(mean=float(d.mean()), lo=float(d.mean() - q * se), hi=float(d.mean() + q * se),
+                p=float(2 * tdist.sf(abs(tval), n - 1)))
+
+
+def holm(pvals: list[float]) -> list[float]:
+    """Holm-Bonferroni adjusted p-values (NaNs are passed through)."""
+    idx = [i for i, p in enumerate(pvals) if p == p]
+    order = sorted(idx, key=lambda i: pvals[i])
+    adj, running = [float("nan")] * len(pvals), 0.0
+    for r, i in enumerate(order):
+        running = max(running, min(1.0, (len(order) - r) * pvals[i]))
+        adj[i] = running
+    return adj
+
+
+def select(df, model, backbone, exp, rot_aug=True, protocol="grouped", strong_aug=False):
     d = df[(df.model == model) & (df.backbone == backbone) & (df.exp == exp) & (df.rot_aug == rot_aug)
            & (df.protocol == protocol)]
+    if "strong_aug" in d:
+        d = d[d.strong_aug.fillna(False).astype(bool) == strong_aug]
     return d.drop_duplicates(["fold", "seed"], keep="last").set_index(["fold", "seed"])
 
 
@@ -39,8 +71,9 @@ def paired(df: pd.DataFrame, a: str, b: str, backbone: str, exp: str = "main", r
             if ok.sum() >= 2:
                 d = (x[ok] - y[ok]).to_numpy()
                 p = wilcoxon(d).pvalue if np.any(d != 0) and ok.sum() >= 5 else float("nan")
+                ct = corrected_ttest(d)
                 out[m] = dict(n=int(ok.sum()), mean_diff=float(d.mean()), wins=int((d > 0).sum()),
-                              losses=int((d < 0).sum()), p=float(p))
+                              losses=int((d < 0).sum()), p=float(p), p_corr_t=ct["p"], ci95=[ct["lo"], ct["hi"]])
     n01 = n10 = 0
     for key in idx:
         pa = np.load(Path(da.loc[key, "run_dir"]) / "preds_test.npz")

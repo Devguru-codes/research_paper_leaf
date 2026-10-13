@@ -1,0 +1,352 @@
+{
+ "0": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"strongaug\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "strong_aug=true",
+    "evals=[\"rotation\", \"crossdomain\", \"corruptions\"]",
+    "variant=\"plain\"",
+    "tag=\"strongaug\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 30.45,
+  "gpu": 0
+ },
+ "1": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"strongaug\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "strong_aug=true",
+    "evals=[\"rotation\", \"crossdomain\", \"corruptions\"]",
+    "variant=\"strip\"",
+    "tag=\"strongaug\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 30.47,
+  "gpu": 1
+ },
+ "3": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"strongaug\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "strong_aug=true",
+    "evals=[\"rotation\", \"crossdomain\", \"corruptions\"]",
+    "variant=\"plain\"",
+    "tag=\"strongaug\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 23.89,
+  "gpu": 1
+ },
+ "2": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"strongaug\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "strong_aug=true",
+    "evals=[\"rotation\", \"crossdomain\", \"corruptions\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_strongaug\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 26.15,
+  "gpu": 0
+ },
+ "4": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"strongaug\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "strong_aug=true",
+    "evals=[\"rotation\", \"crossdomain\", \"corruptions\"]",
+    "variant=\"strip\"",
+    "tag=\"strongaug\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 25.85,
+  "gpu": 1
+ },
+ "5": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"strongaug\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "strong_aug=true",
+    "evals=[\"rotation\", \"crossdomain\", \"corruptions\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_strongaug\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 27.69,
+  "gpu": 0
+ },
+ "6": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"strongaug\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "strong_aug=true",
+    "evals=[\"rotation\", \"crossdomain\", \"corruptions\"]",
+    "variant=\"plain\"",
+    "tag=\"strongaug\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 26.07,
+  "gpu": 1
+ },
+ "7": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"strongaug\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "strong_aug=true",
+    "evals=[\"rotation\", \"crossdomain\", \"corruptions\"]",
+    "variant=\"strip\"",
+    "tag=\"strongaug\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 24.73,
+  "gpu": 0
+ },
+ "9": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"strongaug\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "strong_aug=true",
+    "evals=[\"rotation\", \"crossdomain\", \"corruptions\"]",
+    "variant=\"plain\"",
+    "tag=\"strongaug\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 23.95,
+  "gpu": 0
+ },
+ "8": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"strongaug\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "strong_aug=true",
+    "evals=[\"rotation\", \"crossdomain\", \"corruptions\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_strongaug\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 27.36,
+  "gpu": 1
+ },
+ "10": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"strongaug\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "strong_aug=true",
+    "evals=[\"rotation\", \"crossdomain\", \"corruptions\"]",
+    "variant=\"strip\"",
+    "tag=\"strongaug\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 24.23,
+  "gpu": 0
+ },
+ "11": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"strongaug\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "strong_aug=true",
+    "evals=[\"rotation\", \"crossdomain\", \"corruptions\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_strongaug\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 26.73,
+  "gpu": 1
+ },
+ "12": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"strongaug\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "strong_aug=true",
+    "evals=[\"rotation\", \"crossdomain\", \"corruptions\"]",
+    "variant=\"plain\"",
+    "tag=\"strongaug\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 24.3,
+  "gpu": 0
+ },
+ "13": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"strongaug\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "strong_aug=true",
+    "evals=[\"rotation\", \"crossdomain\", \"corruptions\"]",
+    "variant=\"strip\"",
+    "tag=\"strongaug\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 23.49,
+  "gpu": 1
+ },
+ "14": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"strongaug\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "strong_aug=true",
+    "evals=[\"rotation\", \"crossdomain\", \"corruptions\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_strongaug\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 24.56,
+  "gpu": 0
+ }
+}

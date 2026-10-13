@@ -10,6 +10,14 @@ with a branch on skeletonised veins by late concatenation~\citep{dualbranch2026}
 taxonomic classifier targets open-world medicinal plants~\citep{openworld2025medicinal}. We reproduce
 DeepHerb-style and dual-branch pipelines under our leakage-audited protocol.
 
+\paragraph{Studio-to-field shift in plant recognition.} The gap between curated and field images is
+well documented for plant disease recognition: a model trained on the laboratory images of
+PlantVillage reached 99.4\% on held-out laboratory images but about 31\% on images taken under
+other conditions~\citep{mohanty2016plantvillage}, and the background alone of those images carries
+enough signal to classify them~\citep{noyan2022plantvillagebias}. For medicinal leaves, field
+evaluation is rare. We measure this gap for a medicinal leaf benchmark under a controlled protocol and
+ask which architectural ingredients close it.
+
 \paragraph{Euler characteristic transforms.} The ECT and the persistent homology transform encode a
 shape through sublevel-set topology along all directions~\citep{turner2014pht}. DECT makes the ECT
 differentiable by sigmoid relaxation and learns directions end-to-end~\citep{roell2024dect}. WECT
@@ -33,8 +41,9 @@ topology summarises the whole window rather than defining where each query may a
 topological signal enters as a \emph{global} descriptor or as tokens among themselves, so where the
 visual model looks is not tied to where the topology was measured. \SVA{} differs in exactly this
 respect: each filtration slab yields both a valuation increment and the spatial support of that token's
-attention. Our controls (global fusion of the same valuations; slab attention without valuations)
-separate the two ingredients.
+attention. Our controls (global fusion of the same valuations; slab attention without valuations;
+mask and strip pooling) separate these ingredients, and we find that the localisation, not the
+measured topology or geometry, carries the effect.
 
 \paragraph{Intrinsic volumes and directional pooling.} Area, boundary length and Euler characteristic
 (the planar intrinsic volumes, or Minkowski functionals) are classical morphological descriptors with
@@ -50,9 +59,9 @@ carry no measured geometry and are not defined by a filtration of the object.
 to plant and biological taxonomies~\citep{shah2025hprotonet,hyperbolictaxonomies2025}, and BioCLIP~2
 learns hierarchical contrastive representations at scale~\citep{gu2026bioclip2}. Conformal prediction
 for long-tailed plant identification~\citep{ding2026conformal} and for hierarchical
-labels~\citep{hcc2025,hierarchicalcp2025} is established. Our deployment layer uses these ideas;
-its only addition is a hazard-asymmetric Mondrian calibration for toxic look-alikes. We treat it as an
-application component, not as a methodological contribution.
+labels~\citep{hcc2025,hierarchicalcp2025} is established; we do not address uncertainty quantification
+here, because the calibration data for toxic species in this dataset are too few (about ten images
+per fold) for meaningful hazard-specific guarantees.
 
 \paragraph{Shape versus texture.} ImageNet CNNs are biased towards texture~\citep{geirhos2019texture}.
 We adapt the cue-conflict paradigm to leaves (silhouette of one species filled with the lamina of

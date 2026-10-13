@@ -1,14 +1,14 @@
 \section{Conclusion}
 \label{sec:conclusion}
-We introduced sweep-valuation attention, which turns a directional filtration of a leaf into tokens
-that carry the area and boundary length entering each slab, weighted by appearance, and attend to
-the matching image region. In a controlled study with matched controls on three backbones, it gives
-an ImageNet CNN a large and statistically robust gain in studio-to-field transfer (+16 points) and
-keeps that gain without rotation augmentation, where strip pooling does not. The same study shows the
-limits: the gain vanishes for a ViT and for the BioCLIP~2 foundation model, co-registered attention
-is not its main source, and Euler-characteristic tokens, although they make the model sensitive to
-topology, transfer worse than metric valuations. We release the leakage-audited protocol, the
-corruption, cue-conflict and topology-destruction probes, and all code and run outputs.
+Medicinal-leaf classifiers that are perfect on studio photographs transfer poorly to field
+photographs. In a controlled study with matched models, five seeds and corrected tests, we find that
+for an ImageNet CNN the architectural part of the remedy is simple: pool over the leaf, and pool
+locally within it. Each step is worth 5--8 points on field photographs, and both add to
+background-compositing augmentation. Measured leaf geometry, introduced here as sweep-valuation
+attention with appearance-weighted area, boundary and Euler measurements along an object-centred
+sweep, does not improve transfer beyond localised pooling, and a biology foundation model makes all
+such modules unnecessary. We release the leakage-audited protocol, the field mapping, the corruption,
+cue-conflict and topology probes, and all code and run outputs.
 
 \section*{Code and data availability}
 All code, configurations, unit tests, the outputs of every training run (metrics, probe results,

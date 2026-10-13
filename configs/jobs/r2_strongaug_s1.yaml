@@ -1,0 +1,166 @@
+pip:
+- lpips
+kernel_sources:
+- maskhead
+common:
+  exp: strongaug
+  protocol: grouped
+  epochs: 40
+  batch_size: 32
+  workers: 3
+jobs:
+- backbone: convnext_tiny
+  fold: 0
+  seed: 1
+  strong_aug: true
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: plain
+  tag: strongaug
+- backbone: convnext_tiny
+  fold: 0
+  seed: 1
+  strong_aug: true
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: strip
+  tag: strongaug
+- backbone: convnext_tiny
+  fold: 0
+  seed: 1
+  strong_aug: true
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: slabstat
+  token: ap
+  tag: ap_strongaug
+- backbone: convnext_tiny
+  fold: 1
+  seed: 1
+  strong_aug: true
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: plain
+  tag: strongaug
+- backbone: convnext_tiny
+  fold: 1
+  seed: 1
+  strong_aug: true
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: strip
+  tag: strongaug
+- backbone: convnext_tiny
+  fold: 1
+  seed: 1
+  strong_aug: true
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: slabstat
+  token: ap
+  tag: ap_strongaug
+- backbone: convnext_tiny
+  fold: 2
+  seed: 1
+  strong_aug: true
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: plain
+  tag: strongaug
+- backbone: convnext_tiny
+  fold: 2
+  seed: 1
+  strong_aug: true
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: strip
+  tag: strongaug
+- backbone: convnext_tiny
+  fold: 2
+  seed: 1
+  strong_aug: true
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: slabstat
+  token: ap
+  tag: ap_strongaug
+- backbone: convnext_tiny
+  fold: 3
+  seed: 1
+  strong_aug: true
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: plain
+  tag: strongaug
+- backbone: convnext_tiny
+  fold: 3
+  seed: 1
+  strong_aug: true
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: strip
+  tag: strongaug
+- backbone: convnext_tiny
+  fold: 3
+  seed: 1
+  strong_aug: true
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: slabstat
+  token: ap
+  tag: ap_strongaug
+- backbone: convnext_tiny
+  fold: 4
+  seed: 1
+  strong_aug: true
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: plain
+  tag: strongaug
+- backbone: convnext_tiny
+  fold: 4
+  seed: 1
+  strong_aug: true
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: strip
+  tag: strongaug
+- backbone: convnext_tiny
+  fold: 4
+  seed: 1
+  strong_aug: true
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: slabstat
+  token: ap
+  tag: ap_strongaug

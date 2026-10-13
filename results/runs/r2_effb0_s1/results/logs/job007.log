@@ -1,0 +1,53 @@
+src.train --set exp="main" protocol="grouped" epochs=40 batch_size=32 workers=3 backbone="efficientnet_b0" fold=1 seed=1 lr_backbone=0.0002 evals=["rotation", "crossdomain", "corruptions"] variant="strip"
+/kaggle/working/proj/src/models/esa.py:238: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, depth)
+/kaggle/working/proj/src/train.py:157: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  sched.step()
+{"epoch": 0, "train_ce": 2.902208190215261, "train_vein": 0.4195685559197476, "time": 30.974406480789185}
+{"epoch": 1, "train_ce": 1.2954563247530084, "train_vein": 0.28494598442002345, "time": 42.58415699005127}
+{"epoch": 2, "train_ce": 0.8491466782594982, "train_vein": 0.2679798877552936, "time": 53.645362854003906}
+{"epoch": 3, "train_ce": 0.7962556418619657, "train_vein": 0.26301731757427516, "time": 65.11178278923035}
+{"epoch": 4, "train_ce": 0.7410370801624498, "train_vein": 0.26031309954429926, "time": 76.66039729118347, "cal_acc": 0.9958333333333333}
+{"epoch": 5, "train_ce": 0.7242947111004278, "train_vein": 0.2589163160637805, "time": 103.11302495002747}
+{"epoch": 6, "train_ce": 0.7105206596223932, "train_vein": 0.2580456667040524, "time": 114.54994630813599}
+{"epoch": 7, "train_ce": 0.7032864846681294, "train_vein": 0.25733042508363724, "time": 126.45201373100281}
+{"epoch": 8, "train_ce": 0.6909144818782806, "train_vein": 0.2575129317609887, "time": 137.65395140647888}
+{"epoch": 9, "train_ce": 0.6856768601819089, "train_vein": 0.2566847197319332, "time": 149.11261320114136, "cal_acc": 1.0}
+{"epoch": 10, "train_ce": 0.6860442506639581, "train_vein": 0.256333033505239, "time": 168.47173237800598}
+{"epoch": 11, "train_ce": 0.6762130072242335, "train_vein": 0.25580727818765137, "time": 180.06698775291443}
+{"epoch": 12, "train_ce": 0.6769572261132693, "train_vein": 0.25573127795206874, "time": 191.14784264564514}
+{"epoch": 13, "train_ce": 0.6729715701780821, "train_vein": 0.25555373100857987, "time": 202.54895496368408}
+{"epoch": 14, "train_ce": 0.6768203550263455, "train_vein": 0.2551363326216999, "time": 213.80895400047302, "cal_acc": 0.9958333333333333}
+{"epoch": 15, "train_ce": 0.6761754421811355, "train_vein": 0.2550089500452343, "time": 233.63440537452698}
+{"epoch": 16, "train_ce": 0.6711984088546351, "train_vein": 0.25469710207299184, "time": 245.47518825531006}
+{"epoch": 17, "train_ce": 0.6692911762940256, "train_vein": 0.25481716308154556, "time": 257.2201564311981}
+{"epoch": 18, "train_ce": 0.6657044793430128, "train_vein": 0.2547083136282469, "time": 268.70588421821594}
+{"epoch": 19, "train_ce": 0.6677156075050956, "train_vein": 0.2546152550923197, "time": 280.10234236717224, "cal_acc": 1.0}
+{"epoch": 20, "train_ce": 0.6625439932471827, "train_vein": 0.2546115313705645, "time": 300.56890892982483}
+{"epoch": 21, "train_ce": 0.6616528991021609, "train_vein": 0.25435911001343475, "time": 311.92314648628235}
+{"epoch": 22, "train_ce": 0.6596761345863342, "train_vein": 0.2537978942456998, "time": 323.5747036933899}
+{"epoch": 23, "train_ce": 0.659387324985705, "train_vein": 0.25416525021979686, "time": 335.01904129981995}
+{"epoch": 24, "train_ce": 0.6599240789287969, "train_vein": 0.25364030819190175, "time": 346.8184230327606, "cal_acc": 1.0}
+{"epoch": 25, "train_ce": 0.6605347394943237, "train_vein": 0.2538778926981123, "time": 366.10518646240234}
+{"epoch": 26, "train_ce": 0.6594561056086892, "train_vein": 0.2542300765451632, "time": 377.5089693069458}
+{"epoch": 27, "train_ce": 0.657623490220622, "train_vein": 0.2534431987687161, "time": 389.9110310077667}
+{"epoch": 28, "train_ce": 0.6579529407777285, "train_vein": 0.25346825271844864, "time": 401.7449941635132}
+{"epoch": 29, "train_ce": 0.6573341379040166, "train_vein": 0.253474112796156, "time": 413.6053035259247, "cal_acc": 1.0}
+{"epoch": 30, "train_ce": 0.6563977050153833, "train_vein": 0.25349327961080953, "time": 433.4573087692261}
+{"epoch": 31, "train_ce": 0.6566607528611234, "train_vein": 0.25364210770318385, "time": 445.09697341918945}
+{"epoch": 32, "train_ce": 0.6559624468025408, "train_vein": 0.25315109601146296, "time": 456.94523644447327}
+{"epoch": 33, "train_ce": 0.656312959758859, "train_vein": 0.25358941327584417, "time": 468.3328561782837}
+{"epoch": 34, "train_ce": 0.6562633608516893, "train_vein": 0.2537436449998303, "time": 480.1959810256958, "cal_acc": 1.0}
+{"epoch": 35, "train_ce": 0.6562814147848832, "train_vein": 0.2536654923307268, "time": 499.7626750469208}
+{"epoch": 36, "train_ce": 0.6571728195014753, "train_vein": 0.2538550127493708, "time": 511.0841236114502}
+{"epoch": 37, "train_ce": 0.6554983650383196, "train_vein": 0.25381745986248316, "time": 522.6517663002014}
+{"epoch": 38, "train_ce": 0.6565040161735133, "train_vein": 0.2534808194951007, "time": 536.8882570266724}
+{"epoch": 39, "train_ce": 0.6561746236525083, "train_vein": 0.25355665699431773, "time": 548.520893573761, "cal_acc": 1.0}
+TEST {"acc": 1.0, "bal_acc": 1.0, "macro_f1": 1.0, "nll": 0.09866639226675034, "ece": 0.09333692596909778, "mistake_severity": 0.0, "n": 366}
+EVAL rotation {"per_angle": {"0": {"acc": 1.0, "bal_acc": 1.0, "macro_f1": 1.0, "nll": 0.09866639226675034, "ece": 0.09333692596909778, "mistake_severity": 0.0, "n": 366}, "30": {"acc": 0.9972677595628415, "bal_acc": 0.9974358974358974, "macro_f1": 0.9977142857142858, "nll": 0.112136609852314, "ece": 0.1035670122650803, "mistake_severity": 4.0, "n": 366}, "60": {"acc": 1.0, "bal_acc": 1.0, "macro_f1": 1.0, "nll
+/usr/local/lib/python3.13/dist-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/usr/local/lib/python3.13/dist-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+EVAL crossdomain {"n": 2000, "masked": {"acc30": 0.278, "bal_acc30": 0.23706345958244807, "acc20": 0.3085, "bal_acc20": 0.2661831892731459, "macro_f1_20": 0.23376369933685326, "ece30": 0.11246038535982372}, "raw": {"acc30": 0.254, "bal_acc30": 0.24088763535279978, "acc20": 0.2945, "bal_acc20": 0.27687161190108395, "macro_f1_20": 0.250005058771141, "ece30": 0.061841298494488}}
+EVAL corruptions {"clean": 1.0, "gaussian_noise/1": 0.273224043715847, "gaussian_noise/2": 0.04371584699453552, "gaussian_noise/3": 0.04918032786885246, "gaussian_blur/1": 0.9426229508196722, "gaussian_blur/2": 0.674863387978142, "gaussian_blur/3": 0.4207650273224044, "jpeg/1": 0.9590163934426229, "jpeg/2": 0.7131147540983607, "jpeg/3": 0.3360655737704918, "low_resolution/1": 0.7076502732240437, "low_resolution/2"

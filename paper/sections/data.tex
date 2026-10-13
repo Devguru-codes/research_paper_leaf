@@ -29,10 +29,10 @@ cannot leak.
 
 \paragraph{Protocol.} All results use stratified, group-aware 5-fold cross-validation on the 1{,}825
 de-duplicated images. Inside each training part, one group-aware stratified holdout ($\approx$1/6)
-serves as the calibration set for conformal prediction and for monitoring only. Epoch count and
+is used for monitoring only. Epoch count and
 hyper-parameters are fixed in advance, with no model selection on test or calibration data. With
-random image-level splits, 2--4\% of test images per fold have a duplicate or re-shot in the training
-part (\cref{sec:results}).
+random image-level splits, 1.4--3.0\% of test images per fold have a duplicate or re-shot in the
+training part (\cref{sec:leak}).
 
 \paragraph{Preprocessing.} The leaf mask is obtained by thresholding the white background
 (all channels $<235$) followed by morphological cleaning. Each image is cropped to a square

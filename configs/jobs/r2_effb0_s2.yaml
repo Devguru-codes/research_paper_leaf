@@ -1,0 +1,266 @@
+pip:
+- lpips
+kernel_sources:
+- maskhead
+common:
+  exp: main
+  protocol: grouped
+  epochs: 40
+  batch_size: 32
+  workers: 3
+jobs:
+- backbone: efficientnet_b0
+  fold: 0
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: plain
+- backbone: efficientnet_b0
+  fold: 0
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: global
+  token: ap
+  tag: ap
+- backbone: efficientnet_b0
+  fold: 0
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: strip
+- backbone: efficientnet_b0
+  fold: 0
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: esa
+  token: none
+  tag: slabonly
+- backbone: efficientnet_b0
+  fold: 0
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: slabstat
+  token: ap
+  tag: ap
+- backbone: efficientnet_b0
+  fold: 1
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: plain
+- backbone: efficientnet_b0
+  fold: 1
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: global
+  token: ap
+  tag: ap
+- backbone: efficientnet_b0
+  fold: 1
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: strip
+- backbone: efficientnet_b0
+  fold: 1
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: esa
+  token: none
+  tag: slabonly
+- backbone: efficientnet_b0
+  fold: 1
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: slabstat
+  token: ap
+  tag: ap
+- backbone: efficientnet_b0
+  fold: 2
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: plain
+- backbone: efficientnet_b0
+  fold: 2
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: global
+  token: ap
+  tag: ap
+- backbone: efficientnet_b0
+  fold: 2
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: strip
+- backbone: efficientnet_b0
+  fold: 2
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: esa
+  token: none
+  tag: slabonly
+- backbone: efficientnet_b0
+  fold: 2
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: slabstat
+  token: ap
+  tag: ap
+- backbone: efficientnet_b0
+  fold: 3
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: plain
+- backbone: efficientnet_b0
+  fold: 3
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: global
+  token: ap
+  tag: ap
+- backbone: efficientnet_b0
+  fold: 3
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: strip
+- backbone: efficientnet_b0
+  fold: 3
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: esa
+  token: none
+  tag: slabonly
+- backbone: efficientnet_b0
+  fold: 3
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: slabstat
+  token: ap
+  tag: ap
+- backbone: efficientnet_b0
+  fold: 4
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: plain
+- backbone: efficientnet_b0
+  fold: 4
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: global
+  token: ap
+  tag: ap
+- backbone: efficientnet_b0
+  fold: 4
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: strip
+- backbone: efficientnet_b0
+  fold: 4
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: esa
+  token: none
+  tag: slabonly
+- backbone: efficientnet_b0
+  fold: 4
+  seed: 2
+  lr_backbone: 0.0002
+  evals:
+  - rotation
+  - crossdomain
+  - corruptions
+  variant: slabstat
+  token: ap
+  tag: ap

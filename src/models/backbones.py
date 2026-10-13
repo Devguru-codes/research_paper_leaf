@@ -5,7 +5,7 @@ Every backbone returns a dict:
   mid    (B, Cm, h_m,  w_m)   -> structural weight MLP g
   patch  (B, P,  Cp) + hw     -> ESA keys/values
   global (B, Cg)              -> classifier
-Origins (per the project's tooling constraints): ConvNeXt (Meta), ViT AugReg (Google),
+Origins (per the project's tooling constraints): ConvNeXt (Meta), EfficientNet (Google), ViT AugReg (Google),
 DINOv2 (Meta), BioCLIP 2 (Imageomics / Ohio State).
 """
 from __future__ import annotations
@@ -54,6 +54,29 @@ class ConvNeXtTV(nn.Module):
         m = self.s2(e)
         p = self.s3(m)
         g = self.norm(self.s4(p)).mean((2, 3))
+        B, C, h, w = p.shape
+        return dict(early=e, mid=m, patch=p.flatten(2).transpose(1, 2), hw=(h, w), glob=g)
+
+
+class EfficientNetTV(nn.Module):
+    """torchvision EfficientNet-B0 (Google; ImageNet-1k weights): second CNN family."""
+
+    def __init__(self, pretrained: bool = True):
+        super().__init__()
+        import torchvision.models as tvm
+        m = tvm.efficientnet_b0(weights="DEFAULT" if pretrained else None)
+        f = m.features
+        self.early = f[:3]   # stride 4,  24
+        self.mid = f[3]      # stride 8,  40
+        self.patch = f[4:6]  # stride 16, 112
+        self.top = f[6:9]    # stride 32, 1280
+        self.dims = dict(early=24, mid=40, patch=112, glob=1280)
+
+    def forward(self, x):
+        e = self.early(x)
+        m = self.mid(e)
+        p = self.patch(m)
+        g = self.top(p).mean((2, 3))
         B, C, h, w = p.shape
         return dict(early=e, mid=m, patch=p.flatten(2).transpose(1, 2), hw=(h, w), glob=g)
 
@@ -153,6 +176,8 @@ class BioCLIP2(nn.Module):
 def build_backbone(name: str, pretrained: bool = True, img_size: int = 384) -> nn.Module:
     if name.startswith("convnext"):
         return ConvNeXtTV(name, pretrained)
+    if name == "efficientnet_b0":
+        return EfficientNetTV(pretrained)
     if name == "vit_small":
         return TimmViT("vit_small_patch16_384.augreg_in21k_ft_in1k", pretrained, img_size)
     if name == "dinov2_small":

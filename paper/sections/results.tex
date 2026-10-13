@@ -2,17 +2,17 @@
 \label{sec:results}
 
 All numbers below are generated from the run outputs by the released scripts; $\pm$ is the standard
-deviation over runs. Paired tests compare \SVA{} with each control on identical folds and seeds
-(Wilcoxon signed-rank; with five folds the smallest attainable two-sided $p$ is $0.0625$, so for
-five-fold comparisons we also report win counts).
+deviation over runs. Differences are given as mean over matched fold--seed runs, with the number of
+runs in which the first model wins and 95\% intervals as described in \cref{sec:experiments}.
 
 \begin{table*}[t]
 \centering
 \caption{Main results (\%). Clean = in-domain grouped 5-fold accuracy; Rot.\ min = worst accuracy over
 12 rotations; MedLeaf-C = mean over 10 corruptions $\times$ 3 severities; Shape bias from the
 cue-conflict set; Field = 20-way accuracy on DIMPSAR field photographs (auto-masked or raw).
-ConvNeXt-T: Clean and Field over 5 folds $\times$ 3 seeds, other columns seed 0; ViT-S and BioCLIP~2:
-5 folds, seed 0.}
+ConvNeXt-T: 5 folds $\times$ 5 seeds (MedLeaf-C: seeds 0, 3, 4, all seeds for mask pooling; Rot.\ min
+and shape bias: seed 0); EfficientNet-B0: 5 folds
+$\times$ 3 seeds; ViT-S and BioCLIP~2: 5 folds, one seed. Mask pooling was run on ConvNeXt-T only.}
 \label{tab:main}
 \small
 \resizebox{\textwidth}{!}{\input{figures/tab_main.tex}}
@@ -20,47 +20,68 @@ ConvNeXt-T: Clean and Field over 5 folds $\times$ 3 seeds, other columns seed 0;
 
 \subsection{In-domain accuracy is saturated}
 On the de-duplicated, grouped protocol every model on every backbone reaches 99.9--100\% clean
-accuracy and $\ge98.5\%$ accuracy under any rotation (\cref{tab:main}). The benchmark therefore
-cannot separate architectures on clean accuracy, which motivates the robustness and transfer probes
-below. None of the structural modules costs clean accuracy.
+accuracy and $\ge98.5\%$ accuracy under any rotation (\cref{tab:main}). The studio benchmark therefore
+cannot separate architectures, and none of the added modules costs clean accuracy. All further
+results concern robustness and, primarily, transfer to field photographs.
 
-\subsection{Transfer to field photographs}
-\Cref{fig:crossdomain} shows the main effect. With ConvNeXt-T, which is trained on studio images
-only, \SVA{} raises 20-way accuracy on raw field photographs from 33.5\% (plain) to 49.3\%
-(+15.8 points, 15/15 fold--seed pairs, $p<10^{-3}$) and on auto-masked photographs from 35.1\% to
-43.1\% (+8.0, 15/15, $p<10^{-4}$). Fusing the same valuations globally gives no gain (33.7\% raw), so
-the improvement is not explained by the presence of shape features alone. Against the localised
-controls the picture is more nuanced. \SVA{} beats slab-only attention by $+3.6$ points on raw
-photographs (12/15, $p=0.003$), but its lead over strip pooling ($+1.5$, 10/15, $p=0.15$) is not
-significant when all models are trained with rotation augmentation.
+\subsection{Decomposing the studio-to-field gain}
+\label{sec:decomp}
+\Cref{fig:crossdomain} and \cref{tab:contrasts} show the main result. A plain ConvNeXt-T trained on
+studio images reaches 33.6\% on raw field photographs. The localised models reach 45.7--47.4\%, a gain
+of 12--14 points. The ladder of matched models splits this gain into two parts of similar size.
 
-The gains do not carry over to stronger backbones. With ViT-S, slab-only attention is best on raw
-photographs (64.8\% vs.\ 60.4\% plain), and \SVA{} is level with plain (60.7\%). BioCLIP~2 reaches
-81.4\% on raw photographs without any module, about 30 points above the best ImageNet ConvNeXt
-model, and all five variants lie within 0.5 points of each other. A biology foundation model thus
-closes most of the studio-to-field gap on its own, and structural pooling adds nothing measurable
-on top of it.
+\emph{Leaf location.} Pooling the same patch features over the leaf mask raises raw field accuracy to
+41.1\% ($+7.5$ points, 25/25 runs, Holm $p<10^{-4}$), and masked-photo accuracy by $+5.7$. The plain
+model averages features over the whole photograph, and on field photographs the background (tiles,
+soil, cloth) is a large part of it; a model that knows where the leaf is can ignore it.
+
+\emph{Localisation.} Pooling locally within the leaf adds a further 4.6--6.2 points on raw photographs:
+strip pooling $+5.7$ (25/25, Holm $p=0.002$), slab-only attention $+4.6$ (24/25, Holm $p=0.008$) and
+\SVA{} $+6.2$ (23/25; Holm $p=0.18$ because its run-to-run variance is the largest). The two-way
+bootstrap over runs and field species excludes zero for all three. On masked photographs, where the
+background is already removed, localisation adds only 1.2--1.6 points (not significant).
+
+\emph{Measured geometry.} Adding the measured valuations to localised tokens does not help detectably.
+\SVA{} is tied with strip pooling ($+0.5$, 12/25) and with its own slab-only variant ($+1.7$, 16/25),
+with intervals of roughly $\pm4$ points around these values. Fusing the same valuations globally,
+without localisation, gives no gain at all over plain ($-0.1$, 13/25). Object-centred sweep slabs
+and image-axis strips perform the same.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/fig_crossdomain.pdf}
 \caption{Studio-to-field transfer: 20-way accuracy on DIMPSAR photographs with the background
-whitened by our masker (left) or kept (right). Error bars: std over runs.}
+whitened by our masker (left) or kept (right). Error bars: std over runs. Mask pooling was run on
+ConvNeXt-T only.}
 \label{fig:crossdomain}
 \end{figure}
 
-\subsection{Learning without rotation augmentation}
+\begin{table}[t]
+\centering
+\caption{Pre-specified contrasts on field photographs (ConvNeXt-T, 25 matched runs). $\Delta$ in
+accuracy points with runs won; 95\% intervals from the corrected resampled $t$-test over runs and from
+a bootstrap over runs and field species; $p$ Holm-corrected over all 14 contrasts.}
+\label{tab:contrasts}
+\small
+\resizebox{\linewidth}{!}{\input{figures/tab_contrasts.tex}}
+\end{table}
+
+\subsection{The gains are not an artefact of augmentation}
 \label{sec:norot}
-To test which robustness is built in rather than learned from augmented data, we retrain plain,
-strip, slab-only and \SVA{} ConvNeXt-T models without rotation augmentation (\cref{fig:rotation}).
-All three localised modules remain far more rotation-robust than the plain model (worst-case
-accuracy 97.6--98.3\% vs.\ 93.8\%), and \SVA{} is not more rotation-robust than slab-only attention
-(98.3\% each). On field photographs, however, \SVA{} keeps almost all of its transfer gain without
-augmentation (48.6\% raw vs.\ 49.3\% with augmentation), whereas strip pooling drops from 47.8\% to
-42.7\%. Without augmentation \SVA{} exceeds strip pooling by $+5.8$ (raw) and $+4.0$ (masked) points
-and slab-only attention by $+5.2$ (raw) points, winning 5/5 folds in each case. The object-centred
-sweep with measured valuations thus provides, by construction, transfer that image-axis strips only
-acquire through augmentation. \NOROTSEEDS
+\label{sec:strongaug}
+\emph{Without rotation augmentation} (5 folds $\times$ 5 seeds), the localised models remain far more
+rotation-robust than plain (worst-case accuracy 97.5--98.4\% vs.\ 93.2\%; \cref{fig:rotation}) and
+keep their field gain: plain 32.1\%, slab-only 43.2\%, strip 43.9\%, \SVA{} 45.5\% on raw photographs
+(\SVA{} vs.\ plain $+13.5$ [$+9.7$, $+17.3$], 25/25). \SVA{} is again not distinguishable from strip
+pooling ($+1.6$, 16/25) or slab-only attention ($+2.4$, 20/25). With a single seed these leads had
+looked much larger ($+5.8$ and $+5.2$), which illustrates why we rely on many seeds.
+
+\emph{With strong augmentation} (background compositing, blur, noise; \cref{tab:strongaug}), every
+model improves: plain rises from 33.6\% to 42.0\% on raw photographs, about as much as mask pooling
+gives without it, which is consistent with both teaching the model to discount the background.
+Localisation still adds on top: strip pooling reaches 53.4\% and \SVA{} 55.2\%, the best field
+accuracy of any ImageNet model here (\SVA{} vs.\ plain $+13.2$ [$+9.9$, $+16.5$], 15/15; vs.\ strip
+$+1.9$, 13/15, n.s.). The architectural and data-side remedies are therefore complementary.
 
 \begin{figure}[t]
 \centering
@@ -70,17 +91,37 @@ acquire through augmentation. \NOROTSEEDS
 \label{fig:rotation}
 \end{figure}
 
+\begin{table}[t]
+\centering
+\caption{Standard vs.\ strong (background compositing + blur + noise) augmentation, ConvNeXt-T,
+5 folds $\times$ 3 seeds, \%.}
+\label{tab:strongaug}
+\small
+\input{figures/tab_strongaug.tex}
+\end{table}
+
+\subsection{The gains depend on the backbone}
+On EfficientNet-B0 (3 seeds) all four structural models gain only 1.5--3 points on raw photographs
+(plain 26.8\%, \SVA{} 29.8\%, $+3.0$ [$-2.6$, $+8.6$], 11/15) and nothing on masked ones. On ViT-S,
+localised pooling may still help (strip 62.7\%, slab-only 64.8\% vs.\ plain 60.4\%, one seed), but
+\SVA{} does not (60.7\%). BioCLIP~2 reaches 81.4\% on raw photographs without any module, about
+30 points above the best ImageNet ConvNeXt-T model, and all variants lie within 0.5 points of each
+other. A biology foundation model thus closes most of the studio-to-field gap on its own. For both
+ViTs, masked photographs are 8--22 points \emph{harder} than raw ones, whereas for the CNNs the two
+differ by at most about five points; the whitened background and the masker's errors apparently remove context these models
+use, so we treat raw photographs as the primary field test.
+
 \subsection{Corruptions and cue conflict}
-On MedLeaf-C, both slab-based models and strip pooling improve ConvNeXt-T by 6.5--8.3 points over
-plain and global fusion (\cref{fig:corruptions}); slab-only attention is best (89.4\%) and \SVA{} is
-within one point (88.6\%). The gains come from noise, blur, JPEG and low-resolution corruptions, i.e.\
-from degraded texture; colour, occlusion and background corruptions are near ceiling for all models.
-For ViT-S and BioCLIP~2 all variants are within 0.5 points. Shape bias remains low everywhere
-(7--14\%): when a silhouette is filled with another species' lamina, all models mostly follow the
-lamina. \SVA{} raises ConvNeXt-T shape bias from 6.5\% to 9.0\% (5/5 folds), the same as strip
-pooling, and BioCLIP~2 is the most shape-biased backbone (14\%). We therefore do not claim that
-\SVA{} makes models shape-based; it makes ImageNet CNN features less brittle under texture
-degradation and domain shift.
+On MedLeaf-C (\cref{fig:corruptions}), the ladder repeats on ConvNeXt-T: mask pooling improves on plain
+by $+2.7$ points (84.8\% vs.\ 82.1\%, 15/15), and localised pooling adds a further 2.2--4.0 (strip
+87.5\%, \SVA{} 87.0\%, slab-only 88.8\%). The gains come from noise, blur, JPEG and low-resolution
+corruptions, i.e.\ from degraded texture; colour, occlusion and background corruptions are near
+ceiling for all models. On the other backbones all variants are within about one point. Shape bias
+remains low everywhere (7--14\%): when a silhouette is filled with another species' lamina, all models
+mostly follow the lamina. Localised pooling raises ConvNeXt-T shape bias only slightly (plain 6.5\%,
+strip 9.1\%, \SVA{} 9.0\%), and BioCLIP~2 is the most shape-biased backbone (14\%). The localised
+models are therefore not shape-based; they are less brittle under texture degradation and domain
+shift.
 
 \begin{figure}[t]
 \centering
@@ -89,42 +130,64 @@ degradation and domain shift.
 \label{fig:corruptions}
 \end{figure}
 
-\subsection{What drives the gain: ablations}
+\subsection{Inside \SVA{}: ablations}
 \label{sec:abl}
-\Cref{tab:abl} varies one ingredient at a time (ConvNeXt-T, seed 0, folds 0--2; differences below
-about 3 points are within seed noise, cf.\ the seed std in \cref{tab:main}). Three ingredients matter.
-(i)~\emph{Learned, appearance-conditioned cell weights}: with unit weights, i.e.\ pure mask geometry,
-raw field accuracy falls from 53.1\% to 43.5\%; permuting the learned weights within the leaf costs
-2.3 points, so their location carries part of the signal. (ii)~\emph{A fine sweep}: halving
-directions and slabs costs 6.3 points. (iii)~\emph{Both structural fields}: blade-only and vein-only
-variants lose 4.7 and 2.4 points. By contrast, restricting attention to the slab is \emph{not}
-essential once the tokens carry valuations: attention over all leaf patches loses only 1.1 points.
-The co-registered attention contributes mainly in the slab-only model, where the slab is the only
-structural information. Finally, the choice of valuation matters. Euler tokens and the full Hadwiger
-token transfer worse than area and perimeter alone (45.7\% and 44.3\% raw).
+\Cref{tab:abl} varies one ingredient of \SVA{} at a time (ConvNeXt-T). A single-seed screen on folds
+0--2 (lower block) was followed by the four most informative ablations on all 5 folds $\times$ 3
+seeds (upper block), compared with \SVA{} on the same runs. The screen overstated every effect,
+because its \SVA{} reference happened to be strong (53.1\% raw vs.\ 49.3\% over all seeds). With
+three seeds, a coarser sweep costs $5.1$ [$1.1$, $9.1$] raw points (15/15) and unit cell weights
+$4.5$ [$-0.5$, $9.5$] (13/15); Euler tokens transfer slightly worse than area and perimeter ($-2.6$,
+12/15, n.s.); and restricting attention to the slab is not needed (global attention 49.3\% vs.\
+49.3\%). These effects concern the internal design of \SVA{}; as shown above, the full module is not
+better than localised pooling without any measurement. The vein head reproduces its ridge-filter
+supervision closely on held-out leaves (Pearson $r=0.96$, Dice $0.74$--$0.75$ inside the blade),
+which measures agreement with the pseudo-label, not with traced veins.
 
 \begin{table}[t]
 \centering
-\caption{Ablations of \SVA{} (ConvNeXt-T, seed 0, folds 0--2, \%), sorted by raw field accuracy.}
+\caption{Ablations of \SVA{} (ConvNeXt-T, \%), each block sorted by raw field accuracy and compared
+with \SVA{} on the same runs. Rotation is evaluated on seed 0 only.}
 \label{tab:abl}
 \small
 \resizebox{\linewidth}{!}{\input{figures/tab_ablations.tex}}
 \end{table}
 
 \subsection{Topology sensitivity}
-The topology-destruction probe separates what the models respond to. Punching three interior holes
-($\Delta\chi=-3$) changes predictions less than removing the same area as three bites from the
-margin ($\Delta\chi=0$) for every ImageNet model; in a regression of the response on visual distance
-and a topology-change indicator the indicator is negative (ConvNeXt-T: $-0.5$ to $-1.4$ log-units).
-\SVA{} reacts most to margin bites (mean KL $35\times10^{-4}$ vs.\ $17$--$24\times10^{-4}$ for the
-controls), consistent with tokens that measure boundary length. The only model that is more sensitive
-to holes than to bites is the Euler-token variant (KL $46\times10^{-4}$ for holes, 4.5 times any
-other model). The probe therefore confirms that the measured valuation shapes what the model is
-sensitive to, and it shows that Euler sensitivity, while real, does not help species transfer.
-Severing veins changes all models' predictions more than equal-size edits of vein-free lamina, by a
-similar factor for every variant, so venation sensitivity is a property of the backbones rather than
-of the module.
+\label{sec:topo}
+The topology-destruction probe compares edits that change the blade's Euler characteristic (three
+interior holes, $\Delta\chi=-3$) with edits that remove the same area from the margin ($\Delta\chi=0$).
+The two edit types are not perceptually identical (median LPIPS 0.045 vs.\ 0.030), so we compare them
+only within LPIPS strata that contain both (10 quantile bins, at least five edits of each kind) and
+report the stratum-weighted log-ratio of the prediction change (KL divergence),
+$\log(\mathrm{KL}_{\text{holes}}/\mathrm{KL}_{\text{bites}})$, with a bootstrap 95\% interval
+(\cref{tab:topo}). Every ImageNet ConvNeXt-T and ViT-S model responds \emph{less} to holes than to
+margin bites, even though the holes are the more visible edit. The only ConvNeXt-T model that responds
+more to holes is the Euler-token variant of \SVA{} ($+0.73$ [$+0.54$, $+0.96$]), so measured topology
+does change what a model is sensitive to. BioCLIP~2 responds more to holes for every variant ($+1.3$ to
+$+1.6$), i.e.\ the foundation model is topology-sensitive by itself. Topological sensitivity can thus
+be induced, but it did not help species transfer (\cref{sec:abl}). Edits of the venation could not be
+matched perceptually (only 25\% of vein edits fall inside the LPIPS range of their controls), so we
+draw no conclusion from them.
+
+\begin{table}[t]
+\centering
+\caption{LPIPS-matched response to topology-changing holes relative to area-matched margin bites,
+$\log(\mathrm{KL}_{\text{holes}}/\mathrm{KL}_{\text{bites}})$ with bootstrap 95\% CI (seed 0, 5 folds).
+Negative: the model reacts more to margin geometry than to topology.}
+\label{tab:topo}
+\small
+\input{figures/tab_topo.tex}
+\end{table}
 
 \subsection{Leakage audit}
 \label{sec:leak}
-\LEAKAGE
+Under random image-level splits that keep the duplicates, 5--11 test images per fold (1.4--3.0\%) have
+an exact duplicate or a re-shot of the same leaf in the training part; under our grouped protocol
+there are none. On this dataset the leak does not measurably inflate accuracy: a DeepHerb-style
+reproduction (Xception features with an RBF-SVM~\citep{roopashree2021deepherb}) reaches
+$98.5\pm0.9\%$ with random splits and $98.4\pm0.7\%$ with grouped splits, the dual-branch RGB +
+vein-skeleton baseline~\citep{dualbranch2026} reaches 99.95\% under both, and our plain and \SVA{}
+models reach 100\% under random splits as under grouped ones. We therefore present the grouped protocol
+as hygiene that removes a known leak rather than as evidence that earlier results were inflated; the
+saturation itself is the more important observation.

@@ -1,0 +1,44 @@
+src.train --set exp="p1" protocol="random_dups" epochs=40 batch_size=32 workers=3 backbone="convnext_tiny" variant="dualbranch" fold=3 seed=0 evals=[] tag="p1_random_dups"
+/kaggle/working/proj/src/train.py:154: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  sched.step()
+{"epoch": 0, "train_ce": 3.224761222538195, "train_vein": 0.0, "time": 71.77737879753113}
+{"epoch": 1, "train_ce": 2.116189109651666, "train_vein": 0.0, "time": 128.40962266921997}
+{"epoch": 2, "train_ce": 1.0446657240390778, "train_vein": 0.0, "time": 183.28880667686462}
+{"epoch": 3, "train_ce": 0.8350766191357061, "train_vein": 0.0, "time": 238.91240406036377}
+{"epoch": 4, "train_ce": 0.7832146177166387, "train_vein": 0.0, "time": 295.3122706413269, "cal_acc": 0.9836734693877551}
+{"epoch": 5, "train_ce": 0.7569962708573592, "train_vein": 0.0, "time": 365.86284923553467}
+{"epoch": 6, "train_ce": 0.7423475933702368, "train_vein": 0.0, "time": 420.1160750389099}
+{"epoch": 7, "train_ce": 0.7233931437919014, "train_vein": 0.0, "time": 475.9312994480133}
+{"epoch": 8, "train_ce": 0.718243619329051, "train_vein": 0.0, "time": 531.2568571567535}
+{"epoch": 9, "train_ce": 0.7178363251058679, "train_vein": 0.0, "time": 585.2671101093292, "cal_acc": 0.9959183673469387}
+{"epoch": 10, "train_ce": 0.7042809018963262, "train_vein": 0.0, "time": 648.8155293464661}
+{"epoch": 11, "train_ce": 0.6993004899275931, "train_vein": 0.0, "time": 699.5326316356659}
+{"epoch": 12, "train_ce": 0.7035042423950998, "train_vein": 0.0, "time": 766.9219114780426}
+{"epoch": 13, "train_ce": 0.7042717118012277, "train_vein": 0.0, "time": 842.1547558307648}
+{"epoch": 14, "train_ce": 0.6972530813593614, "train_vein": 0.0, "time": 914.7584035396576, "cal_acc": 1.0}
+{"epoch": 15, "train_ce": 0.6949430766858553, "train_vein": 0.0, "time": 1003.9787330627441}
+{"epoch": 16, "train_ce": 0.6913773291989377, "train_vein": 0.0, "time": 1077.7825672626495}
+{"epoch": 17, "train_ce": 0.6852151108415503, "train_vein": 0.0, "time": 1143.8330707550049}
+{"epoch": 18, "train_ce": 0.688741850225549, "train_vein": 0.0, "time": 1217.593005180359}
+{"epoch": 19, "train_ce": 0.6867628568097165, "train_vein": 0.0, "time": 1291.6850671768188, "cal_acc": 1.0}
+{"epoch": 20, "train_ce": 0.6828476049398121, "train_vein": 0.0, "time": 1381.3771560192108}
+{"epoch": 21, "train_ce": 0.683010691090634, "train_vein": 0.0, "time": 1454.8414390087128}
+{"epoch": 22, "train_ce": 0.6789158912081468, "train_vein": 0.0, "time": 1517.6510965824127}
+{"epoch": 23, "train_ce": 0.6793451168035206, "train_vein": 0.0, "time": 1594.3661823272705}
+{"epoch": 24, "train_ce": 0.6811543373685134, "train_vein": 0.0, "time": 1667.175163269043, "cal_acc": 1.0}
+{"epoch": 25, "train_ce": 0.6795119282446409, "train_vein": 0.0, "time": 1757.5677256584167}
+{"epoch": 26, "train_ce": 0.6781559445356068, "train_vein": 0.0, "time": 1837.5096144676208}
+{"epoch": 27, "train_ce": 0.6785333956542768, "train_vein": 0.0, "time": 1905.6533417701721}
+{"epoch": 28, "train_ce": 0.6745242429407019, "train_vein": 0.0, "time": 1983.6758406162262}
+{"epoch": 29, "train_ce": 0.67364522971605, "train_vein": 0.0, "time": 2061.7849593162537, "cal_acc": 1.0}
+{"epoch": 30, "train_ce": 0.6730773009751972, "train_vein": 0.0, "time": 2153.030759334564}
+{"epoch": 31, "train_ce": 0.6726905499633989, "train_vein": 0.0, "time": 2229.4744448661804}
+{"epoch": 32, "train_ce": 0.6771576781021921, "train_vein": 0.0, "time": 2300.6142678260803}
+{"epoch": 33, "train_ce": 0.6723722768457312, "train_vein": 0.0, "time": 2374.324277162552}
+{"epoch": 34, "train_ce": 0.6733210133878809, "train_vein": 0.0, "time": 2448.494850873947, "cal_acc": 1.0}
+{"epoch": 35, "train_ce": 0.6724069949827696, "train_vein": 0.0, "time": 2537.999138355255}
+{"epoch": 36, "train_ce": 0.6716082911742361, "train_vein": 0.0, "time": 2614.3030014038086}
+{"epoch": 37, "train_ce": 0.6727349177787179, "train_vein": 0.0, "time": 2686.8598935604095}
+{"epoch": 38, "train_ce": 0.6716414815501163, "train_vein": 0.0, "time": 2759.178698539734}
+{"epoch": 39, "train_ce": 0.6729513453809839, "train_vein": 0.0, "time": 2831.9473485946655, "cal_acc": 1.0}
+TEST {"acc": 1.0, "bal_acc": 1.0, "macro_f1": 1.0, "nll": 0.12028027325868607, "ece": 0.1090978314993492, "mistake_severity": 0.0, "n": 367}

@@ -1,0 +1,578 @@
+{
+ "0": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=1",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_unitw\"",
+    "weights=\"unit\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.88,
+  "gpu": 0
+ },
+ "1": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=1",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_globalattn\"",
+    "attn=\"global\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.98,
+  "gpu": 1
+ },
+ "2": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=1",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_K16T8\"",
+    "K=16",
+    "T=8"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.39,
+  "gpu": 0
+ },
+ "3": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=1",
+    "evals=[\"crossdomain\"]",
+    "variant=\"esa\"",
+    "token=\"euler\"",
+    "tag=\"eu\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 19.42,
+  "gpu": 1
+ },
+ "4": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_unitw\"",
+    "weights=\"unit\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.64,
+  "gpu": 0
+ },
+ "5": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_globalattn\"",
+    "attn=\"global\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.72,
+  "gpu": 1
+ },
+ "6": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_K16T8\"",
+    "K=16",
+    "T=8"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.16,
+  "gpu": 0
+ },
+ "7": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"esa\"",
+    "token=\"euler\"",
+    "tag=\"eu\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 19.1,
+  "gpu": 1
+ },
+ "8": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_unitw\"",
+    "weights=\"unit\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.84,
+  "gpu": 0
+ },
+ "9": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_globalattn\"",
+    "attn=\"global\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 19.02,
+  "gpu": 1
+ },
+ "10": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_K16T8\"",
+    "K=16",
+    "T=8"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.29,
+  "gpu": 0
+ },
+ "11": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"esa\"",
+    "token=\"euler\"",
+    "tag=\"eu\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 19.36,
+  "gpu": 1
+ },
+ "12": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_unitw\"",
+    "weights=\"unit\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.93,
+  "gpu": 0
+ },
+ "13": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_globalattn\"",
+    "attn=\"global\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 19.16,
+  "gpu": 1
+ },
+ "14": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_K16T8\"",
+    "K=16",
+    "T=8"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.42,
+  "gpu": 0
+ },
+ "15": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"esa\"",
+    "token=\"euler\"",
+    "tag=\"eu\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 19.48,
+  "gpu": 1
+ },
+ "16": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_unitw\"",
+    "weights=\"unit\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.95,
+  "gpu": 0
+ },
+ "17": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_globalattn\"",
+    "attn=\"global\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 19.14,
+  "gpu": 1
+ },
+ "18": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_K16T8\"",
+    "K=16",
+    "T=8"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.39,
+  "gpu": 0
+ },
+ "19": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"esa\"",
+    "token=\"euler\"",
+    "tag=\"eu\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 19.58,
+  "gpu": 1
+ },
+ "20": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_unitw\"",
+    "weights=\"unit\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.95,
+  "gpu": 0
+ },
+ "21": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_globalattn\"",
+    "attn=\"global\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 19.31,
+  "gpu": 1
+ },
+ "22": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_K16T8\"",
+    "K=16",
+    "T=8"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.34,
+  "gpu": 0
+ },
+ "23": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"ablations\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=2",
+    "evals=[\"crossdomain\"]",
+    "variant=\"esa\"",
+    "token=\"euler\"",
+    "tag=\"eu\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.56,
+  "gpu": 1
+ }
+}

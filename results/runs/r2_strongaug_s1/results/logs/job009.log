@@ -1,0 +1,49 @@
+src.train --set exp="strongaug" protocol="grouped" epochs=40 batch_size=32 workers=3 backbone="convnext_tiny" fold=3 seed=1 strong_aug=true evals=["rotation", "crossdomain", "corruptions"] variant="plain" tag="strongaug"
+{"epoch": 0, "train_ce": 3.3115346619957373, "train_vein": 0.4439416417950078, "time": 38.83971452713013}
+{"epoch": 1, "train_ce": 2.382849081566459, "train_vein": 0.29121680557727814, "time": 59.51720976829529}
+{"epoch": 2, "train_ce": 1.225297810215699, "train_vein": 0.2761552467157966, "time": 80.01558375358582}
+{"epoch": 3, "train_ce": 0.8658157320399034, "train_vein": 0.2704306836975248, "time": 100.70683741569519}
+{"epoch": 4, "train_ce": 0.798315743082448, "train_vein": 0.26817236997579275, "time": 121.11921310424805, "cal_acc": 1.0}
+{"epoch": 5, "train_ce": 0.7559208038606142, "train_vein": 0.2664150576058187, "time": 157.25157260894775}
+{"epoch": 6, "train_ce": 0.7367048106695476, "train_vein": 0.2651085583002944, "time": 179.04627966880798}
+{"epoch": 7, "train_ce": 0.7142893483764247, "train_vein": 0.2637917517047179, "time": 199.71428537368774}
+{"epoch": 8, "train_ce": 0.6999358864207017, "train_vein": 0.26376488883244364, "time": 219.8322355747223}
+{"epoch": 9, "train_ce": 0.6990570629897871, "train_vein": 0.26334469138007416, "time": 240.200044631958, "cal_acc": 0.9958847736625515}
+{"epoch": 10, "train_ce": 0.6847329202451204, "train_vein": 0.26175314266430705, "time": 272.0705134868622}
+{"epoch": 11, "train_ce": 0.683575523527045, "train_vein": 0.26142198317929316, "time": 292.5061173439026}
+{"epoch": 12, "train_ce": 0.6724926217606193, "train_vein": 0.2610447077374709, "time": 312.81286334991455}
+{"epoch": 13, "train_ce": 0.6707007163449338, "train_vein": 0.26025643905526713, "time": 332.80937814712524}
+{"epoch": 14, "train_ce": 0.6629303505546168, "train_vein": 0.26015428061548035, "time": 353.49422097206116, "cal_acc": 1.0}
+{"epoch": 15, "train_ce": 0.6683386140748074, "train_vein": 0.2599764042779019, "time": 386.571918964386}
+{"epoch": 16, "train_ce": 0.6674396081974632, "train_vein": 0.26013483420798655, "time": 407.16610527038574}
+{"epoch": 17, "train_ce": 0.6683758356069264, "train_vein": 0.2598692229703853, "time": 427.51098227500916}
+{"epoch": 18, "train_ce": 0.6677420092256445, "train_vein": 0.2596393580499448, "time": 447.6883373260498}
+{"epoch": 19, "train_ce": 0.663334060656397, "train_vein": 0.25980326690171895, "time": 468.5585210323334, "cal_acc": 0.9917695473251029}
+{"epoch": 20, "train_ce": 0.6597621080122495, "train_vein": 0.25931193875639064, "time": 499.25915145874023}
+{"epoch": 21, "train_ce": 0.6603584273865348, "train_vein": 0.2592533419006749, "time": 519.7604978084564}
+{"epoch": 22, "train_ce": 0.6584596900563491, "train_vein": 0.25910004698916483, "time": 540.0234904289246}
+{"epoch": 23, "train_ce": 0.6571228112045088, "train_vein": 0.2583547575693381, "time": 560.1943533420563}
+{"epoch": 24, "train_ce": 0.6564259827136993, "train_vein": 0.25894906058123235, "time": 580.4778292179108, "cal_acc": 1.0}
+{"epoch": 25, "train_ce": 0.66130520324958, "train_vein": 0.25843782056319087, "time": 610.4088907241821}
+{"epoch": 26, "train_ce": 0.6546315080241153, "train_vein": 0.2582893814695509, "time": 630.880734205246}
+{"epoch": 27, "train_ce": 0.6567245564962688, "train_vein": 0.25842126851019104, "time": 651.5359616279602}
+{"epoch": 28, "train_ce": 0.655416195329867, "train_vein": 0.25830940157175064, "time": 671.7669432163239}
+{"epoch": 29, "train_ce": 0.6563077255299217, "train_vein": 0.2580078895154752, "time": 692.6233561038971, "cal_acc": 1.0}
+{"epoch": 30, "train_ce": 0.6544312568087327, "train_vein": 0.2580541815412672, "time": 724.1294977664948}
+{"epoch": 31, "train_ce": 0.6549195819779446, "train_vein": 0.25853512122442845, "time": 744.7768201828003}
+{"epoch": 32, "train_ce": 0.6524006363592649, "train_vein": 0.2581082021719531, "time": 765.4810309410095}
+{"epoch": 33, "train_ce": 0.6559251844882965, "train_vein": 0.25812810737835734, "time": 788.8629994392395}
+{"epoch": 34, "train_ce": 0.6539095844093122, "train_vein": 0.2579412962260999, "time": 809.3525903224945, "cal_acc": 1.0}
+{"epoch": 35, "train_ce": 0.6536620447510167, "train_vein": 0.25812979709160955, "time": 845.4460167884827}
+{"epoch": 36, "train_ce": 0.6527813861244603, "train_vein": 0.2573631688168174, "time": 866.8342185020447}
+{"epoch": 37, "train_ce": 0.6544783413410187, "train_vein": 0.25758443615938487, "time": 887.1050937175751}
+{"epoch": 38, "train_ce": 0.6553375752348649, "train_vein": 0.2575054866702933, "time": 907.1679482460022}
+{"epoch": 39, "train_ce": 0.6538411174949846, "train_vein": 0.2583279684185982, "time": 927.7430579662323, "cal_acc": 1.0}
+TEST {"acc": 1.0, "bal_acc": 1.0, "macro_f1": 1.0, "nll": 0.08481760323047638, "ece": 0.08109299167171939, "mistake_severity": 0.0, "n": 364}
+EVAL rotation {"per_angle": {"0": {"acc": 1.0, "bal_acc": 1.0, "macro_f1": 1.0, "nll": 0.08481760323047638, "ece": 0.08109299167171939, "mistake_severity": 0.0, "n": 364}, "30": {"acc": 1.0, "bal_acc": 1.0, "macro_f1": 1.0, "nll": 0.09524822980165482, "ece": 0.0906581957261641, "mistake_severity": 0.0, "n": 364}, "60": {"acc": 1.0, "bal_acc": 1.0, "macro_f1": 1.0, "nll": 0.09619402885437012, "ece": 0.0913235423
+/usr/local/lib/python3.13/dist-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/usr/local/lib/python3.13/dist-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+EVAL crossdomain {"n": 2000, "masked": {"acc30": 0.3425, "bal_acc30": 0.31599141835618205, "acc20": 0.398, "bal_acc20": 0.3708773058497727, "macro_f1_20": 0.3673159591575971, "ece30": 0.14140451478213067}, "raw": {"acc30": 0.3075, "bal_acc30": 0.2844346114422359, "acc20": 0.3875, "bal_acc20": 0.3649064682057258, "macro_f1_20": 0.35998815830322684, "ece30": 0.08164247610792516}}
+EVAL corruptions {"clean": 1.0, "gaussian_noise/1": 1.0, "gaussian_noise/2": 0.9917582417582418, "gaussian_noise/3": 0.9505494505494505, "gaussian_blur/1": 1.0, "gaussian_blur/2": 0.9972527472527473, "gaussian_blur/3": 0.9862637362637363, "jpeg/1": 0.9972527472527473, "jpeg/2": 0.9532967032967034, "jpeg/3": 0.5714285714285714, "low_resolution/1": 0.9972527472527473, "low_resolution/2": 0.9807692307692307, "low_res

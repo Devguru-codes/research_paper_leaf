@@ -1,7 +1,7 @@
 \section{Unit tests of the structural signals}
 \label{app:tests}
 All properties used in \cref{sec:method} are checked by automated tests that ship with the code
-(32 tests, all passing).
+(35 tests, all passing; the list covers the properties used in this paper).
 \begin{itemize}
 \item \textbf{Exact Euler characteristic.} On toy shapes (disk, annulus, two disks, a lens-shaped
   leaf, and the lens with two holes; $\chi=1,0,2,1,-1$) the cubical $\chi=V-E+F$ of the binary set
@@ -16,38 +16,54 @@ All properties used in \cref{sec:method} are checked by automated tests that shi
 \item \textbf{Consistency.} The Euler column of the Hadwiger increments equals the separately
   implemented Euler increments.
 \item \textbf{Rotation.} For unit weights, rotating the input by $90^\circ$ cyclically shifts
-  $\dchi$, $\Delta A$ and $\Delta P$ by $K/4$ directions (\cref{prop:equiv}).
+  $\dchi$, $\Delta A$ and $\Delta P$ by $K/4$ directions. This follows from
+  $\langle \mathcal R x,\theta\rangle=\langle x,\mathcal R^{-1}\theta\rangle$, the equivariance of the
+  centroid/RMS frame and the fact that a $90^\circ$ grid rotation maps cells of each dimension
+  bijectively onto cells of the same dimension; for rotations by $2\pi/K$ it holds up to grid resampling.
+\item \textbf{Mask pooling.} The mask-pooling control is unchanged when patch tokens outside the leaf
+  mask are altered.
 \item \textbf{Fuzzy subcomplex.} Learned cell weights satisfy $w(\text{coface})\le w(\text{face})$, and
   gradients reach the per-pixel weights.
 \item \textbf{Splits.} Under the grouped protocol no exact duplicate or re-shot group crosses a fold
   boundary and every image is tested exactly once; under the random protocol leaks occur.
-\item \textbf{Conformal.} On synthetic exchangeable data, mean marginal coverage over 30 repetitions is at least
-  $1-\alpha$ (up to 0.5 points). When a hazard tier's calibration set is too small for its target
-  level $\alpha_\tau$, its threshold is infinite and all of its species are always included in the
-  set, i.e.\ the procedure fails safe.
 \end{itemize}
 
-\section{Hazard-aware conformal sets}
-\label{app:conformal}
-We calibrate split-conformal APS sets~\citep{romano2020aps} (cf.\ hierarchical variants~\citep{hcc2025,hierarchicalcp2025}) on each fold's held-out
-calibration split (245 images), Mondrian over hazard tiers, with $\alpha=0.10$ for all tiers
-(standard) or $\alpha=0.10/0.05/0.01$ for tiers 0/1/2 (hazard-aware). Under exchangeability this
-gives tier-wise coverage $\ge1-\alpha_\tau$; no guarantee is claimed under distribution shift.
-Two limitations dominate. (i)~In-domain accuracy is saturated, so in-domain coverage is trivially
-100\% (mean set size 1.6--2.7 species). (ii)~Each calibration split contains only about ten
-\textit{Nerium} images; with $\alpha_2=0.01$ the tier-2 threshold is infinite, so oleander is
-included in every set, and even with $\alpha=0.10$ it appears in 61\% of in-domain sets because label
-smoothing keeps top-class probabilities near 0.9. On field photographs (no guarantee), standard sets
-cover 86--92\% of true species for ConvNeXt-T and 95--97\% for BioCLIP~2 (raw photos), but they are
-large (8--17 of 30 species, rarely resolving below order level). The sets therefore signal the shift
-honestly, but a deployable hazard-aware layer needs more calibration data for toxic species than this
-dataset provides. Full results are in \texttt{results/conformal.csv}.
-\section{Species, taxonomy and hazard tiers}
+\section{Species and taxonomy}
 \begin{table}[h]
 \centering
-\caption{The 30 species (APG~IV order and family), images after de-duplication, and the hazard tiers
-assumed by the conformal layer (sources in the released code).}
+\caption{The 30 species (APG~IV order and family) and the number of images after de-duplication.}
 \label{tab:taxonomy}
 \scriptsize
 \resizebox{\linewidth}{!}{\input{figures/tab_taxonomy.tex}}
+\end{table}
+\section{Field-photo test set}
+\label{app:field}
+\begin{table}[h]
+\centering
+\caption{DIMPSAR folders used for the field test, the species they were mapped to (checked visually),
+and the number of images in which our masker found a leaf. Kannada \emph{Arali} denotes
+\textit{Ficus religiosa}, not \textit{Nerium oleander}.}
+\label{tab:dimpsar}
+\scriptsize
+\input{figures/tab_dimpsar_map.tex}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Per-species 20-way accuracy (\%) on raw field photographs, ConvNeXt-T, mean over all runs.}
+\label{tab:fieldspecies}
+\scriptsize
+\resizebox{\linewidth}{!}{\input{figures/tab_field_species.tex}}
+\end{table}
+
+\section{Computational cost}
+\label{app:cost}
+\begin{table}[h]
+\centering
+\caption{Parameters, GFLOPs (one image at training resolution) and median batch-1 latency on a laptop
+RTX~3050 GPU and on CPU. Mask pooling and strip pooling add almost no cost; the sweep-based models
+roughly double CPU and GPU latency, mostly because of the histogram operations.}
+\label{tab:cost}
+\scriptsize
+\resizebox{\linewidth}{!}{\input{figures/tab_cost.tex}}
 \end{table}

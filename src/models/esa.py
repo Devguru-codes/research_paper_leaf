@@ -222,6 +222,24 @@ class GlobalTopoFusion(nn.Module):
         return (out, dict(feats=feats)) if return_attn else out
 
 
+class MaskPoolFusion(nn.Module):
+    """Mask-pooling control: the mask-weighted mean of the same patch tokens over the whole leaf.
+    Uses the leaf mask exactly as the localised modules do, but has no localisation and no geometry,
+    so it tests whether their gain is explained by knowing where the leaf is."""
+
+    def __init__(self, patch_dim: int, d: int = 192):
+        super().__init__()
+        self.inp = nn.Sequential(nn.LayerNorm(patch_dim), nn.Linear(patch_dim, d), nn.GELU(), nn.Linear(d, d))
+        self.out_norm = nn.LayerNorm(d)
+        self.out_dim = d
+
+    def forward(self, patch, patch_hw, wfeat, blade, vein, patch_mask, return_attn=False):
+        z = self.inp(patch)
+        m = patch_mask[..., None].to(z.dtype)
+        out = self.out_norm((z * m).sum(1) / m.sum(1).clamp_min(1e-3))
+        return (out, {}) if return_attn else out
+
+
 class StripPoolFusion(nn.Module):
     """Strip-pooling / axial baseline (cf. Hou et al., CVPR 2020): mask-weighted means of patch
     tokens over every row and every column of the patch grid (image-axis-aligned strips, no

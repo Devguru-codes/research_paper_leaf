@@ -2,6 +2,14 @@
 \toprule
 Variant & Clean & Rot.\ min & Field (mask) & Field (raw) \\
 \midrule
+\multicolumn{5}{l}{\emph{5 folds $\times$ seeds 0--2}} \\
+SVA (full) & 100.0\,$\pm$\,0.1 & 99.9\,$\pm$\,0.1 & 43.1\,$\pm$\,2.8 & 49.3\,$\pm$\,2.8 \\
+attention over all leaf patches & 100.0\,$\pm$\,0.0 & 100.0\,$\pm$\,0.0 & 44.0\,$\pm$\,2.6 & 49.3\,$\pm$\,2.4 \\
+Euler token & 100.0\,$\pm$\,0.0 & 100.0\,$\pm$\,0.0 & 42.6\,$\pm$\,1.4 & 46.8\,$\pm$\,2.1 \\
+unit cell weights & 100.0\,$\pm$\,0.1 & 99.8\,$\pm$\,0.2 & 41.3\,$\pm$\,1.4 & 44.8\,$\pm$\,1.6 \\
+coarse sweep ($K{=}16,T{=}8$) & 100.0\,$\pm$\,0.1 & 99.9\,$\pm$\,0.2 & 41.5\,$\pm$\,2.1 & 44.2\,$\pm$\,3.2 \\
+\midrule
+\multicolumn{5}{l}{\emph{seed 0, folds 0--2}} \\
 SVA (full) & 99.9\,$\pm$\,0.2 & 99.9\,$\pm$\,0.2 & 47.0\,$\pm$\,0.7 & 53.1\,$\pm$\,2.7 \\
 softer relaxation ($\kappa{=}1$) & 100.0\,$\pm$\,0.0 & 99.9\,$\pm$\,0.2 & 46.8\,$\pm$\,1.1 & 52.5\,$\pm$\,2.1 \\
 attention over all leaf patches & 100.0\,$\pm$\,0.0 & 100.0\,$\pm$\,0.0 & 47.1\,$\pm$\,1.1 & 52.0\,$\pm$\,2.5 \\

@@ -36,7 +36,7 @@ DEFAULTS = dict(
     warmup_epochs=2, label_smoothing=0.1, vein_weight=0.2, amp=True, workers=4, pretrained=True,
     d=192, K=32, T=16, R=2.0, kappa=4.0, nbins=256, heads=4, depth=2, weights="learned", attn="slab",
     use_blade=True, use_vein=True, save_model=False, tag="", evals=["rotation"],
-    max_per_class=0, classes=0, grad_accum=1, gpu_aug=True, token=None, rot_aug=True,
+    max_per_class=0, classes=0, grad_accum=1, gpu_aug=True, token=None, rot_aug=True, strong_aug=False,
 )
 
 
@@ -108,6 +108,8 @@ def train_one(cfg: dict) -> dict:
     out = results_root() / cfg["exp"] / run_name(cfg) / f"fold{cfg['fold']}_seed{cfg['seed']}"
     out.mkdir(parents=True, exist_ok=True)
     gpu_aug = cfg["gpu_aug"] and cfg["variant"] != "dualbranch" and torch.cuda.is_available()
+    if cfg["strong_aug"] and not gpu_aug:
+        raise ValueError("strong_aug is implemented in the GPU augmentation path only")
 
     dl = lambda idx, train: DataLoader(  # noqa: E731
         LeafDataset(df, idx, cfg["img_size"], train, skeleton=cfg["variant"] == "dualbranch",
@@ -137,7 +139,8 @@ def train_one(cfg: dict) -> dict:
         for it, b in enumerate(tr_loader):
             if gpu_aug:
                 x8, m8, v8 = (b[k].to(device, non_blocking=True) for k in ("img", "mask", "vein"))
-                b["img"], b["mask"], b["vein"] = gpu_augment(x8, m8, v8, cfg["img_size"], rot=cfg["rot_aug"])
+                b["img"], b["mask"], b["vein"] = gpu_augment(x8, m8, v8, cfg["img_size"], rot=cfg["rot_aug"],
+                                                                      strong=cfg["strong_aug"])
             m, v, y = (b[k].to(device, non_blocking=True) for k in ("mask", "vein", "label"))
             with torch.autocast(device_type=device.type, dtype=torch.float16, enabled=use_amp):
                 logits, vl = forward(model, b, device)

@@ -3,6 +3,8 @@
 variant:
   plain     backbone global token -> classifier
   global    + GlobalTopoFusion (Delta chi grid, globally fused)
+  strip     + strip pooling over image rows/columns (control)
+  maskpool  + mask-weighted mean of patch tokens over the leaf (control: leaf location only)
   slabstat  + slab attention with non-topological slab statistics (control)
   esa       + Euler-Sweep Attention (proposed)
 All variants train the same vein head with the same auxiliary loss, so differences are due
@@ -15,7 +17,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from src.models.backbones import build_backbone
-from src.models.esa import EulerSweepAttention, GlobalTopoFusion, StripPoolFusion
+from src.models.esa import EulerSweepAttention, GlobalTopoFusion, MaskPoolFusion, StripPoolFusion
 
 
 class VeinHead(nn.Module):
@@ -46,6 +48,8 @@ class ESFormer(nn.Module):
             self.fusion = GlobalTopoFusion(dims["mid"], d, K, T, R, kappa, nbins, weights, token or "euler")
         elif variant == "strip":
             self.fusion = StripPoolFusion(dims["patch"], d, heads, depth)
+        elif variant == "maskpool":
+            self.fusion = MaskPoolFusion(dims["patch"], d)
         elif variant in ("esa", "slabstat"):
             self.fusion = EulerSweepAttention(dims["patch"], dims["mid"], d, K, T, R, kappa, nbins, heads, depth,
                                               token=token or ("euler" if variant == "esa" else "stats"), attn=attn,

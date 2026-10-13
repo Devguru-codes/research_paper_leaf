@@ -31,13 +31,32 @@ def taxonomy_table(out: Path):
     for i, c in enumerate(CLASSES):
         o, f, g, s = TAXONOMY[c]
         common = c[c.find("(") + 1:c.find(")")] if "(" in c else ""
-        rows.append((o, f, s, common, int(n.get(i, 0)), TIER_NAME[HAZARD_TIER[c]]))
+        rows.append((o, f, s, common, int(n.get(i, 0))))
     rows.sort()
-    lines = ["\\begin{tabular}{lllrl}", "\\toprule", "Order / family & Species & Name & $n$ & Hazard \\\\", "\\midrule"]
-    for o, f, s, common, k, h in rows:
-        lines.append(f"{o} / {f} & \\textit{{{s}}} & {common} & {k} & {h} \\\\")
+    lines = ["\\begin{tabular}{lllr}", "\\toprule", "Order / family & Species & Name & $n$ \\\\", "\\midrule"]
+    for o, f, s, common, k in rows:
+        lines.append(f"{o} / {f} & \\textit{{{s}}} & {common} & {k} \\\\")
     lines += ["\\bottomrule", "\\end{tabular}"]
     (out / "tab_taxonomy.tex").write_text("\n".join(lines), encoding="utf-8")
+
+
+def cost_table(out: Path):
+    a, b = pd.read_csv("results/cost_cpu.csv"), pd.read_csv("results/cost_cuda.csv")
+    a = a.merge(b[["backbone", "model", "latency_ms"]].rename(columns={"latency_ms": "gpu_ms"}), on=["backbone", "model"])
+    names = {"convnext_tiny": "ConvNeXt-T", "efficientnet_b0": "EfficientNet-B0", "vit_small": "ViT-S/16"}
+    lab = {"plain": "Plain", "maskpool": "Mask pooling", "strip": "Strip pooling", "slabonly": "Slab-only", "sva": "SVA",
+           "global": "Global fusion"}
+    a["order"] = a.model.map({m: i for i, m in enumerate(lab)})
+    lines = ["\\begin{tabular}{llrrrrr}", "\\toprule",
+             "Backbone & Model & Params (M) & Added (M) & GFLOPs & GPU ms & CPU ms \\\\", "\\midrule"]
+    for bb, g in a.groupby("backbone", sort=False):
+        for j, (_, r) in enumerate(g.sort_values("order").iterrows()):
+            lines.append(f"{names.get(bb, bb) if j == 0 else ''} & {lab[r.model]} & {r.params_M:.1f} & {r.added_params_M:.2f} & "
+                         f"{r.gflops:.1f} & {r.gpu_ms:.0f} & {r.latency_ms:.0f} \\\\")
+        lines.append("\\midrule")
+    lines[-1] = "\\bottomrule"
+    lines.append("\\end{tabular}")
+    (out / "tab_cost.tex").write_text("\n".join(lines), encoding="utf-8")
 
 
 def overview_figure(out: Path, stem_class: str = "Ficus Religiosa (Peepal Tree)"):
@@ -95,5 +114,6 @@ if __name__ == "__main__":
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     taxonomy_table(out)
+    cost_table(out)
     overview_figure(out)
     print("ok")

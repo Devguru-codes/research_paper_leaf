@@ -1,0 +1,447 @@
+{
+ "1": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "variant=\"dualbranch\"",
+    "fold=0",
+    "seed=0",
+    "evals=[]",
+    "tag=\"p1_grouped\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 48.16,
+  "gpu": 1
+ },
+ "0": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"random_dups\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "variant=\"dualbranch\"",
+    "fold=0",
+    "seed=0",
+    "evals=[]",
+    "tag=\"p1_random_dups\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 48.29,
+  "gpu": 0
+ },
+ "2": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"random_dups\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "evals=[]",
+    "variant=\"plain\"",
+    "tag=\"p1rand\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 14.19,
+  "gpu": 1
+ },
+ "3": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"random_dups\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "evals=[]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_p1rand\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.18,
+  "gpu": 0
+ },
+ "4": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"random_dups\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "variant=\"dualbranch\"",
+    "fold=1",
+    "seed=0",
+    "evals=[]",
+    "tag=\"p1_random_dups\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 44.37,
+  "gpu": 1
+ },
+ "5": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "variant=\"dualbranch\"",
+    "fold=1",
+    "seed=0",
+    "evals=[]",
+    "tag=\"p1_grouped\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 44.27,
+  "gpu": 0
+ },
+ "6": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"random_dups\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "evals=[]",
+    "variant=\"plain\"",
+    "tag=\"p1rand\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 14.65,
+  "gpu": 1
+ },
+ "7": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"random_dups\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "evals=[]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_p1rand\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.26,
+  "gpu": 0
+ },
+ "8": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"random_dups\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "variant=\"dualbranch\"",
+    "fold=2",
+    "seed=0",
+    "evals=[]",
+    "tag=\"p1_random_dups\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 48.71,
+  "gpu": 1
+ },
+ "9": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "variant=\"dualbranch\"",
+    "fold=2",
+    "seed=0",
+    "evals=[]",
+    "tag=\"p1_grouped\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 49.23,
+  "gpu": 0
+ },
+ "10": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"random_dups\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "evals=[]",
+    "variant=\"plain\"",
+    "tag=\"p1rand\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 15.41,
+  "gpu": 1
+ },
+ "11": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"random_dups\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "evals=[]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_p1rand\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.85,
+  "gpu": 0
+ },
+ "12": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"random_dups\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "variant=\"dualbranch\"",
+    "fold=3",
+    "seed=0",
+    "evals=[]",
+    "tag=\"p1_random_dups\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 48.43,
+  "gpu": 1
+ },
+ "13": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "variant=\"dualbranch\"",
+    "fold=3",
+    "seed=0",
+    "evals=[]",
+    "tag=\"p1_grouped\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 48.23,
+  "gpu": 0
+ },
+ "14": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"random_dups\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "evals=[]",
+    "variant=\"plain\"",
+    "tag=\"p1rand\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 15.85,
+  "gpu": 1
+ },
+ "15": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"random_dups\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "evals=[]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_p1rand\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 19.21,
+  "gpu": 0
+ },
+ "16": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"random_dups\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "variant=\"dualbranch\"",
+    "fold=4",
+    "seed=0",
+    "evals=[]",
+    "tag=\"p1_random_dups\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 47.24,
+  "gpu": 1
+ },
+ "17": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "variant=\"dualbranch\"",
+    "fold=4",
+    "seed=0",
+    "evals=[]",
+    "tag=\"p1_grouped\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 46.35,
+  "gpu": 0
+ },
+ "18": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"random_dups\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "evals=[]",
+    "variant=\"plain\"",
+    "tag=\"p1rand\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 15.78,
+  "gpu": 1
+ },
+ "19": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"p1\"",
+    "protocol=\"random_dups\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "evals=[]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap_p1rand\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.31,
+  "gpu": 0
+ }
+}

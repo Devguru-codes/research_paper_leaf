@@ -1,4 +1,4 @@
-\section{Method: Sweep-Valuation Attention}
+\section{Models: sweep-valuation attention and matched controls}
 \label{sec:method}
 
 \Cref{fig:overview} summarises \SVF{}. An appearance backbone (CNN or ViT) produces patch tokens.
@@ -56,15 +56,18 @@ quantities
  \label{eq:valuations}
 \end{equation}
 are the area (number of unit squares), the boundary length in pixel units (every square contributes
-four edges, and an edge shared by two squares is interior) and the Euler characteristic. They are
-the cubical counterparts of the three planar intrinsic volumes. By Hadwiger's
-theorem~\citep{hadwiger1957,klain1997}, every continuous, rigid-motion-invariant valuation on planar
-convex bodies is a linear combination of these three. Because~\eqref{eq:valuations} is linear in the
-cell weights, it extends directly to the fuzzy complex~\eqref{eq:weights}. Our proposed token uses
-area and perimeter, i.e.\ the two \emph{metric} intrinsic volumes. The purely topological one, $\chi$,
-is retained as an ablation (\cref{sec:abl}), because in our pilots it did not add information beyond
-area and perimeter (\cref{sec:results}).
-
+four edges, and an edge shared by two squares is interior) and the Euler characteristic. In the
+continuum, area, perimeter and Euler characteristic are the three planar intrinsic volumes, and
+Hadwiger's theorem~\citep{hadwiger1957,klain1997} states that every continuous, rigid-motion-invariant
+valuation on planar \emph{convex} bodies is a linear combination of them. We use the theorem only as
+a motivation for this choice of basis and make no claim that it carries over to our setting, for three
+reasons. Leaves are not convex. The digital perimeter $2H_1-4H_2$ is the $\ell_1$ (city-block) length
+of the boundary, which is not rotation invariant: it overestimates the Euclidean length of a straight
+boundary at angle $\alpha$ to the grid by the factor $|\cos\alpha|+|\sin\alpha|$ (up to $\sqrt2$),
+and of a disk by $4/\pi\approx1.27$ on average~\citep{legland2007minkowski}. Finally,
+\eqref{eq:valuations} is applied to the fuzzy complex~\eqref{eq:weights} by linearity in the cell
+weights; the result is a weighted count, not a geometric valuation of any set. Our proposed token uses
+the area and perimeter counts. The Euler characteristic is retained as an ablation (\cref{sec:abl}).
 \subsection{Filtration increments along a sweep}
 For a direction $\theta\in S^1$ we use the lower-star filtration,
 $h_\theta(v)=\langle x_v,\theta\rangle$ and $h_\theta(c)=\max_{v\in c}h_\theta(v)$. Following the
@@ -85,8 +88,7 @@ linearity:
  \dchi(\theta,k)=\Delta H_0-\Delta H_1+\Delta H_2 .
  \label{eq:increment}
 \end{equation}
-Each is the change of the corresponding relaxed valuation of the sublevel set between $t_{k-1}$ and
-$t_k$, and $\sum_k$ telescopes to the total valuation of the leaf, independently of $\theta$. We
+Each is the change of the corresponding relaxed count between $t_{k-1}$ and $t_k$, and $\sum_k$ telescopes to the total valuation of the leaf, independently of $\theta$. We
 compute~\eqref{eq:increment} for the blade ($a_{\mathrm b}$) and the venation field ($a_{\mathrm v}$)
 with $K$ uniform directions and $T$ slabs ($K{=}32$, $T{=}16$, $R{=}2$, $\lambda=\kappa T/2R$ with
 $\kappa{=}4$).
@@ -109,7 +111,7 @@ kernel~\eqref{eq:slab} evaluated at bin centres with one matrix product (the ker
 double precision). This costs $O(BKN)$ memory for $N$ cells, needs no sorting, and is exact in the
 telescoping and sharp limits (verified by unit tests, \cref{app:tests}).
 
-\subsection{Co-registered slab attention}
+\subsection{Slab-restricted attention}
 Each direction--slab pair $(\theta,k)$ defines one sweep token with query
 $q_{\theta k}=\mathrm{MLP}(\phi(\theta,k))+e_k$, where $e_k$ is a learned slab-index embedding. The token
 cross-attends to the backbone patch tokens $\{z_p\}$ with an additive bias derived from the
@@ -123,45 +125,43 @@ where $\bar m(p)$ is the fraction of leaf pixels in patch $p$ and $\epsilon=10^{
 measurement and the visual evidence attached to it are thus taken over the same filtration-defined
 region. To the best of our knowledge, we did not find prior work that explicitly co-registers
 filtration-derived valuation increments with attention restricted to the corresponding filtration
-slab (\cref{sec:related}). The attention output is added to the query with a mass gate
+slab (\cref{sec:related}). We treat this restriction as a design choice and test it
+directly: in our experiments it can be replaced by global attention without loss (\cref{sec:abl}).
+The attention output is added to the query with a mass gate
 $M/(M+0.5)$, $M=\sum_p s_k\bar m$, so that slabs outside the leaf contribute little. The $KT{=}512$
 tokens are mixed by a two-layer \emph{sweep transformer} whose learned relative position bias depends
 only on $(\Delta\theta \bmod K,\Delta k)$. Tokens are mean-pooled and concatenated with the backbone's
 global token for classification. Training minimises cross-entropy (label smoothing $0.1$) plus
 $0.2\times$ the masked BCE of the vein head.
 
-\subsection{Symmetry properties}
-\begin{proposition}\label{prop:equiv}
-Let $\mathcal R$ be a rotation by a multiple of $90^\circ$ acting on the pixel grid and let the
-weights be unit (binary blade). Then $\Delta A$, $\Delta P$ and $\dchi$ of $\mathcal R I$ equal
-those of $I$ cyclically shifted by $K/4$ along $\theta$ for each multiple of $90^\circ$; for
-rotations by $2\pi/K$ the same holds up to grid resampling.
-\end{proposition}
-\noindent The proof follows from $\langle \mathcal R x,\theta\rangle=\langle x,\mathcal R^{-1}\theta\rangle$,
-the equivariance of the centroid/RMS frame, and the fact that a $90^\circ$ grid rotation maps cells
-of each dimension bijectively onto cells of the same dimension (so the counts $H_d$ in every slab are
-permuted, not changed). It is checked numerically in \cref{app:tests}. The appearance-conditioned
-weighted signal and the full \SVF{} inherit the rotation behaviour of the backbone
-($f(\mathcal R I)\neq\mathcal R f(I)$ in general). We therefore do \emph{not} claim exact invariance
-for them and evaluate their behaviour empirically (\cref{sec:results}). Rotation-equivariant
-ECT tokenisation as such is not our contribution~\citep{blaser2026encoding}.
+\paragraph{Rotation.} For unit weights, rotating the input by a multiple of $90^\circ$ cyclically
+shifts all increments by $K/4$ directions (\cref{app:tests}); the appearance-weighted signal and the
+full model inherit the rotation behaviour of the backbone and are evaluated empirically.
+Rotation-equivariant ECT tokenisation as such is not our contribution~\citep{blaser2026encoding}.
 
-\subsection{Controls built from the same code}
+\subsection{A ladder of matched models}
 \label{sec:controls}
-To isolate what matters, we compare five models that share the backbone, vein head, training recipe
-and, where applicable, the token width and transformer depth:
+To isolate what matters, we compare six models that share the backbone, the vein head and its
+auxiliary loss, the training recipe and, where applicable, the token width (192) and transformer
+depth (2). Each step adds one ingredient; all but the first concatenate their output with the
+backbone's global token.
 \begin{enumerate}
- \item \textbf{plain}: backbone global token only;
- \item \textbf{global}: the full $K\times T\times8$ valuation grid flattened through an MLP and fused
-   globally (in the spirit of~\citep{phgnet2023,gu2026multifiltration}); same structural content,
-   no co-registration;
- \item \textbf{strip}: strip pooling~\citep{hou2020strip}, i.e.\ mask-weighted means of patch tokens
-   over every row and column of the patch grid, with learned positions and the same two-layer
-   transformer; localised directional pooling without an object-centred sweep or structural content;
+ \item \textbf{plain}: backbone global token only; features are averaged over the whole image,
+   background included;
+ \item \textbf{mask pooling}: adds the mask-weighted mean of the patch tokens over the leaf (an MLP
+   per token, then masked averaging); the model knows \emph{where} the leaf is but pools it as a whole;
+ \item \textbf{strip pooling}~\citep{hou2020strip}: mask-weighted means of patch tokens over every row
+   and column of the patch grid, with learned positions and the transformer; localised pooling along
+   the image axes;
  \item \textbf{slab-only}: identical to \SVA{} except that $\phi\equiv0$, so each query is only the slab
-   embedding $e_k$; the same co-registered slab geometry, no valuation content;
- \item \textbf{\SVA{}} (proposed).
+   embedding $e_k$; localised pooling over the object-centred sweep slabs, without measurements;
+ \item \textbf{\SVA{}}: slab tokens that also carry the measured valuations;
+ \item \textbf{global fusion}: the full $K\times T\times8$ valuation grid of \SVA{} flattened through
+   an MLP and fused globally (in the spirit of~\citep{phgnet2023,gu2026multifiltration}); the same
+   measurements without localised pooling.
 \end{enumerate}
-Model 2 versus 5 asks whether co-registration matters; 3 versus 5 asks whether an object-centred
-filtration sweep matters beyond generic directional pooling; 4 versus 5 asks whether the measured
-valuations matter beyond the slab geometry itself.
+The pre-specified contrasts are: 2 vs.\ 1 (\emph{leaf location}); 3, 4 and 5 vs.\ 2
+(\emph{localisation}); 5 vs.\ 4 and 5 vs.\ 3 (\emph{measured geometry}, and object-centred slabs
+vs.\ image-axis strips); and 6 vs.\ 1 (\emph{geometry without localisation}). On field photographs
+the leaf mask of models 2--6 comes from our masker (\cref{sec:data}); the plain model receives no
+mask, which is exactly the difference contrast 2 vs.\ 1 measures.
