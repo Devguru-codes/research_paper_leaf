@@ -10,7 +10,7 @@ runs in which the first model wins and 95\% intervals as described in \cref{sec:
 \caption{Main results (\%). Clean = in-domain grouped 5-fold accuracy; Rot.\ min = worst accuracy over
 12 rotations; MedLeaf-C = mean over 10 corruptions $\times$ 3 severities; Shape bias from the
 cue-conflict set; Field = 20-way accuracy on DIMPSAR field photographs (auto-masked or raw).
-ConvNeXt-T: 5 folds $\times$ 5 seeds (MedLeaf-C: seeds 0, 3, 4, all seeds for mask pooling; Rot.\ min
+ConvNeXt-T: 5 folds $\times$ 5 seeds (MedLeaf-C: seed 0, the seed run for every model; Rot.\ min
 and shape bias: seed 0); EfficientNet-B0: 5 folds
 $\times$ 3 seeds; ViT-S and BioCLIP~2: 5 folds, one seed. Mask pooling was run on ConvNeXt-T only.}
 \label{tab:main}
@@ -100,7 +100,7 @@ and data-side remedies are therefore complementary.
 \begin{table}[t]
 \centering
 \caption{Standard vs.\ strong (background compositing + blur + noise) augmentation, ConvNeXt-T,
-5 folds $\times$ 3 seeds, \%. MedLeaf-C with standard augmentation: seed 0 (all seeds for mask pooling).}
+5 folds $\times$ 3 seeds, \%. MedLeaf-C: seed 0.}
 \label{tab:strongaug}
 \small
 \input{figures/tab_strongaug.tex}
@@ -119,8 +119,8 @@ differ by at most about five points; the whitened background and the masker's er
 use, so we treat raw photographs as the primary field test.
 
 \subsection{Corruptions and cue conflict}
-On MedLeaf-C (\cref{fig:corruptions}) the structural models are more robust on ConvNeXt-T (plain 82.1\%,
-patch pooling 83.8\%, mask pooling 84.8\%, strip 87.5\%, \SVA{} 87.0\%, slab-only 88.8\%), with the gains
+On MedLeaf-C (\cref{fig:corruptions}) the structural models are more robust on ConvNeXt-T (seed 0: plain 81.1\%,
+patch pooling 84.3\%, mask pooling 84.7\%, strip 87.6\%, \SVA{} 88.6\%, slab-only 89.4\%), with the gains
 coming from noise, blur, JPEG and low-resolution corruptions; colour, occlusion and background
 corruptions are near ceiling for all models, and on the other backbones all variants are within about
 one point. This comparison favours the mask-based models, however: under corruption they receive the

@@ -92,6 +92,7 @@ def fig_rotation(df, out):
 
 def fig_corruptions(df, out):
     d = main_runs(df)
+    d = d[d.seed == 0]  # MedLeaf-C was run on different seed sets per model; seed 0 is common to all
     d = d[d.backbone == "convnext_tiny"]
     fig, ax = plt.subplots(figsize=(9, 3.2))
     x = np.arange(len(FAMILIES))
@@ -121,6 +122,7 @@ def fmt(v, scale=100, nd=1):
     return s + (f"\\,$\\pm$\\,{scale * v.std():.{nd}f}" if len(v) > 1 else "")
 
 
+MEDLEAF = "corruptions.mean_corrupted_acc"  # reported on seed 0, the one seed with MedLeaf-C for every model
 MAIN_COLS = [("test.acc", "Clean"), ("rotation.min_acc", "Rot.\\ min"), ("corruptions.mean_corrupted_acc", "MedLeaf-C"),
              ("cueconflict.all.shape_bias", "Shape bias"), ("crossdomain.masked.acc20", "Field (mask)"),
              ("crossdomain.raw.acc20", "Field (raw)")]
@@ -134,7 +136,7 @@ def tab_main(df, out):
         rows = [m for m in MODELS if len(d[(d.backbone == b) & (d.model == m)])]
         for j, m in enumerate(rows):
             g = d[(d.backbone == b) & (d.model == m)]
-            cells = [fmt(g[c]) if c in g else "--" for c, _ in MAIN_COLS]
+            cells = [fmt((g[g.seed == 0] if c == MEDLEAF else g)[c]) if c in g else "--" for c, _ in MAIN_COLS]
             lines.append((bn if j == 0 else "") + f" & {LABEL[m]} & " + " & ".join(cells) + " \\\\")
         if rows:
             lines.append("\\midrule")
@@ -192,7 +194,8 @@ def tab_strongaug(df, out):
     for aug, g in [("standard", std), ("strong", strong)]:
         for j, m in enumerate(["plain", "maskpool", "strip", "sva"]):
             h = g[g.model == m]
-            lines.append((aug if j == 0 else "") + f" & {LABEL[m]} & " + " & ".join(fmt(h[c]) for c, _ in cols) + " \\\\")
+            lines.append((aug if j == 0 else "") + f" & {LABEL[m]} & "
+                         + " & ".join(fmt((h[h.seed == 0] if c == MEDLEAF else h)[c]) for c, _ in cols) + " \\\\")
         lines.append("\\midrule")
     lines[-1] = "\\bottomrule"
     lines.append("\\end{tabular}")

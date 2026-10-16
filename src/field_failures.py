@@ -1,8 +1,9 @@
 """Per-species field accuracy, gains and masker exclusions (appendix table).
 
   python -m src.field_failures
-Needs results/field_per_species.csv (python -m src.field_analysis results/kaggle) and the DIMPSAR build
-index (dimpsar_index.csv, written by src.crossdomain build). Writes paper/figures/tab_field_failures.tex
+Needs field_per_species.csv (python -m src.field_analysis results/kaggle) and the DIMPSAR build index
+(dimpsar_index.csv, written by src.crossdomain build); both are looked up in results/ (working copy) and
+results/summary/ (public repository). Writes paper/figures/tab_field_failures.tex
 and prints the rank correlation between the strip-pooling gain and the leaf's share of the crop.
 """
 from __future__ import annotations
@@ -16,10 +17,18 @@ from scipy.stats import spearmanr
 from src.data.taxonomy import CLASSES
 
 
+def find(name: str) -> str:
+    hits = [p for p in (f"results/{name}", f"results/summary/{name}") if Path(p).exists()]
+    hits += glob.glob(f"results/kaggle/maskhead/**/{name}", recursive=True)
+    if not hits:
+        raise FileNotFoundError(f"{name} not found in results/, results/summary/ or the DIMPSAR build")
+    return hits[0]
+
+
 def main(out: Path = Path("paper/figures/tab_field_failures.tex")):
-    f = pd.read_csv("results/field_per_species.csv")
+    f = pd.read_csv(find("field_per_species.csv"))
     acc = f.groupby(["species", "model"]).acc.mean().unstack() * 100
-    idx = pd.read_csv(glob.glob("results/kaggle/maskhead/**/dimpsar_index.csv", recursive=True)[0])
+    idx = pd.read_csv(find("dimpsar_index.csv"))
     idx["species"] = [CLASSES[label] for label in idx.label]
     t = pd.DataFrame({"photos": idx.groupby("species").size(),
                       "excluded": idx.groupby("species").usable.apply(lambda s: int((~s).sum())),

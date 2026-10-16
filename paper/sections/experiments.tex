@@ -15,8 +15,8 @@ early stopping or test-time augmentation is used. Runs use Kaggle T4 GPUs.
 \paragraph{Runs.} All splits are grouped stratified 5-fold cross-validation over the de-duplicated,
 leaf-grouped data (\cref{sec:data}). For ConvNeXt-T, plain, mask pooling, strip, slab-only, \SVA{}
 and global fusion are trained with 5 seeds per fold (25 runs each) and patch pooling with 3 seeds
-(15 runs); the field test is run on all seeds, MedLeaf-C on seeds 0, 3 and 4 (all seeds for the
-pooling controls), the other probes on seed 0. EfficientNet-B0 uses 3 seeds per fold, ViT-S,
+(15 runs); the field test is run on all seeds, MedLeaf-C on several seeds but
+reported on seed 0, the one seed run for every model, and the other probes on seed 0. EfficientNet-B0 uses 3 seeds per fold, ViT-S,
 BioCLIP~2 and DINOv2 ViT-S/14 one seed per fold. Two further ConvNeXt-T arms test whether the effects
 depend on augmentation. \emph{Without rotation augmentation}: plain, strip, slab-only and \SVA{}
 (5 seeds) and mask pooling (3 seeds). \emph{Strong augmentation}: plain, mask pooling, strip and
