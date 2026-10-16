@@ -1,21 +1,21 @@
 \begin{abstract}
 Medicinal-leaf classifiers report near-perfect accuracy on studio photographs of single leaves, but
-how they transfer to field photographs, and why, is largely unknown. We study this question on the
-30-species Medicinal Leaf Dataset with a de-duplicated, leaf-grouped protocol and test on 20 species
-of the DIMPSAR field photographs. Holding backbone, data and training fixed, we compare a plain
-classifier with a ladder of additions: pooling over the leaf mask, localised pooling (image-axis
-strips or object-centred sweep slabs), and \emph{sweep-valuation attention} (\SVA{}), a module we
-introduce whose tokens additionally carry the area and boundary length that a learned,
-appearance-weighted cubical complex of the blade and venation adds in each slab. Clean accuracy is
-saturated for every model. On field photographs with ConvNeXt-T (5 folds $\times$ 5 seeds,
-corrected resampled tests with Holm correction, and a bootstrap over runs and field species), the
-transfer gain decomposes into two parts of similar size: knowing where the leaf is ($+7.5$ points over
-33.6\%) and pooling locally within it ($+4.6$ to $+6.2$ more). Both parts persist without rotation
-augmentation and add to a strong background-compositing augmentation (best model 55\%). Measured
-geometry adds nothing detectable on top of localised pooling: \SVA{} (47.4\%) is statistically tied
-with strip pooling (46.8\%) and with its own slab-only variant, and fusing the same measurements
-globally gives no gain at all. The localisation gain is small on EfficientNet-B0 and absent on ViT-S
-and on the BioCLIP~2 foundation model, which reaches 81\% without any module. We release the protocol,
-a corruption suite, cue-conflict and topology probes, all code and every run output at
+how they transfer to field photographs, and why, is largely unknown. We study this on the 30-species
+Medicinal Leaf Dataset with a de-duplicated, leaf-grouped protocol, testing on 2{,}000 DIMPSAR field
+photographs of 20 shared species. Holding backbone, data and training fixed, we climb a ladder of
+matched models: a plain classifier, an extra branch on mid-level features, the same branch pooled over
+the leaf mask, localised pooling over image strips or object-centred sweep slabs, and
+\emph{sweep-valuation attention} (\SVA{}), a module we introduce whose slab tokens also carry the area
+and boundary length of learned, appearance-weighted cubical complexes of the blade and venation. Clean
+accuracy is saturated for every model. On raw field photographs, ConvNeXt-T (5 folds $\times$ up to 5
+seeds, corrected resampled tests, Holm correction) gains 12--14 points over a plain model (33.6\%). The
+gain has three parts: mid-level features ($+3.3$, not significant), knowing where the leaf is ($+4.4$,
+which vanishes once the background is whitened) and pooling locally within the leaf ($+4.6$ to $+6.2$).
+Leaf location and localisation persist under strong background-compositing augmentation, which raises
+every model (best 55\%) but replaces neither. Measured geometry adds little if anything: \SVA{}
+(47.4\%) is statistically tied with strip pooling (46.8\%) and its own measurement-free variant, and
+fusing the same measurements globally is equivalent to the plain model within $\pm3$ points. The
+gains are small on EfficientNet-B0 and absent on ViTs; the BioCLIP~2 foundation model reaches 81\%
+without any module, whereas a general self-supervised DINOv2 ViT reaches 52\%. Code, all run outputs and the probes are released at
 \url{https://github.com/Devguru-codes/research_paper_leaf}.
 \end{abstract}

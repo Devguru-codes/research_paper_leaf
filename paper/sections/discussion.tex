@@ -1,43 +1,51 @@
 \section{Discussion}
 \label{sec:discussion}
 
-\paragraph{What closes the studio-to-field gap.} For an ImageNet CNN trained on studio leaves, two
-simple properties of the pooling account for the whole architectural gain we observed: knowing where
-the leaf is, and pooling locally within it. Each is worth 5--8 points on raw field photographs, they
-add up to 12--14 points, and both survive without rotation augmentation and on top of strong
-background-compositing augmentation. Background compositing and mask pooling act similarly (each lifts
-plain ConvNeXt-T to about 41--42\%), which supports the reading that the first part is about discounting
-the background. The second part, localisation, helps on raw photographs and on texture corruptions but
-hardly on whitened photographs, so it seems to make features robust to clutter and texture loss inside
-and around the leaf rather than to add shape information; shape bias barely changes.
+\paragraph{What closes the studio-to-field gap.} For an ImageNet ConvNeXt-T trained on studio leaves,
+the architectural gain on raw field photographs has three identifiable parts. An extra branch on
+mid-level features helps a little (about 3 points, not significant on raw photographs, 4.6 on whitened
+ones). Pooling that branch over the leaf adds about 4 points, and only when the field background is
+present: on photographs whose background has been whitened it adds almost nothing, so this part is the
+model discounting the background. Pooling locally within the leaf adds another 5--6 points on raw
+photographs but little on whitened ones, and it barely changes shape bias. Why localisation helps
+when clutter is present remains open; a plausible reading is that pooling small regions separately
+keeps background that leaks through an imperfect mask from contaminating the whole leaf
+representation, but we have not tested this. Mask pooling and localisation both survive strong
+background-compositing augmentation, which lifts every model but replaces neither.
 
 \paragraph{What does not.} We expected measured leaf geometry to matter: an object-centred sweep,
 per-slab area and boundary length of the blade and venation, and attention restricted to the slab
-being measured. None of these ingredients improves transfer beyond localised pooling. Object-centred
-slabs are no better than image-axis strips, the same measurements fused globally give nothing, and
-restricting attention to the measured slab can be replaced by global attention. Within \SVA{}, a fine
-sweep and learned weights matter, but only relative to weaker versions of \SVA{} itself. Euler
-tokens make a model sensitive to holes in the blade, yet transfer worse. Within the limits of our
-design, the effect we can detect is about \emph{where} features are pooled, not about measuring the
-leaf. We report \SVA{} because a well-controlled negative result for a natural and increasingly
-popular idea, fusing topological and geometric measurements with deep features, is useful, and
-because its localised variant is among the best models we trained.
-
+being measured. Fusing the measurements globally is equivalent to the plain model within $\pm3$ points
+(two one-sided tests, $p<0.01$ on both photo types). Attached to localised tokens, they improve on
+strip pooling and slab-only attention by $+0.5$ and $+1.7$ points on raw photographs, with intervals
+that exclude large benefits but not benefits of up to 3--5 points; object-centred slabs and
+image-axis strips perform the same, and restricting attention to the measured slab can be replaced by
+global attention. Within \SVA{}, a fine sweep and learned weights matter, but only relative to weaker
+versions of \SVA{} itself, and Euler tokens make a model sensitive to holes in the blade yet transfer
+worse. Within the resolution of our design, the effects we can detect concern \emph{where} features
+are pooled, not measurements of the leaf. We report \SVA{} because a well-controlled negative result
+for a natural and increasingly popular idea, fusing topological and geometric measurements with deep
+features, is useful.
 \paragraph{Practical recommendations.} (i)~Evaluate leaf classifiers on field photographs; studio
 accuracy is saturated and uninformative (98--100\% for every model). (ii)~With an ImageNet CNN, pool
-over the leaf and locally within it, e.g.\ with strip pooling, which is simpler and cheaper than \SVA{}
-(\cref{app:cost}), and combine it with background-compositing augmentation; together they raised
-field accuracy from 34\% to 53--55\%. (iii)~Where a biology foundation model such as BioCLIP~2 can be
-used, use it: it reaches 81\% without any module, and none of the modules changes it.
+over the leaf and locally within it, e.g.\ with strip pooling, which is simpler and cheaper than \SVA{},
+and combine it with background-compositing augmentation; together they raised field accuracy from
+34\% to 53--55\%. Note that a leaf mask is needed at test time, for cropping and for these models; our
+masker costs about as much as the classifier (\cref{app:cost}). (iii)~Where a biology foundation model such as
+BioCLIP~2 can be used, use it: it reaches 81\% without any module, and none of the modules changes it.
 
 \paragraph{Limitations.} (i)~One studio dataset and one field dataset with 20 shared species. Field
-labels come from vernacular folder names that we mapped to species and checked visually; residual
-label noise would lower all models alike. The 20-way accuracy uses the knowledge of which species can
-occur. (ii)~The masked field condition and all localised models depend on our masker, whose accuracy
-on field photographs we could not measure without ground-truth masks; the raw-photo results, which the
-plain model obtains without any mask, are the primary outcome. (iii)~ConvNeXt-T results use five
-seeds, EfficientNet-B0 and the key ablations three, ViT-S and BioCLIP~2 one; differences of 2--3 points
-between localised models are not resolved by our design, and the ViT results are indicative only.
-(iv)~One fixed training recipe was used for all models of a backbone; a recipe tuned per model could
-shift individual numbers. (v)~The venation field is learned from ridge-filter pseudo-labels and is not
-validated against traced veins.
+labels come from vernacular folder names that we mapped to species and checked visually but not with a
+botanist; residual label noise would lower all models alike. The 20-way accuracy uses the knowledge of
+which species can occur. The only high-hazard species of the studio set, \textit{Nerium oleander}, is
+not among the field species, so we could not evaluate confusions with a toxic look-alike in the
+field. (ii)~The field test set depends on our masker for every model: it centres the crops and excluded
+5.6\% of the photographs, probably among the hardest, and the mask-based models also use its masks
+inside the network. Its accuracy on field photographs could not be measured without ground-truth
+masks. (iii)~ConvNeXt-T results use five seeds (patch pooling three),
+EfficientNet-B0 and the key ablations three, the ViTs one; differences of 2--3 points between
+localised models are not resolved, and the ViT results are indicative only. (iv)~One fixed training
+recipe was used for all models of a backbone; a recipe tuned per model could shift individual numbers.
+(v)~The mask- and patch-pooling controls were added after a first analysis; their contrasts confirm a
+suspected confound rather than test a pre-registered hypothesis. (vi)~The venation field is learned
+from ridge-filter pseudo-labels and is not validated against traced veins.

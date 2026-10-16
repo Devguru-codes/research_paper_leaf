@@ -25,3 +25,11 @@
 2026-10-13 18:52:32 r2_effb0_s2 already COMPLETE, not pulled yet; pulling: ok
 2026-10-13 18:55:08 r3_maskpool_cnx already COMPLETE, not pulled yet; pulling: ok
 2026-10-13 18:55:08 QUEUE DONE
+2026-10-13 19:22:15 push r4_mp_strong attempt 1: ['Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/dev123123456/medleaf-esa-r4-mp-strong']
+2026-10-13 19:22:15 push r4_patchpool attempt 1: ['Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/dev123123456/medleaf-esa-r4-patchpool']
+2026-10-15 21:14:43 r4_patchpool already COMPLETE, not pulled yet; pulling: ok
+2026-10-15 21:16:26 r4_mp_strong already COMPLETE, not pulled yet; pulling: ok
+2026-10-15 21:16:26 QUEUE DONE
+2026-10-17 00:27:48 r4_mp_norot already COMPLETE, not pulled yet; pulling: ok
+2026-10-17 00:29:30 r4_dinov2 already COMPLETE, not pulled yet; pulling: ok
+2026-10-17 00:29:30 QUEUE DONE

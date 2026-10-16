@@ -15,6 +15,29 @@ def test_efficientnet_backbone_all_variants_forward():
         assert logits.shape == (2, 30) and torch.isfinite(logits).all()
 
 
+def test_patchpool_ignores_the_mask():
+    m = ESFormer(30, "convnext_tiny", "patchpool", pretrained=False, img_size=128, grid=32).eval()
+    x = torch.randn(1, 3, 128, 128)
+    m1, m2 = torch.zeros(1, 128, 128), torch.zeros(1, 128, 128)
+    m1[:, 32:96, 32:96] = 1
+    m2[:, 10:40, 60:120] = 1
+    with torch.no_grad():
+        f = m.backbone(x)
+        a = m.fusion(f["patch"], f["hw"], None, None, None, torch.ones(1, f["patch"].shape[1]))
+        assert torch.allclose(m(x, m1)[0], m(x, m2)[0], atol=1e-5)
+    assert torch.isfinite(a).all()
+
+
+def test_dinov2_backbone_forward():
+    m = ESFormer(30, "dinov2_small", "maskpool", pretrained=False, img_size=384, grid=32).eval()
+    x = torch.randn(1, 3, 384, 384)
+    mask = torch.zeros(1, 384, 384)
+    mask[:, 100:300, 120:260] = 1
+    with torch.no_grad():
+        logits, _ = m(x, mask)
+    assert logits.shape == (1, 30) and torch.isfinite(logits).all()
+
+
 def test_maskpool_uses_only_leaf_patches():
     """The mask-pooling control must ignore everything outside the leaf mask."""
     m = ESFormer(30, "convnext_tiny", "maskpool", pretrained=False, img_size=128, grid=32).eval()

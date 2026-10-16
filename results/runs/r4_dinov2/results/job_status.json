@@ -1,0 +1,332 @@
+{
+ "0": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"dinov2_small\"",
+    "fold=0",
+    "seed=0",
+    "lr_backbone=3e-05",
+    "evals=[\"crossdomain\", \"corruptions\"]",
+    "variant=\"plain\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.46,
+  "gpu": 0
+ },
+ "1": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"dinov2_small\"",
+    "fold=0",
+    "seed=0",
+    "lr_backbone=3e-05",
+    "evals=[\"crossdomain\", \"corruptions\"]",
+    "variant=\"maskpool\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.04,
+  "gpu": 1
+ },
+ "2": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"dinov2_small\"",
+    "fold=0",
+    "seed=0",
+    "lr_backbone=3e-05",
+    "evals=[\"crossdomain\", \"corruptions\"]",
+    "variant=\"strip\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.2,
+  "gpu": 0
+ },
+ "3": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"dinov2_small\"",
+    "fold=1",
+    "seed=0",
+    "lr_backbone=3e-05",
+    "evals=[\"crossdomain\", \"corruptions\"]",
+    "variant=\"plain\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.26,
+  "gpu": 1
+ },
+ "4": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"dinov2_small\"",
+    "fold=1",
+    "seed=0",
+    "lr_backbone=3e-05",
+    "evals=[\"crossdomain\", \"corruptions\"]",
+    "variant=\"maskpool\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.75,
+  "gpu": 0
+ },
+ "5": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"dinov2_small\"",
+    "fold=1",
+    "seed=0",
+    "lr_backbone=3e-05",
+    "evals=[\"crossdomain\", \"corruptions\"]",
+    "variant=\"strip\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.34,
+  "gpu": 1
+ },
+ "6": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"dinov2_small\"",
+    "fold=2",
+    "seed=0",
+    "lr_backbone=3e-05",
+    "evals=[\"crossdomain\", \"corruptions\"]",
+    "variant=\"plain\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.6,
+  "gpu": 0
+ },
+ "7": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"dinov2_small\"",
+    "fold=2",
+    "seed=0",
+    "lr_backbone=3e-05",
+    "evals=[\"crossdomain\", \"corruptions\"]",
+    "variant=\"maskpool\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.45,
+  "gpu": 1
+ },
+ "8": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"dinov2_small\"",
+    "fold=2",
+    "seed=0",
+    "lr_backbone=3e-05",
+    "evals=[\"crossdomain\", \"corruptions\"]",
+    "variant=\"strip\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.92,
+  "gpu": 0
+ },
+ "9": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"dinov2_small\"",
+    "fold=3",
+    "seed=0",
+    "lr_backbone=3e-05",
+    "evals=[\"crossdomain\", \"corruptions\"]",
+    "variant=\"plain\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 23.13,
+  "gpu": 1
+ },
+ "10": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"dinov2_small\"",
+    "fold=3",
+    "seed=0",
+    "lr_backbone=3e-05",
+    "evals=[\"crossdomain\", \"corruptions\"]",
+    "variant=\"maskpool\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.89,
+  "gpu": 0
+ },
+ "11": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"dinov2_small\"",
+    "fold=3",
+    "seed=0",
+    "lr_backbone=3e-05",
+    "evals=[\"crossdomain\", \"corruptions\"]",
+    "variant=\"strip\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.28,
+  "gpu": 1
+ },
+ "12": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"dinov2_small\"",
+    "fold=4",
+    "seed=0",
+    "lr_backbone=3e-05",
+    "evals=[\"crossdomain\", \"corruptions\"]",
+    "variant=\"plain\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.67,
+  "gpu": 0
+ },
+ "13": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"dinov2_small\"",
+    "fold=4",
+    "seed=0",
+    "lr_backbone=3e-05",
+    "evals=[\"crossdomain\", \"corruptions\"]",
+    "variant=\"maskpool\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 22.54,
+  "gpu": 1
+ },
+ "14": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"dinov2_small\"",
+    "fold=4",
+    "seed=0",
+    "lr_backbone=3e-05",
+    "evals=[\"crossdomain\", \"corruptions\"]",
+    "variant=\"strip\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 19.1,
+  "gpu": 0
+ }
+}

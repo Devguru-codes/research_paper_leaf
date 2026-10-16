@@ -17,6 +17,7 @@ Raw field photographs, 20-way accuracy (%), ConvNeXt-T, 5 folds × 5 seeds (25 r
 | Model (one ingredient added per row) | Raw field |
 |---|---|
 | Plain backbone (features averaged over the whole photo) | 33.6 |
+| + mid-level feature branch, no mask (patch pooling, 3 seeds) | 36.8 |
 | + mask pooling (knows where the leaf is) | 41.1 |
 | + localised pooling: slab-only attention | 45.7 |
 | + localised pooling: strip pooling | 46.8 |
@@ -24,14 +25,14 @@ Raw field photographs, 20-way accuracy (%), ConvNeXt-T, 5 folds × 5 seeds (25 r
 | Global fusion of SVA's measurements (no localisation) | 33.5 |
 
 - Clean in-domain accuracy is saturated (99.9–100%) for every model on the leakage-audited protocol.
-- **Leaf location** adds +7.5 points (25/25 runs, Holm p < 1e-4); **localised pooling** adds a further
-  +4.6 to +6.2 (strip pooling: 25/25, Holm p = 0.002). Both hold under a bootstrap over runs and field species.
-- **Measured geometry adds nothing detectable:** SVA vs strip pooling +0.5 (12/25), SVA vs slab-only +1.7 (16/25),
-  global fusion vs plain −0.1.
+- The gain has three parts: **mid-level features** +3.3 (n.s.), **leaf location** +4.4 (15/15 runs, Holm p = 0.001;
+  vanishes once the background is whitened) and **localised pooling** +4.6 to +6.2 (strip: 25/25, Holm p = 0.002).
+- **Measured geometry adds little if anything:** SVA vs strip pooling +0.5 (12/25), SVA vs slab-only +1.7 (16/25);
+  global fusion is equivalent to plain within ±3 points (TOST).
 - The gains hold **without rotation augmentation** (5 seeds) and **on top of strong background-compositing
   augmentation** (3 seeds; best model 55.2%).
 - They are small on EfficientNet-B0 (3 seeds), absent on ViT-S, and irrelevant for the BioCLIP 2
-  foundation model (81% without any module).
+  foundation model (81% without any module); a general self-supervised DINOv2 ViT-S reaches only 52%.
 
 ## Repository layout
 
@@ -75,7 +76,7 @@ data/audit/          dataset audit: index with duplicate / re-shot groups (no im
    (model names: plain = `variant=plain`; mask pooling = `variant=maskpool`; strip = `variant=strip`;
    slab-only = `variant=esa token=none`; SVA = `variant=slabstat token=ap`; global = `variant=global token=ap`).
 6. **All experiments** were run on Kaggle (2×T4) with `configs/make_main_jobs.py`,
-   `configs/make_round2_jobs.py`, `configs/make_round3_jobs.py` and `kaggle/launch.py` / `kaggle/kqueue.py`.
+   `configs/make_round2_jobs.py`, `configs/make_round3_jobs.py`, `configs/make_round4_jobs.py` and `kaggle/launch.py` / `kaggle/kqueue.py`.
 7. **Tables, statistics and figures** from the stored outputs:
    ```
    python -m src.study_contrasts results/runs

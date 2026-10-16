@@ -1,4 +1,4 @@
-﻿"""All paired comparisons reported in the paper -> results/stats_all.json (+ printed summary).
+"""All paired comparisons reported in the paper -> results/stats_all.json (+ printed summary).
 
   python -m src.stats_all results/kaggle
 """
@@ -11,7 +11,7 @@ from pathlib import Path
 from src.make_tables import collect
 from src.stats import holm, paired, topo_regression
 
-BASELINES = ["plain", "global", "maskpool", "strip", "slabonly"]
+BASELINES = ["plain", "global", "patchpool", "maskpool", "strip", "slabonly"]
 
 
 def main(root: Path):

@@ -23,11 +23,11 @@ import matplotlib.pyplot as plt  # noqa: E402
 
 from src.make_tables import collect  # noqa: E402
 
-MODELS = ["plain", "global", "maskpool", "strip", "slabonly", "sva"]
-LABEL = {"plain": "Plain", "global": "Global fusion", "maskpool": "Mask pooling", "strip": "Strip pooling", "slabonly": "Slab-only",
+MODELS = ["plain", "global", "patchpool", "maskpool", "strip", "slabonly", "sva"]
+LABEL = {"plain": "Plain", "global": "Global fusion", "patchpool": "Patch pooling", "maskpool": "Mask pooling", "strip": "Strip pooling", "slabonly": "Slab-only",
          "sva": "SVA (ours)", "euler": "Euler token", "hadwiger": "Hadwiger token"}
-COLOR = {"plain": "#9e9e9e", "global": "#7aa6c2", "maskpool": "#b39ddb", "strip": "#c2a77a", "slabonly": "#9fc27a", "sva": "#c0392b"}
-BACKBONES = [("convnext_tiny", "ConvNeXt-T"), ("efficientnet_b0", "EffNet-B0"), ("vit_small", "ViT-S/16"),
+COLOR = {"plain": "#9e9e9e", "global": "#7aa6c2", "patchpool": "#d7ccc8", "maskpool": "#b39ddb", "strip": "#c2a77a", "slabonly": "#9fc27a", "sva": "#c0392b"}
+BACKBONES = [("convnext_tiny", "ConvNeXt-T"), ("efficientnet_b0", "EffNet-B0"), ("vit_small", "ViT-S/16"), ("dinov2_small", "DINOv2-S/14"),
              ("bioclip2", "BioCLIP 2")]
 FAMILIES = ["gaussian_noise", "gaussian_blur", "jpeg", "low_resolution", "darken", "contrast", "hue_shift",
             "desaturate", "occlusion", "background"]
@@ -43,13 +43,13 @@ def fig_crossdomain(df, out):
     for ax, mode in zip(axes, ["masked", "raw"]):
         col = f"crossdomain.{mode}.acc20"
         x = np.arange(len(BACKBONES))
-        w = 0.13
+        w = 0.115
         for i, m in enumerate(MODELS):
             vals = [d[(d.backbone == b) & (d.model == m)][col].astype(float) if col in d else pd.Series(dtype=float)
                     for b, _ in BACKBONES]
             mu = [100 * v.mean() if len(v) else np.nan for v in vals]
             sd = [100 * v.std() if len(v) > 1 else 0 for v in vals]
-            ax.bar(x + (i - 2.5) * w, mu, w, yerr=sd, color=COLOR[m], label=LABEL[m], capsize=2)
+            ax.bar(x + (i - 3) * w, mu, w, yerr=sd, color=COLOR[m], label=LABEL[m], capsize=2)
         ax.set_xticks(x, [n for _, n in BACKBONES])
         ax.set_title(f"Field photographs ({mode})")
         ax.grid(axis="y", alpha=0.3)
@@ -95,14 +95,14 @@ def fig_corruptions(df, out):
     d = d[d.backbone == "convnext_tiny"]
     fig, ax = plt.subplots(figsize=(9, 3.2))
     x = np.arange(len(FAMILIES))
-    w = 0.13
+    w = 0.115
     for i, m in enumerate(MODELS):
         g = d[d.model == m]
         mu = []
         for f in FAMILIES:
             cols = [f"corruptions.{f}/{s}" for s in (1, 2, 3) if f"corruptions.{f}/{s}" in g]
             mu.append(100 * g[cols].astype(float).mean(1).mean() if cols and len(g) else np.nan)
-        ax.bar(x + (i - 2.5) * w, mu, w, color=COLOR[m], label=LABEL[m])
+        ax.bar(x + (i - 3) * w, mu, w, color=COLOR[m], label=LABEL[m])
     ax.set_xticks(x, [f.replace("_", " ") for f in FAMILIES], rotation=25, ha="right", fontsize=8)
     ax.set_ylabel("accuracy (%)")
     ax.set_ylim(30, 101)
@@ -190,7 +190,7 @@ def tab_strongaug(df, out):
     lines = ["\\begin{tabular}{ll" + "c" * len(cols) + "}", "\\toprule",
              "Augmentation & Model & " + " & ".join(n for _, n in cols) + " \\\\", "\\midrule"]
     for aug, g in [("standard", std), ("strong", strong)]:
-        for j, m in enumerate(["plain", "strip", "sva"]):
+        for j, m in enumerate(["plain", "maskpool", "strip", "sva"]):
             h = g[g.model == m]
             lines.append((aug if j == 0 else "") + f" & {LABEL[m]} & " + " & ".join(fmt(h[c]) for c, _ in cols) + " \\\\")
         lines.append("\\midrule")

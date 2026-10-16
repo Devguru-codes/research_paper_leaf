@@ -46,4 +46,10 @@ soil, cloth, paper). Vernacular folder names were mapped to species and checked 
 species overlap ours; note that Kannada \emph{Arali} denotes \textit{Ficus religiosa} (peepal), not
 \textit{Nerium oleander}. Leaves are localised with our own masker, a ConvNeXt-T FPN trained only on
 our leaves composited onto DTD textures~\citep{cimpoi2014dtd} and procedural backgrounds; no
-third-party segmentation model is used.
+third-party segmentation model is used. The masker defines the field test set for every model: each
+photograph is cropped to a square around the largest predicted leaf component, exactly as the studio
+images are cropped around their leaf, and photographs in which it finds no plausible leaf (predicted
+leaf share outside 0.5--95\%) are excluded. This removes 118 of the 2{,}118 photographs (5.6\%), 49 of
+them from the compound-leaved \textit{Moringa} and \textit{Azadirachta} (\cref{tab:fieldspecies}),
+leaving 2{,}000. The \emph{raw} condition keeps the background inside the crop; the \emph{masked}
+condition additionally whitens it with the same mask.

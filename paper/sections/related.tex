@@ -55,14 +55,6 @@ pooling~\citep{hou2020strip} and axial attention aggregate features along image 
 Our strip control instantiates this family; unlike \SVA{}, its strips are fixed to the image axes,
 carry no measured geometry and are not defined by a filtration of the object.
 
-\paragraph{Taxonomy and uncertainty.} Hyperbolic and hierarchy-aware embeddings have been applied
-to plant and biological taxonomies~\citep{shah2025hprotonet,hyperbolictaxonomies2025}, and BioCLIP~2
-learns hierarchical contrastive representations at scale~\citep{gu2026bioclip2}. Conformal prediction
-for long-tailed plant identification~\citep{ding2026conformal} and for hierarchical
-labels~\citep{hcc2025,hierarchicalcp2025} is established; we do not address uncertainty quantification
-here, because the calibration data for toxic species in this dataset are too few (about ten images
-per fold) for meaningful hazard-specific guarantees.
-
 \paragraph{Shape versus texture.} ImageNet CNNs are biased towards texture~\citep{geirhos2019texture}.
 We adapt the cue-conflict paradigm to leaves (silhouette of one species filled with the lamina of
-another) and add a topology-destruction probe, in order to test what \SVF{} actually relies on.
+another) and add a topology-destruction probe, in order to test what the models rely on.

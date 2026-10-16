@@ -1,3 +1,42 @@
+\section{Details of sweep-valuation attention}
+\label{app:sva}
+\paragraph{Valuations.} For a binary set, $A=H_2$ counts unit squares, $P=2H_1-4H_2$ is the boundary
+length in pixel units (every square contributes four edges, and an edge shared by two squares is
+interior) and $\chi=H_0-H_1+H_2$ is the Euler characteristic. In the continuum these are the planar
+intrinsic volumes, which by Hadwiger's theorem~\citep{hadwiger1957,klain1997} span the
+motion-invariant valuations on \emph{convex} bodies; we use this only to motivate the basis. Leaves are
+not convex, the digital perimeter is the anisotropic $\ell_1$ boundary length (it overestimates a
+straight boundary at angle $\alpha$ to the grid by $|\cos\alpha|+|\sin\alpha|$, up to
+$\sqrt2$~\citep{legland2007minkowski}), and on the fuzzy complex~\eqref{eq:weights} the quantities are
+weighted counts rather than valuations of a set.
+
+\paragraph{Sweep and token.} Pixel centres are expressed in a frame centred at the blade centroid and
+scaled by its root-mean-square radius, which makes all quantities invariant to translation and
+isotropic scale. Thresholds $t_1,\dots,t_{T-1}$ are uniform on $(-R,R)$ with $R{=}2$, and
+$\lambda=\kappa T/2R$ with $\kappa{=}4$. The token feature is
+$\phi(\theta,k)=\operatorname{slog}[\Delta A_{\mathrm b},\Delta P_{\mathrm b},\Delta A_{\mathrm v},
+\Delta P_{\mathrm v},\sum_{j\le k}(\cdot)]$ with $\operatorname{slog}(x)=\operatorname{sign}(x)\log(1+|x|)$.
+The Euler variant replaces it by $[\dchi_{\mathrm b},\dchi_{\mathrm v},\chi_{\mathrm b}(t_k),\chi_{\mathrm v}(t_k)]$
+and the Hadwiger variant uses all three valuations (12 features). The last layer of each weight MLP $g$
+is initialised so that $a\approx0.88\,m$, and the vein head also receives task gradients through \SVA{}.
+In contrast to fixed intensity weights (WECT~\citep{cisewski2023wect}), the weights are learned.
+
+\paragraph{Efficient computation.} Directions are fixed and coordinates come from the mask, so the
+heights carry no gradient; only the weights do. We hard-bin heights into 256 fine bins, scatter-add cell
+weights per dimension into a per-direction histogram and apply the slab kernel~\eqref{eq:slab} evaluated
+at bin centres with one matrix product (built in double precision). This needs no sorting and is exact
+in the telescoping and sharp limits (\cref{app:tests}).
+
+\paragraph{Attention and training.} In~\eqref{eq:attn}, $\epsilon=10^{-4}$. The attention output is
+added to the query with a mass gate $M/(M+0.5)$, $M=\sum_p s_k\bar m$, so that slabs outside the leaf
+contribute little. The sweep transformer's learned relative position bias depends only on
+$(\Delta\theta \bmod K,\Delta k)$. Training minimises cross-entropy (label smoothing $0.1$) plus
+$0.2\times$ the masked BCE of the vein head, which all models share.
+
+\paragraph{Rotation.} For unit weights, rotating the input by a multiple of $90^\circ$ cyclically
+shifts all increments by $K/4$ directions (\cref{app:tests}); the appearance-weighted signal and the
+full model inherit the rotation behaviour of the backbone and are evaluated empirically.
+Rotation-equivariant ECT tokenisation as such is not our contribution~\citep{blaser2026encoding}.
 \section{Unit tests of the structural signals}
 \label{app:tests}
 All properties used in \cref{sec:method} are checked by automated tests that ship with the code
@@ -50,10 +89,15 @@ and the number of images in which our masker found a leaf. Kannada \emph{Arali} 
 
 \begin{table}[h]
 \centering
-\caption{Per-species 20-way accuracy (\%) on raw field photographs, ConvNeXt-T, mean over all runs.}
+\caption{Field photographs per species, sorted by the accuracy of the plain model: DIMPSAR photographs,
+photographs excluded because our masker found no plausible leaf, median share of the crop covered by
+the leaf, and 20-way accuracy (\%) on raw photographs (ConvNeXt-T, mean over all runs). The plain model
+fails mostly on species with ovate to elliptic leaves without a distinctive outline; the exclusions
+concentrate on the compound-leaved \textit{Moringa} and \textit{Azadirachta}. The localisation gain
+is unrelated to leaf share (Spearman $\rho=-0.06$, $p=0.81$).}
 \label{tab:fieldspecies}
 \scriptsize
-\resizebox{\linewidth}{!}{\input{figures/tab_field_species.tex}}
+\input{figures/tab_field_failures.tex}
 \end{table}
 
 \section{Computational cost}
@@ -67,3 +111,57 @@ roughly double CPU and GPU latency, mostly because of the histogram operations.}
 \scriptsize
 \resizebox{\linewidth}{!}{\input{figures/tab_cost.tex}}
 \end{table}
+
+\section{Topology sensitivity}
+\label{sec:topo}
+The topology-destruction probe compares edits that change the blade's Euler characteristic (three
+interior holes, $\Delta\chi=-3$) with edits that remove the same area from the margin ($\Delta\chi=0$).
+The two edit types are not perceptually identical (median LPIPS 0.045 vs.\ 0.030), so we compare them
+only within LPIPS strata that contain both (10 quantile bins, at least five edits of each kind) and
+report the stratum-weighted log-ratio of the prediction change (KL divergence),
+$\log(\mathrm{KL}_{\text{holes}}/\mathrm{KL}_{\text{bites}})$, with a bootstrap 95\% interval
+(\cref{tab:topo}). Every ImageNet ConvNeXt-T and ViT-S model responds \emph{less} to holes than to
+margin bites, even though the holes are the more visible edit. The only ConvNeXt-T model that responds
+more to holes is the Euler-token variant of \SVA{} ($+0.73$ [$+0.54$, $+0.96$]), so measured topology
+does change what a model is sensitive to. BioCLIP~2 responds more to holes for every variant ($+1.3$ to
+$+1.6$), i.e.\ the foundation model is topology-sensitive by itself. Topological sensitivity can thus
+be induced, but it did not help species transfer (\cref{sec:abl}). Edits of the venation could not be
+matched perceptually (only 25\% of vein edits fall inside the LPIPS range of their controls), so we
+draw no conclusion from them.
+
+\begin{table}[h]
+\centering
+\caption{LPIPS-matched response to topology-changing holes relative to area-matched margin bites,
+$\log(\mathrm{KL}_{\text{holes}}/\mathrm{KL}_{\text{bites}})$ with bootstrap 95\% CI (seed 0, 5 folds).
+Negative: the model reacts more to margin geometry than to topology.}
+\label{tab:topo}
+\small
+\input{figures/tab_topo.tex}
+\end{table}
+
+\section{Additional results}
+\label{app:extra}
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{figures/fig_rotation.pdf}
+\caption{Accuracy versus test-time rotation (ConvNeXt-T, seed 0, mean over 5 folds), trained with
+(left) and without (right) rotation augmentation.}
+\label{fig:rotation}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{figures/fig_corruptions.pdf}
+\caption{MedLeaf-C accuracy per corruption family (ConvNeXt-T, severity-averaged).}
+\label{fig:corruptions}
+\end{figure}
+
+\begin{table}[h]
+\centering
+\caption{Ablations of \SVA{} (ConvNeXt-T, \%), each block sorted by raw field accuracy and compared
+with \SVA{} on the same runs. Rotation is evaluated on seed 0 only.}
+\label{tab:abl}
+\small
+\resizebox{\linewidth}{!}{\input{figures/tab_ablations.tex}}
+\end{table}
+

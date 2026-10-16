@@ -21,34 +21,36 @@ but usually as global descriptors, and without controls that would tell whether 
 is what helps.
 
 We test this hypothesis with a ladder of matched models that share backbone, data, vein head and
-training, and differ in one ingredient at a time: (1)~a plain classifier; (2)~the same features pooled
-over the leaf mask, i.e.\ knowing \emph{where} the leaf is; (3)~localised pooling over strips of the
-image or over slabs of an object-centred directional sweep; and (4)~\emph{sweep-valuation attention}
-(\SVA{}), which we introduce as the most structured member of the family: for each slab of the sweep it
-measures how much area and boundary length a learned, appearance-weighted cubical complex of the blade
-and venation adds there, and lets that measurement attend to the image patches of the same slab. A
-global fusion of the same measurements tests whether geometry helps without localisation.
+training, and differ in one ingredient at a time: (1)~a plain classifier; (2)~an extra branch on
+mid-level patch features; (3)~the same branch pooled over the leaf mask, i.e.\ knowing \emph{where}
+the leaf is; (4)~localised pooling over strips of the image or over slabs of an object-centred
+directional sweep; and (5)~\emph{sweep-valuation attention} (\SVA{}), which we introduce as the most
+structured member of the family: for each slab of the sweep it measures how much area and boundary
+length a learned, appearance-weighted cubical complex of the blade and venation adds there, and lets
+that measurement attend to the image patches of the same slab. A global fusion of the same measurements
+tests whether geometry helps without localisation.
 
-The answer is clear and partly negative. On ConvNeXt-T the studio-to-field gain over a plain model
-is large (14 points) but splits into two parts of similar size: knowing where the leaf is, and pooling
-locally within it. Measured geometry, whether fused globally or attached to localised tokens, adds
-nothing detectable. The gain is small on EfficientNet-B0, absent on a ViT, and irrelevant for a
-biology foundation model, which transfers far better on its own.
+The answer is clear and partly negative. On ConvNeXt-T the studio-to-field gain over a plain model is
+large (12--14 points) and splits into three parts: mid-level features (small), knowing where the leaf
+is (which matters only when the background is present), and pooling locally within the leaf. Measured
+geometry, whether fused globally or attached to localised tokens, adds little if anything. The gain is
+small on EfficientNet-B0, absent on ViTs, and irrelevant for a biology foundation model, which
+transfers far better on its own.
 
 \paragraph{Contributions.}
 \begin{enumerate}
-\item \textbf{A controlled decomposition of studio-to-field transfer} for medicinal leaves on four
-  backbones, with 5 folds $\times$ 5 seeds for the main backbone, pre-specified contrasts, corrected
-  resampled tests with Holm correction and a bootstrap over runs and field species. Leaf location and
-  localised pooling each add 5--8 points on raw field photographs of ImageNet ConvNeXt-T; the gains
-  hold without rotation augmentation and add to strong background-compositing augmentation.
+\item \textbf{A controlled decomposition of studio-to-field transfer} for medicinal leaves on five
+  backbones, with up to 5 folds $\times$ 5 seeds, planned and post-hoc contrast families with Holm
+  correction, equivalence tests and a bootstrap over runs and field species. Leaf location ($+4.4$) and
+  localised pooling ($+4.6$ to $+6.2$) are the two significant ingredients on raw field photographs of
+  ImageNet ConvNeXt-T, and both add to strong background-compositing augmentation.
 \item \textbf{Sweep-valuation attention}, a differentiable, backbone-agnostic module that turns a
   directional filtration of appearance-weighted cubical complexes into slab tokens, and a careful
-  negative result: its measured geometry does not improve transfer beyond localised pooling, its
-  slab-restricted attention can be replaced by global attention, and Euler-characteristic tokens make
-  models sensitive to topology but transfer worse.
+  negative result: its measured geometry does not detectably improve transfer beyond localised pooling,
+  its slab-restricted attention can be replaced by global attention, and Euler-characteristic tokens
+  make models sensitive to topology but transfer worse.
 \item \textbf{A leakage-audited protocol and probes} for the Medicinal Leaf Dataset: duplicate and
   re-shot grouping, a corruption suite (MedLeaf-C), a leaf cue-conflict set, a perceptually matched
-  topology-destruction test and a verified mapping of 20 DIMPSAR field species.
+  topology-destruction test and a checked mapping of 20 DIMPSAR field species.
 \end{enumerate}
 Code, splits, probes, statistics and the outputs of all training runs are released.

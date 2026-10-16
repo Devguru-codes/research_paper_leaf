@@ -54,8 +54,10 @@ def cost_table(out: Path):
             lines.append(f"{names.get(bb, bb) if j == 0 else ''} & {lab[r.model]} & {r.params_M:.1f} & {r.added_params_M:.2f} & "
                          f"{r.gflops:.1f} & {r.gpu_ms:.0f} & {r.latency_ms:.0f} \\\\")
         lines.append("\\midrule")
-    lines[-1] = "\\bottomrule"
-    lines.append("\\end{tabular}")
+    mk = pd.read_csv("results/cost_masker.csv").set_index("device")  # needed by every mask-based model on field photos
+    lines.append(f"Leaf masker (448$^2$) & -- & {mk.loc['cpu', 'params_M']:.1f} & -- & {mk.loc['cpu', 'gflops']:.1f} & "
+                 f"{mk.loc['cuda', 'latency_ms']:.0f} & {mk.loc['cpu', 'latency_ms']:.0f} \\\\")
+    lines += ["\\bottomrule", "\\end{tabular}"]
     (out / "tab_cost.tex").write_text("\n".join(lines), encoding="utf-8")
 
 

@@ -5,6 +5,7 @@ variant:
   global    + GlobalTopoFusion (Delta chi grid, globally fused)
   strip     + strip pooling over image rows/columns (control)
   maskpool  + mask-weighted mean of patch tokens over the leaf (control: leaf location only)
+  patchpool + the same branch averaged over the whole image (control: mid-level features, no mask)
   slabstat  + slab attention with non-topological slab statistics (control)
   esa       + Euler-Sweep Attention (proposed)
 All variants train the same vein head with the same auxiliary loss, so differences are due
@@ -48,7 +49,7 @@ class ESFormer(nn.Module):
             self.fusion = GlobalTopoFusion(dims["mid"], d, K, T, R, kappa, nbins, weights, token or "euler")
         elif variant == "strip":
             self.fusion = StripPoolFusion(dims["patch"], d, heads, depth)
-        elif variant == "maskpool":
+        elif variant in ("maskpool", "patchpool"):  # patchpool: same branch, pooled over the whole image
             self.fusion = MaskPoolFusion(dims["patch"], d)
         elif variant in ("esa", "slabstat"):
             self.fusion = EulerSweepAttention(dims["patch"], dims["mid"], d, K, T, R, kappa, nbins, heads, depth,
@@ -73,6 +74,8 @@ class ESFormer(nn.Module):
         extra = {}
         if self.fusion is not None:
             pm = F.interpolate(mask[:, None].float(), size=f["hw"], mode="area").flatten(1)
+            if self.variant == "patchpool":
+                pm = torch.ones_like(pm)
             out = self.fusion(f["patch"], f["hw"], f["mid"], blade, vein, pm, return_attn=return_aux)
             if return_aux:
                 out, extra = out

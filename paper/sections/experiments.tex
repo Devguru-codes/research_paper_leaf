@@ -6,34 +6,40 @@ EfficientNet-B0), ViT-S/16 (AugReg, ImageNet-21k$\to$1k) and the BioCLIP~2 ViT-L
 but the last two blocks frozen). All models of a backbone share the recipe: AdamW (new modules lr
 $10^{-3}$, weight decay $0.05$), 2 warm-up epochs then cosine decay, batch 32, mixed precision, label
 smoothing $0.1$. The backbone lr is $10^{-4}$ for ConvNeXt-T, $2\times10^{-4}$ for EfficientNet-B0 and
-$5\times10^{-5}$ for ViT-S, all trained 40 epochs at $384^2$; BioCLIP~2 uses lr $3\times10^{-5}$,
+$5\times10^{-5}$ for ViT-S and $3\times10^{-5}$ for DINOv2 ViT-S/14~\citep{oquab2024dinov2}, all trained 40 epochs at $384^2$; BioCLIP~2 uses lr $3\times10^{-5}$,
 20 epochs and $224^2$ input. The recipe was fixed in advance and not tuned per model. Augmentation
 uses uniform rotation in $[-180^\circ,180^\circ]$, scale $[0.85,1.15]$, translation $\pm5\%$,
 horizontal flips and mild colour jitter, applied jointly to image, mask and vein pseudo-label. No
 early stopping or test-time augmentation is used. Runs use Kaggle T4 GPUs.
 
 \paragraph{Runs.} All splits are grouped stratified 5-fold cross-validation over the de-duplicated,
-leaf-grouped data (\cref{sec:data}). For ConvNeXt-T, the six models of \cref{sec:controls} are trained
-with 5 seeds per fold (25 runs each); the field test and MedLeaf-C are run on all seeds, the other
-probes on seed 0. EfficientNet-B0 uses 3 seeds per fold, ViT-S and BioCLIP~2 one seed per fold (mask
-pooling only on ConvNeXt-T). Two further ConvNeXt-T arms test whether the effects depend on
-augmentation. \emph{Without rotation augmentation}: plain, strip, slab-only and \SVA{}, 5 folds
-$\times$ 5 seeds. \emph{Strong augmentation}: plain, strip and \SVA{}, 5 folds $\times$ 3 seeds, with
-background compositing (with probability 0.8 the white background is replaced by a random procedural
-texture, blended through the slightly eroded mask), Gaussian blur ($p=0.3$) and Gaussian noise
-($p=0.3$) on top of the standard augmentation.
+leaf-grouped data (\cref{sec:data}). For ConvNeXt-T, plain, mask pooling, strip, slab-only, \SVA{}
+and global fusion are trained with 5 seeds per fold (25 runs each) and patch pooling with 3 seeds
+(15 runs); the field test is run on all seeds, MedLeaf-C on seeds 0, 3 and 4 (all seeds for the
+pooling controls), the other probes on seed 0. EfficientNet-B0 uses 3 seeds per fold, ViT-S,
+BioCLIP~2 and DINOv2 ViT-S/14 one seed per fold. Two further ConvNeXt-T arms test whether the effects
+depend on augmentation. \emph{Without rotation augmentation}: plain, strip, slab-only and \SVA{}
+(5 seeds) and mask pooling (3 seeds). \emph{Strong augmentation}: plain, mask pooling, strip and
+\SVA{}, 3 seeds, with background compositing (with probability 0.8 the white background is replaced
+by a random procedural texture, blended through the slightly eroded mask), Gaussian blur ($p=0.3$)
+and Gaussian noise ($p=0.3$) on top of the standard augmentation.
 
 \paragraph{Statistics.} The primary outcome is 20-way accuracy on raw DIMPSAR field photographs; the
-masked photographs are the secondary outcome. The contrasts of \cref{sec:controls} were fixed before
-the mask-pooling runs were analysed. Each contrast is the mean difference over matched fold--seed
-runs. We give two 95\% intervals: the Nadeau--Bengio corrected resampled $t$-test~\citep{nadeau2003inference}
-over runs (test/train ratio $0.3$, accounting for overlapping training sets), which captures training
-variability, and a two-way bootstrap that resamples runs and field species (clusters of images)
-jointly, which also captures sampling of the fixed field test set. $p$-values come from the corrected
-test and are Holm-corrected~\citep{holm1979simple} over all 14 contrasts (7 contrasts $\times$ 2 photo
-types). Secondary comparisons (other arms, backbones, probes) are reported with the corrected
-interval and win counts and without multiplicity claims.
-
+masked photographs are the secondary outcome. Each contrast is the mean difference over matched
+fold--seed runs, with a 95\% interval from the Nadeau--Bengio corrected resampled
+$t$-test~\citep{nadeau2003inference} (test/train ratio $0.3$, accounting for overlapping training
+sets). The study was not pre-registered, and we separate two families of contrasts, each
+Holm-corrected~\citep{holm1979simple} over both photo types. The \emph{planned} family was fixed
+before any run: each localised model vs.\ plain, \SVA{} vs.\ slab-only and vs.\ strip pooling
+(measured geometry), and global fusion vs.\ plain (12 tests). The \emph{post-hoc} family uses the
+patch- and mask-pooling controls, which we added after a first analysis to test a suspected confound
+(10 tests); these contrasts confirm or refute that confound rather than test a prior hypothesis. A
+difference is called significant only if its Holm-corrected $p<0.05$. For the geometry and
+global-fusion contrasts, where the question is whether an ingredient helps at all, we also test
+equivalence within $\pm3$ accuracy points with two one-sided corrected $t$-tests. As a robustness
+check, a two-way bootstrap that resamples runs and field species (clusters of images) jointly also
+captures sampling of the fixed field test set. Secondary comparisons (other arms, backbones, probes)
+are reported with the corrected interval and win counts, without multiplicity claims.
 \paragraph{Ablations of \SVA{}.} Euler-only and full-Hadwiger tokens; blade-only and vein-only
 fields; unit cell weights; \emph{permuted} learned weights (the same weight values shuffled within the
 leaf before computing the valuations); global instead of slab-restricted attention; a coarser sweep
