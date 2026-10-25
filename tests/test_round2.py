@@ -68,3 +68,18 @@ def test_strong_augmentation_shapes_and_background():
     xp, _, _ = gpu_augment(x, m, v, 64, generator=torch.Generator().manual_seed(1), strong=False)
     # with strong augmentation the (white) background is replaced for most samples
     assert (xa - xp).abs().mean() > 0.05
+
+
+def test_bg_colour_mask_finds_leaf_on_grey_and_falls_back_on_blank():
+    import numpy as np
+    from src.data.masks import bg_colour_mask
+    img = np.full((200, 200, 3), (120, 130, 150), np.uint8)
+    img[60:140, 70:130] = (40, 110, 30)
+    m = bg_colour_mask(img)
+    assert m[100, 100] == 1 and m[10, 10] == 0 and abs(m.sum() - 80 * 60) < 400
+    assert bg_colour_mask(np.full((50, 50, 3), 128, np.uint8)).all()
+    img[:] = (235, 235, 230)  # LeafSnap lab layout: white paper, leaf, black ruler larger than the leaf
+    img[60:140, 70:130] = (40, 110, 30)
+    img[150:195, 5:195] = (15, 15, 15)
+    m = bg_colour_mask(img)
+    assert m[100, 100] == 1 and m[170, 100] == 0

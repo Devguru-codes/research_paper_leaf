@@ -32,11 +32,11 @@ of 12--14 points (balanced accuracy: 31.4\% vs.\ 42.9--44.6\%). The ladder of ma
 this gain into three parts.
 
 \emph{Mid-level features.} An extra branch that averages mid-level patch features over the whole
-image, without any mask, adds $+3.3$ points on raw photographs (12/15 runs, not significant) and
-$+4.6$ on masked ones (15/15, Holm $p=0.007$).
+image, without any mask, adds $+3.5$ points on raw photographs (22/25 runs, not significant) and
+$+4.4$ on masked ones (25/25, Holm $p<0.001$).
 
-\emph{Leaf location.} Averaging the same branch over the leaf mask instead adds a further $+4.4$
-points on raw photographs (15/15, Holm $p=0.001$) but only $+1.3$ on masked ones (n.s.). Knowing where
+\emph{Leaf location.} Averaging the same branch over the leaf mask instead adds a further $+4.0$
+points on raw photographs (25/25, Holm $p=0.001$) but only $+1.3$ on masked ones (n.s.). Knowing where
 the leaf is thus matters when the background is present and hardly at all when it has been whitened,
 which identifies this part as discounting the field background. On whitened photographs, the gain of
 mask pooling over plain is almost entirely the mid-level-feature effect.
@@ -70,14 +70,13 @@ ConvNeXt-T only.}
 \caption{Pre-specified contrasts on field photographs (ConvNeXt-T, 25 matched runs). $\Delta$ in
 accuracy points with runs won; 95\% intervals from the corrected resampled $t$-test over runs and from
 a bootstrap over runs and field species; $p$ Holm-corrected within each family. $^\dagger$equivalent to zero
-within $\pm3$ points (two one-sided tests, $p<0.05$). Contrasts with patch pooling use its 15 runs
-(seeds 0--2).}
+within $\pm3$ points (two one-sided tests, $p<0.05$).}
 \label{tab:contrasts}
 \small
 \resizebox{\linewidth}{!}{\input{figures/tab_contrasts.tex}}
 \end{table}
 
-\subsection{The gains are not an artefact of augmentation}
+\subsection{The gains are not an artefact of augmentation or tuning}
 \label{sec:norot}
 \label{sec:strongaug}
 \emph{Without rotation augmentation} (5 folds $\times$ 5 seeds), the localised models remain far more
@@ -96,6 +95,13 @@ masked ones). \SVA{} with strong augmentation reaches 55.2\%, the best field acc
 model here, but is again not distinguishable from strip pooling ($+1.9$, 13/15). The architectural
 and data-side remedies are therefore complementary.
 
+\emph{Across learning rates.} A gap this large invites the objection that the plain baseline was
+under-tuned. We retrained plain and strip pooling (seed 0, 5 folds) at half and twice the backbone
+learning rate. Plain's raw field accuracy moves only from 34.0\% to 35.3\% across the three rates
+($5\times10^{-5}$, $10^{-4}$, $2\times10^{-4}$), and strip pooling beats it at every rate: $+13.5$, $+12.2$ and
+$+8.4$ points (5/5 folds each, corrected $p\le0.001$); on masked photographs the gap is $+4.0$ to $+6.4$.
+The best plain setting (35.3\%) stays below the worst strip setting (43.7\%).
+
 
 \begin{table}[t]
 \centering
@@ -104,6 +110,45 @@ and data-side remedies are therefore complementary.
 \label{tab:strongaug}
 \small
 \input{figures/tab_strongaug.tex}
+\end{table}
+
+\subsection{A pre-registered replication on LeafSnap30}
+\label{sec:leafsnap}
+To test whether the decomposition carries over to other data, we wrote down four predictions before
+training any model (public commit \texttt{90c47b7}, \texttt{paper/preregistration\_leafsnap.md}) and
+repeated the study on LeafSnap30~\citep{leafsnap30,kumar2012leafsnap}: 30 North-American tree species,
+5{,}320 lab photographs of pressed leaves for training and 2{,}075 field phone photographs for testing
+(2{,}072 usable). Folds are grouped by the 1{,}277 physical leaves that the file names identify, after
+removing 212 exact duplicates. Unlike DIMPSAR, the field photographs show one leaf on plain paper,
+with little clutter. Masks for both sets come from a label-free background-colour mask that keeps the
+most leaf-coloured component; an automatic colour check flags 5.5\% of lab and 1.8\% of field masks,
+and on inspection the real failures are concentrated on needle-leaved species (\textit{Abies concolor},
+\textit{Cryptomeria japonica}) and lab photographs that include a colour chart. They were kept, as
+pre-registered. We trained plain, patch pooling, mask pooling, strip pooling and \SVA{} (ConvNeXt-T,
+same recipe, 15 epochs, 5 folds $\times$ 2 seeds) and report 30-way accuracy with the same analysis as
+one Holm family (\cref{tab:leafsnap}).
+
+All models reach 99.3--99.4\% on lab photographs. On raw field photographs, plain reaches 45.9\%,
+patch and mask pooling 47.4\% and 47.6\%, strip pooling 50.1\% and \SVA{} 49.5\%. The predictions fare
+as follows. (1)~\emph{Total gain}, partly confirmed: strip pooling beats plain by $+4.1$ points (10/10
+runs, Holm $p=0.006$), \SVA{} by $+3.6$ (9/10), which is not significant after correction. (2)~\emph{Leaf
+location is smaller than on DIMPSAR}, confirmed: mask minus patch pooling is $+0.1$ [$-1.8$, $+2.0$],
+against $+4.4$ on DIMPSAR at the time of registration ($+4.0$ with all 25 runs); with little background
+to discount, knowing where the leaf is adds nothing. (3)~\emph{Localisation still helps}, not
+confirmed: strip minus mask pooling is $+2.5$ (9/10) but its interval includes zero (Holm $p=0.63$).
+(4)~\emph{Measured geometry adds little}, confirmed: \SVA{} minus strip pooling is $-0.6$, equivalent to
+zero within $\pm3$ points ($p=0.046$). The total architectural gain is a third of that on DIMPSAR
+(4 vs.\ 13 points), as expected if most of it comes from coping with field clutter. Whitening the field
+backgrounds lowers every model to 40.7--43.5\%, probably because LeafSnap's field paper already resembles the lab
+paper; no masked-photo contrast is significant.
+
+\begin{table}[t]
+\centering
+\caption{Pre-registered contrasts on LeafSnap30 field photographs (ConvNeXt-T, 10 matched runs,
+30-way accuracy). Columns as in \cref{tab:contrasts}; one Holm family.}
+\label{tab:leafsnap}
+\small
+\resizebox{\linewidth}{!}{\input{figures/tab_contrasts_leafsnap.tex}}
 \end{table}
 
 \subsection{The gains depend on the backbone}

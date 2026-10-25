@@ -4,7 +4,9 @@ Medicinal-leaf classifiers that are perfect on studio photographs transfer poorl
 photographs. In a controlled study with matched models, multiple seeds and corrected tests, we find
 that for an ImageNet CNN the architectural part of the remedy is simple: pool over the leaf, which
 lets the model discount the field background, and pool locally within it. Each step is worth about
-4--6 points on raw field photographs, and both add to background-compositing augmentation. Measured
+4--6 points on raw field photographs, and both add to background-compositing augmentation.
+A pre-registered replication on LeafSnap30, where field leaves lie on plain paper, finds a smaller
+gain and no leaf-location effect, as predicted, and again no benefit of measured geometry. Measured
 leaf geometry, introduced here as sweep-valuation attention with appearance-weighted area, boundary
 and Euler measurements along an object-centred sweep, adds little if anything beyond localised
 pooling, and a biology foundation model makes all such modules unnecessary. We release the
@@ -17,4 +19,4 @@ publicly available at \url{https://github.com/Devguru-codes/research_paper_leaf}
 reported here is regenerated from those run outputs by the scripts in the repository, and the
 properties stated in \cref{sec:method} are verified by its unit tests (\cref{app:tests}). The image
 datasets are not redistributed; they are available from their original sources
-(\cref{sec:data})~\citep{roopashree2020dataset,pushpa2023dimpsar}.
+(\cref{sec:data}, \cref{sec:leafsnap})~\citep{roopashree2020dataset,pushpa2023dimpsar,leafsnap30}.

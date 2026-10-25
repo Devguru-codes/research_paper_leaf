@@ -1,0 +1,48 @@
+src.train --set exp="main" protocol="grouped" epochs=40 batch_size=32 workers=3 backbone="convnext_tiny" fold=0 seed=3 variant="patchpool" evals=["crossdomain", "corruptions"]
+{"epoch": 0, "train_ce": 3.2924415227529167, "train_vein": 0.4263065819804733, "time": 291.07324957847595}
+{"epoch": 1, "train_ce": 1.9376578749837101, "train_vein": 0.28926907600583257, "time": 309.68140602111816}
+{"epoch": 2, "train_ce": 0.8769531588296633, "train_vein": 0.2700825438306138, "time": 329.7321398258209}
+{"epoch": 3, "train_ce": 0.751952214820965, "train_vein": 0.2624165709759738, "time": 349.92512226104736}
+{"epoch": 4, "train_ce": 0.7058332224149961, "train_vein": 0.2582602758665343, "time": 368.95541167259216, "cal_acc": 0.9918367346938776}
+{"epoch": 5, "train_ce": 0.6848202847145699, "train_vein": 0.25615145225782654, "time": 479.6392865180969}
+{"epoch": 6, "train_ce": 0.6738259582906156, "train_vein": 0.2559468589119009, "time": 500.2807958126068}
+{"epoch": 7, "train_ce": 0.6683366862503258, "train_vein": 0.25564929238847783, "time": 519.363894701004}
+{"epoch": 8, "train_ce": 0.6676493544836302, "train_vein": 0.255123663995717, "time": 537.8227641582489}
+{"epoch": 9, "train_ce": 0.6630511686608598, "train_vein": 0.2546208674037779, "time": 556.894161939621, "cal_acc": 1.0}
+{"epoch": 10, "train_ce": 0.6610272897256387, "train_vein": 0.2537183741459975, "time": 584.1854281425476}
+{"epoch": 11, "train_ce": 0.659007420410981, "train_vein": 0.25368804746382945, "time": 603.2694978713989}
+{"epoch": 12, "train_ce": 0.6562214574298343, "train_vein": 0.2532447306690989, "time": 621.9713826179504}
+{"epoch": 13, "train_ce": 0.6554485156729415, "train_vein": 0.2530597569169225, "time": 640.8737359046936}
+{"epoch": 14, "train_ce": 0.65443682348406, "train_vein": 0.253374173029049, "time": 660.0863177776337, "cal_acc": 1.0}
+{"epoch": 15, "train_ce": 0.6552815840050981, "train_vein": 0.2533151414748785, "time": 686.7723917961121}
+{"epoch": 16, "train_ce": 0.6545897271182086, "train_vein": 0.25305553988830465, "time": 706.0887353420258}
+{"epoch": 17, "train_ce": 0.6530454899813678, "train_vein": 0.2519644929750546, "time": 725.0213489532471}
+{"epoch": 18, "train_ce": 0.6535385830982311, "train_vein": 0.2518981389097265, "time": 743.7284362316132}
+{"epoch": 19, "train_ce": 0.6522071570963472, "train_vein": 0.2519103095338151, "time": 762.7935700416565, "cal_acc": 1.0}
+{"epoch": 20, "train_ce": 0.6548303301269943, "train_vein": 0.25203185790293925, "time": 789.5566384792328}
+{"epoch": 21, "train_ce": 0.6519382837656382, "train_vein": 0.25193820088296326, "time": 808.6103184223175}
+{"epoch": 22, "train_ce": 0.6518075015093829, "train_vein": 0.25154264392079534, "time": 827.2703301906586}
+{"epoch": 23, "train_ce": 0.6525955812351124, "train_vein": 0.25163141658177246, "time": 846.0387842655182}
+{"epoch": 24, "train_ce": 0.6509829453519873, "train_vein": 0.2515799681077132, "time": 864.9648144245148, "cal_acc": 1.0}
+{"epoch": 25, "train_ce": 0.650420372550552, "train_vein": 0.25210437863259705, "time": 891.7812740802765}
+{"epoch": 26, "train_ce": 0.650908392828864, "train_vein": 0.25114500804527384, "time": 910.9924871921539}
+{"epoch": 27, "train_ce": 0.6501331683751699, "train_vein": 0.2515993605594377, "time": 929.8048622608185}
+{"epoch": 28, "train_ce": 0.6504604445921408, "train_vein": 0.25123613388151733, "time": 948.6333763599396}
+{"epoch": 29, "train_ce": 0.6506446374429239, "train_vein": 0.25157804867705785, "time": 967.4416306018829, "cal_acc": 1.0}
+{"epoch": 30, "train_ce": 0.650160639672666, "train_vein": 0.2516825183017834, "time": 993.6815657615662}
+{"epoch": 31, "train_ce": 0.6510063168164846, "train_vein": 0.2513989838393959, "time": 1012.6120538711548}
+{"epoch": 32, "train_ce": 0.6500802652255909, "train_vein": 0.25121276362522227, "time": 1031.49560880661}
+{"epoch": 33, "train_ce": 0.6495445209580499, "train_vein": 0.25122826969301376, "time": 1050.2051041126251}
+{"epoch": 34, "train_ce": 0.6495512385626097, "train_vein": 0.2510636722719347, "time": 1069.2713577747345, "cal_acc": 1.0}
+{"epoch": 35, "train_ce": 0.6500855958139574, "train_vein": 0.25131777452455983, "time": 1096.1911680698395}
+{"epoch": 36, "train_ce": 0.6496718670870807, "train_vein": 0.2519570589065552, "time": 1115.1816046237946}
+{"epoch": 37, "train_ce": 0.6507468126915597, "train_vein": 0.25118502612049515, "time": 1133.9191818237305}
+{"epoch": 38, "train_ce": 0.6493295028402999, "train_vein": 0.2507486605160945, "time": 1152.4581079483032}
+{"epoch": 39, "train_ce": 0.6493818824355667, "train_vein": 0.25080244968066345, "time": 1171.2325277328491, "cal_acc": 1.0}
+TEST {"acc": 1.0, "bal_acc": 1.0, "macro_f1": 1.0, "nll": 0.09716399013996124, "ece": 0.09239820851002885, "mistake_severity": 0.0, "n": 366}
+/usr/local/lib/python3.13/dist-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+/usr/local/lib/python3.13/dist-packages/sklearn/metrics/_classification.py:2524: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+EVAL crossdomain {"n": 2000, "masked": {"acc30": 0.3455, "bal_acc30": 0.3167757124055619, "acc20": 0.39, "bal_acc20": 0.3567409743572705, "macro_f1_20": 0.35143499189493455, "ece30": 0.03788935238867998}, "raw": {"acc30": 0.289, "bal_acc30": 0.272419753075745, "acc20": 0.3515, "bal_acc20": 0.33360729330312067, "macro_f1_20": 0.319016738356839, "ece30": 0.028810017686337237}}
+EVAL corruptions {"clean": 1.0, "gaussian_noise/1": 0.9371584699453552, "gaussian_noise/2": 0.4972677595628415, "gaussian_noise/3": 0.3005464480874317, "gaussian_blur/1": 0.9480874316939891, "gaussian_blur/2": 0.6475409836065574, "gaussian_blur/3": 0.3551912568306011, "jpeg/1": 0.9617486338797814, "jpeg/2": 0.7595628415300546, "jpeg/3": 0.3251366120218579, "low_resolution/1": 0.7377049180327869, "low_resolution/2"

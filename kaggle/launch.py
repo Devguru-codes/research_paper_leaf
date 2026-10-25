@@ -87,13 +87,34 @@ def stage_dimpsar() -> Path:
     return d
 
 
+def stage_leafsnap() -> Path:
+    """LeafSnap30 lab cache + field build as one private dataset, laid out like the medicinal ones
+    (medleaf_cache.zip -> cache/index.csv, dimpsar_build.zip -> dimpsar/dimpsar_index.csv), so the runner
+    and the field evaluation find them unchanged."""
+    d = STAGE / "leafsnap"
+    if d.exists():
+        shutil.rmtree(d)
+    d.mkdir(parents=True)
+    for zname, src, prefix in (("medleaf_cache.zip", ROOT / "cache_leafsnap", "cache"),
+                               ("dimpsar_build.zip", ROOT / "cache_leafsnap_field", "dimpsar")):
+        with zipfile.ZipFile(d / zname, "w", zipfile.ZIP_STORED) as z:
+            for p in sorted(src.rglob("*")):
+                if p.is_file():
+                    z.write(p, f"{prefix}/" + p.relative_to(src).as_posix())
+    meta = dict(title="MedLeaf ESA leafsnap", id=f"{USER}/medleaf-esa-leafsnap", licenses=[dict(name="CC-BY-4.0")],
+                description="Leaf-centred crops, masks and vein pseudo-labels of LeafSnap30 (Zenodo "
+                            "10.5281/zenodo.5061353, CC BY 4.0; Kumar et al. 2012). Private working copy.")
+    (d / "dataset-metadata.json").write_text(json.dumps(meta, indent=1))
+    return d
+
+
 def kernel_slug(name: str) -> str:
     """Kaggle turns underscores into hyphens in kernel slugs."""
     return f"medleaf-esa-{name.replace('_', '-')}"
 
 
 def build_kernel(name: str, jobs: list, pip: list[str], extra_sources: list[str], kernel_sources: list[str],
-                 prefetch: list[str] = ()) -> Path:
+                 prefetch: list[str] = (), data: str = DATA_SLUG) -> Path:
     d = STAGE / "kernels" / name
     if d.exists():
         shutil.rmtree(d)
@@ -105,7 +126,7 @@ def build_kernel(name: str, jobs: list, pip: list[str], extra_sources: list[str]
     (d / f"{slug}.py").write_text(src)
     meta = dict(id=f"{USER}/{slug}", title=f"medleaf esa {name}", code_file=f"{slug}.py", language="python",
                 kernel_type="script", is_private=True, enable_gpu=True, enable_tpu=False, enable_internet=True,
-                dataset_sources=[f"{USER}/{DATA_SLUG}"] + extra_sources, competition_sources=[],
+                dataset_sources=[f"{USER}/{data}"] + extra_sources, competition_sources=[],
                 kernel_sources=[f"{USER}/{kernel_slug(k)}" for k in kernel_sources] if USER == MAIN_USER else [],
                 model_sources=[], machine_shape="NvidiaTeslaT4")
     if USER != MAIN_USER:  # other accounts cannot read private kernel outputs: use dataset copies instead
@@ -128,25 +149,29 @@ def jobs_from_yaml(path: Path) -> tuple[list[list[str]], list[str], list[str]]:
     backbones = sorted({str(j.get("backbone", common.get("backbone", "convnext_tiny"))) for j in spec["jobs"]
                         if "chain" not in j})
     prefetch = spec.get("prefetch", backbones + (["lpips"] if "lpips" in spec.get("pip", ["lpips"]) else []))
-    return jobs, spec.get("pip", ["lpips"]), spec.get("extra_sources", []), spec.get("kernel_sources", []), prefetch
+    return (jobs, spec.get("pip", ["lpips"]), spec.get("extra_sources", []), spec.get("kernel_sources", []), prefetch,
+            spec.get("data", DATA_SLUG))
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["data-create", "data-version", "dimpsar-create", "push", "status", "pull", "build"])
+    ap.add_argument("cmd", choices=["data-create", "data-version", "dimpsar-create", "leafsnap-create", "push", "status", "pull",
+                                        "build"])
     ap.add_argument("--name")
     ap.add_argument("--jobs")
     ap.add_argument("-m", "--message", default="update")
     a = ap.parse_args()
     if a.cmd == "data-create":
         print(kaggle("datasets", "create", "-p", str(stage_data()), "-r", "skip"))
+    elif a.cmd == "leafsnap-create":
+        print(kaggle("datasets", "create", "-p", str(stage_leafsnap()), "-r", "skip"))
     elif a.cmd == "dimpsar-create":
         print(kaggle("datasets", "create", "-p", str(stage_dimpsar()), "-r", "skip"))
     elif a.cmd == "data-version":
         print(kaggle("datasets", "version", "-p", str(stage_data()), "-m", a.message, "-r", "skip"))
     elif a.cmd in ("push", "build"):
-        jobs, pip, extra, ksrc, pre = jobs_from_yaml(ROOT / a.jobs)
-        d = build_kernel(a.name, jobs, pip, extra, ksrc, pre)
+        jobs, pip, extra, ksrc, pre, data = jobs_from_yaml(ROOT / a.jobs)
+        d = build_kernel(a.name, jobs, pip, extra, ksrc, pre, data)
         print(f"built {d} with {len(jobs)} jobs")
         if a.cmd == "push":
             print(kaggle("kernels", "push", "-p", str(d)))

@@ -9,13 +9,16 @@ the leaf mask, localised pooling over image strips or object-centred sweep slabs
 and boundary length of learned, appearance-weighted cubical complexes of the blade and venation. Clean
 accuracy is saturated for every model. On raw field photographs, ConvNeXt-T (5 folds $\times$ up to 5
 seeds, corrected resampled tests, Holm correction) gains 12--14 points over a plain model (33.6\%). The
-gain has three parts: mid-level features ($+3.3$, not significant), knowing where the leaf is ($+4.4$,
+gain has three parts: mid-level features ($+3.5$, not significant), knowing where the leaf is ($+4.0$,
 which vanishes once the background is whitened) and pooling locally within the leaf ($+4.6$ to $+6.2$).
 Leaf location and localisation persist under strong background-compositing augmentation, which raises
 every model (best 55\%) but replaces neither. Measured geometry adds little if anything: \SVA{}
 (47.4\%) is statistically tied with strip pooling (46.8\%) and its own measurement-free variant, and
 fusing the same measurements globally is equivalent to the plain model within $\pm3$ points. The
 gains are small on EfficientNet-B0 and absent on ViTs; the BioCLIP~2 foundation model reaches 81\%
-without any module, whereas a general self-supervised DINOv2 ViT reaches 52\%. Code, all run outputs and the probes are released at
+without any module, whereas a general self-supervised DINOv2 ViT reaches 52\%. A pre-registered replication on
+LeafSnap30, whose field photographs show leaves on plain paper, confirms three of four predictions:
+a smaller total gain (strip pooling $+4.1$ points), no leaf-location effect and no benefit of measured
+geometry; the localisation gain ($+2.5$) is not significant. Code, all run outputs and the probes are released at
 \url{https://github.com/Devguru-codes/research_paper_leaf}.
 \end{abstract}

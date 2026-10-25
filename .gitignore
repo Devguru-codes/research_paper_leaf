@@ -2,6 +2,7 @@
 data/*
 !data/README.md
 !data/audit/
+!data/audit_leafsnap/
 cache/
 dimpsar/
 # model weights, staged kernels, local caches

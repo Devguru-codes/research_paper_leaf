@@ -141,7 +141,7 @@ def suite_topodestroy(model, items, cfg, device, out: Path, seed: int):
 
 
 def suite_crossdomain(model, cfg, device, out: Path):
-    from src.crossdomain import OVERLAP, find_built, load_items as load_dimpsar
+    from src.crossdomain import find_built, load_items as load_dimpsar
     built = find_built()
     if built is None:
         print("crossdomain: no DIMPSAR build found, skipping", flush=True)
@@ -153,7 +153,8 @@ def suite_crossdomain(model, cfg, device, out: Path):
         lg = predict_arrays(model, items[mode], items["mask"], cfg["img_size"], device)
         np.savez_compressed(out / f"preds_dimpsar_{mode}.npz", logits=lg, label=y)
         restricted = np.full_like(lg, -1e9)
-        restricted[:, OVERLAP] = lg[:, OVERLAP]
+        overlap = np.unique(y)  # species present in the field set (DIMPSAR: the 20 shared species)
+        restricted[:, overlap] = lg[:, overlap]
         m30, m20 = classification_metrics(lg, y), classification_metrics(restricted, y)
         res[mode] = dict(acc30=m30["acc"], bal_acc30=m30["bal_acc"], acc20=m20["acc"], bal_acc20=m20["bal_acc"],
                          macro_f1_20=m20["macro_f1"], ece30=m30["ece"])

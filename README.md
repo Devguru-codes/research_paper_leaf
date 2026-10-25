@@ -17,7 +17,7 @@ Raw field photographs, 20-way accuracy (%), ConvNeXt-T, 5 folds × 5 seeds (25 r
 | Model (one ingredient added per row) | Raw field |
 |---|---|
 | Plain backbone (features averaged over the whole photo) | 33.6 |
-| + mid-level feature branch, no mask (patch pooling, 3 seeds) | 36.8 |
+| + mid-level feature branch, no mask (patch pooling) | 37.1 |
 | + mask pooling (knows where the leaf is) | 41.1 |
 | + localised pooling: slab-only attention | 45.7 |
 | + localised pooling: strip pooling | 46.8 |
@@ -25,7 +25,7 @@ Raw field photographs, 20-way accuracy (%), ConvNeXt-T, 5 folds × 5 seeds (25 r
 | Global fusion of SVA's measurements (no localisation) | 33.5 |
 
 - Clean in-domain accuracy is saturated (99.9–100%) for every model on the leakage-audited protocol.
-- The gain has three parts: **mid-level features** +3.3 (n.s.), **leaf location** +4.4 (15/15 runs, Holm p = 0.001;
+- The gain has three parts: **mid-level features** +3.5 (n.s.), **leaf location** +4.0 (25/25 runs, Holm p = 0.001;
   vanishes once the background is whitened) and **localised pooling** +4.6 to +6.2 (strip: 25/25, Holm p = 0.002).
 - **Measured geometry adds little if anything:** SVA vs strip pooling +0.5 (12/25), SVA vs slab-only +1.7 (16/25);
   global fusion is equivalent to plain within ±3 points (TOST).
@@ -33,6 +33,12 @@ Raw field photographs, 20-way accuracy (%), ConvNeXt-T, 5 folds × 5 seeds (25 r
   augmentation** (3 seeds; best model 55.2%).
 - They are small on EfficientNet-B0 (3 seeds), absent on ViT-S, and irrelevant for the BioCLIP 2
   foundation model (81% without any module); a general self-supervised DINOv2 ViT-S reaches only 52%.
+- **Not a tuning artefact:** at half and twice the backbone learning rate, strip pooling still beats plain by
+  +13.5 and +8.4 points (5/5 folds each); plain's best rate reaches 35.3%.
+- **Pre-registered replication on LeafSnap30** ([predictions](paper/preregistration_leafsnap.md), committed
+  before any run; field leaves on plain paper, 30-way, 10 runs per model): plain 45.9%, strip 50.1%, SVA 49.5%.
+  Three of four predictions hold: smaller total gain (strip +4.1, Holm p = 0.006), no leaf-location effect
+  (+0.1), SVA equivalent to strip (−0.6, TOST); localisation +2.5 is not significant.
 
 ## Repository layout
 
@@ -60,6 +66,7 @@ results/runs/        outputs of every Kaggle run (metrics.json, eval_*.json, per
                      predictions preds_*.npz, per-sample probe CSVs, kernel logs, queue logs)
 results/summary/     statistics, contrasts, cost, per-species and probe summaries used in the paper
 data/audit/          dataset audit: index with duplicate / re-shot groups (no images)
+data/audit_leafsnap/ the same for LeafSnap30, plus the field-photo index
 ```
 
 ## Reproducing
@@ -76,10 +83,11 @@ data/audit/          dataset audit: index with duplicate / re-shot groups (no im
    (model names: plain = `variant=plain`; mask pooling = `variant=maskpool`; strip = `variant=strip`;
    slab-only = `variant=esa token=none`; SVA = `variant=slabstat token=ap`; global = `variant=global token=ap`).
 6. **All experiments** were run on Kaggle (2×T4) with `configs/make_main_jobs.py`,
-   `configs/make_round2_jobs.py`, `configs/make_round3_jobs.py`, `configs/make_round4_jobs.py` and `kaggle/launch.py` / `kaggle/kqueue.py`.
+   `configs/make_round2_jobs.py` … `configs/make_round5_jobs.py` and `kaggle/launch.py` / `kaggle/kqueue.py`.
 7. **Tables, statistics and figures** from the stored outputs:
    ```
    python -m src.study_contrasts results/runs
+   python -m src.study_contrasts results/runs leafsnap
    python -m src.stats_all results/runs
    python -m src.make_figures results/runs --out paper/figures
    ```
@@ -90,6 +98,8 @@ data/audit/          dataset audit: index with duplicate / re-shot groups (no im
 |---|---|
 | Table 1 (main results) | `results/runs/main_*`, `r2_cnx_s3`, `r2_cnx_s4`, `r2_effb0_s*`, `r3_maskpool_cnx` → `src/make_figures.py` |
 | Contrasts (Table 2) | `results/summary/study_contrasts.csv` (`src/study_contrasts.py`) |
+| LeafSnap30 replication | `paper/preregistration_leafsnap.md`, `results/runs/r5_leafsnap_s*`, `results/summary/study_contrasts_leafsnap.csv`; data: `python -m src.data.leafsnap extract`, then the audit with `MEDLEAF_MASK=bgcolour`, then `python -m src.data.leafsnap field` |
+| Learning-rate check | `results/runs/r5_lrsweep` |
 | Without rotation augmentation | `results/runs/main_norot*`, `r2_norot_s*` |
 | Strong augmentation | `results/runs/r2_strongaug_s*` |
 | Ablations | `results/runs/main_ablations`, `r2_abl_a`, `r2_abl_b` |
@@ -104,6 +114,8 @@ data/audit/          dataset audit: index with duplicate / re-shot groups (no im
   DOI 10.17632/nnytj2v3n5.1, CC BY 4.0.
 - DIMPSAR field photographs: Pushpa B. R. and Shobha Rani N., *Data in Brief* (2023),
   DOI 10.1016/j.dib.2023.109388, CC BY 4.0.
+- LeafSnap30: Netherlands eScience Center, Zenodo (2021), DOI 10.5281/zenodo.5061353, CC BY 4.0, a subset of
+  Leafsnap (Kumar et al., ECCV 2012).
 
-Neither dataset is redistributed in this repository; only derived metadata (file index, duplicate
+No dataset is redistributed in this repository; only derived metadata (file index, duplicate
 groups) and model predictions are included.

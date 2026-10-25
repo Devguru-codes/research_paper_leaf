@@ -1,0 +1,212 @@
+{
+ "1": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=3",
+    "variant=\"patchpool\"",
+    "evals=[\"crossdomain\", \"corruptions\"]"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 59.9,
+  "gpu": 1
+ },
+ "0": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=3",
+    "variant=\"patchpool\"",
+    "evals=[\"crossdomain\", \"corruptions\"]"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 60.06,
+  "gpu": 0
+ },
+ "2": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=3",
+    "variant=\"patchpool\"",
+    "evals=[\"crossdomain\", \"corruptions\"]"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.33,
+  "gpu": 1
+ },
+ "3": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=3",
+    "variant=\"patchpool\"",
+    "evals=[\"crossdomain\", \"corruptions\"]"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.56,
+  "gpu": 0
+ },
+ "4": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=3",
+    "variant=\"patchpool\"",
+    "evals=[\"crossdomain\", \"corruptions\"]"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.38,
+  "gpu": 1
+ },
+ "5": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=4",
+    "variant=\"patchpool\"",
+    "evals=[\"crossdomain\", \"corruptions\"]"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.34,
+  "gpu": 0
+ },
+ "6": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=4",
+    "variant=\"patchpool\"",
+    "evals=[\"crossdomain\", \"corruptions\"]"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.42,
+  "gpu": 1
+ },
+ "7": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=4",
+    "variant=\"patchpool\"",
+    "evals=[\"crossdomain\", \"corruptions\"]"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.62,
+  "gpu": 0
+ },
+ "8": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=4",
+    "variant=\"patchpool\"",
+    "evals=[\"crossdomain\", \"corruptions\"]"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.5,
+  "gpu": 1
+ },
+ "9": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"main\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=4",
+    "variant=\"patchpool\"",
+    "evals=[\"crossdomain\", \"corruptions\"]"
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.47,
+  "gpu": 0
+ }
+}

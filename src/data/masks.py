@@ -10,7 +10,33 @@ def white_bg_mask(rgb: np.ndarray, thr: int = 235, min_frac: float = 0.002) -> n
     removes JPEG halo noise; the largest connected component and any component larger than
     `min_frac` of the image are kept (some leaves are compound / lobed).
     """
-    fg = (rgb.min(axis=2) < thr).astype(np.uint8)
+    return _clean((rgb.min(axis=2) < thr).astype(np.uint8), min_frac)
+
+
+def bg_colour_mask(rgb: np.ndarray, border: float = 0.04) -> np.ndarray:
+    """Leaf mask for photos on a plain but not white background (LeafSnap lab and field images):
+    the background colour is the median of the image border, a pixel is leaf when its Lab distance
+    to that colour exceeds an Otsu threshold. One component is kept: the one with the most leaf-coloured
+    (yellow-green, saturated) pixels plus a small area term, so a larger colour-checker ruler or specks
+    lose to the leaf."""
+    lab = cv2.cvtColor(rgb, cv2.COLOR_RGB2LAB).astype(np.float32)
+    b = max(2, int(border * min(rgb.shape[:2])))
+    edge = np.concatenate([lab[:b].reshape(-1, 3), lab[-b:].reshape(-1, 3), lab[:, :b].reshape(-1, 3),
+                           lab[:, -b:].reshape(-1, 3)])
+    d = np.linalg.norm(lab - np.median(edge, 0), axis=2)
+    d8 = np.clip(255 * d / max(d.max(), 1e-6), 0, 255).astype(np.uint8)
+    _, fg = cv2.threshold(d8, 0, 1, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    out = _clean(fg.astype(np.uint8), min_frac=0.0)
+    n, cc = cv2.connectedComponents(out, connectivity=8)
+    if n <= 1:
+        return np.ones_like(out)  # no leaf found: whole image (counted in the audit)
+    hsv = cv2.cvtColor(rgb, cv2.COLOR_RGB2HSV)
+    leafy = (hsv[..., 0] >= 15) & (hsv[..., 0] <= 90) & (hsv[..., 1] >= 40)  # OpenCV hue: 30-180 deg
+    score = np.bincount(cc.ravel(), leafy.ravel(), n) + 0.05 * np.bincount(cc.ravel(), minlength=n)
+    return (cc == 1 + int(np.argmax(score[1:]))).astype(np.uint8)
+
+
+def _clean(fg: np.ndarray, min_frac: float) -> np.ndarray:
     k = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
     fg = cv2.morphologyEx(fg, cv2.MORPH_OPEN, k)
     fg = cv2.morphologyEx(fg, cv2.MORPH_CLOSE, k)

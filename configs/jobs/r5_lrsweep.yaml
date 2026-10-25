@@ -1,0 +1,171 @@
+pip:
+- lpips
+kernel_sources:
+- maskhead
+common:
+  exp: lrsweep
+  protocol: grouped
+  epochs: 40
+  batch_size: 32
+  workers: 3
+jobs:
+- backbone: convnext_tiny
+  fold: 0
+  seed: 0
+  lr_backbone: 5.0e-05
+  variant: plain
+  evals:
+  - crossdomain
+  tag: lr5e-05
+- backbone: convnext_tiny
+  fold: 1
+  seed: 0
+  lr_backbone: 5.0e-05
+  variant: plain
+  evals:
+  - crossdomain
+  tag: lr5e-05
+- backbone: convnext_tiny
+  fold: 2
+  seed: 0
+  lr_backbone: 5.0e-05
+  variant: plain
+  evals:
+  - crossdomain
+  tag: lr5e-05
+- backbone: convnext_tiny
+  fold: 3
+  seed: 0
+  lr_backbone: 5.0e-05
+  variant: plain
+  evals:
+  - crossdomain
+  tag: lr5e-05
+- backbone: convnext_tiny
+  fold: 4
+  seed: 0
+  lr_backbone: 5.0e-05
+  variant: plain
+  evals:
+  - crossdomain
+  tag: lr5e-05
+- backbone: convnext_tiny
+  fold: 0
+  seed: 0
+  lr_backbone: 5.0e-05
+  variant: strip
+  evals:
+  - crossdomain
+  tag: lr5e-05
+- backbone: convnext_tiny
+  fold: 1
+  seed: 0
+  lr_backbone: 5.0e-05
+  variant: strip
+  evals:
+  - crossdomain
+  tag: lr5e-05
+- backbone: convnext_tiny
+  fold: 2
+  seed: 0
+  lr_backbone: 5.0e-05
+  variant: strip
+  evals:
+  - crossdomain
+  tag: lr5e-05
+- backbone: convnext_tiny
+  fold: 3
+  seed: 0
+  lr_backbone: 5.0e-05
+  variant: strip
+  evals:
+  - crossdomain
+  tag: lr5e-05
+- backbone: convnext_tiny
+  fold: 4
+  seed: 0
+  lr_backbone: 5.0e-05
+  variant: strip
+  evals:
+  - crossdomain
+  tag: lr5e-05
+- backbone: convnext_tiny
+  fold: 0
+  seed: 0
+  lr_backbone: 0.0002
+  variant: plain
+  evals:
+  - crossdomain
+  tag: lr0.0002
+- backbone: convnext_tiny
+  fold: 1
+  seed: 0
+  lr_backbone: 0.0002
+  variant: plain
+  evals:
+  - crossdomain
+  tag: lr0.0002
+- backbone: convnext_tiny
+  fold: 2
+  seed: 0
+  lr_backbone: 0.0002
+  variant: plain
+  evals:
+  - crossdomain
+  tag: lr0.0002
+- backbone: convnext_tiny
+  fold: 3
+  seed: 0
+  lr_backbone: 0.0002
+  variant: plain
+  evals:
+  - crossdomain
+  tag: lr0.0002
+- backbone: convnext_tiny
+  fold: 4
+  seed: 0
+  lr_backbone: 0.0002
+  variant: plain
+  evals:
+  - crossdomain
+  tag: lr0.0002
+- backbone: convnext_tiny
+  fold: 0
+  seed: 0
+  lr_backbone: 0.0002
+  variant: strip
+  evals:
+  - crossdomain
+  tag: lr0.0002
+- backbone: convnext_tiny
+  fold: 1
+  seed: 0
+  lr_backbone: 0.0002
+  variant: strip
+  evals:
+  - crossdomain
+  tag: lr0.0002
+- backbone: convnext_tiny
+  fold: 2
+  seed: 0
+  lr_backbone: 0.0002
+  variant: strip
+  evals:
+  - crossdomain
+  tag: lr0.0002
+- backbone: convnext_tiny
+  fold: 3
+  seed: 0
+  lr_backbone: 0.0002
+  variant: strip
+  evals:
+  - crossdomain
+  tag: lr0.0002
+- backbone: convnext_tiny
+  fold: 4
+  seed: 0
+  lr_backbone: 0.0002
+  variant: strip
+  evals:
+  - crossdomain
+  tag: lr0.0002

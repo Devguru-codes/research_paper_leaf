@@ -1,0 +1,462 @@
+{
+ "0": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "lr_backbone=5e-05",
+    "variant=\"plain\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr5e-05\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 15.25,
+  "gpu": 0
+ },
+ "1": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "lr_backbone=5e-05",
+    "variant=\"plain\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr5e-05\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 15.93,
+  "gpu": 1
+ },
+ "2": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "lr_backbone=5e-05",
+    "variant=\"plain\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr5e-05\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 15.24,
+  "gpu": 0
+ },
+ "3": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "lr_backbone=5e-05",
+    "variant=\"plain\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr5e-05\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 16.25,
+  "gpu": 1
+ },
+ "4": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "lr_backbone=5e-05",
+    "variant=\"plain\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr5e-05\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 15.3,
+  "gpu": 0
+ },
+ "5": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "lr_backbone=5e-05",
+    "variant=\"strip\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr5e-05\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 15.74,
+  "gpu": 1
+ },
+ "6": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "lr_backbone=5e-05",
+    "variant=\"strip\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr5e-05\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 15.19,
+  "gpu": 0
+ },
+ "7": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "lr_backbone=5e-05",
+    "variant=\"strip\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr5e-05\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 16.09,
+  "gpu": 1
+ },
+ "8": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "lr_backbone=5e-05",
+    "variant=\"strip\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr5e-05\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 15.58,
+  "gpu": 0
+ },
+ "9": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "lr_backbone=5e-05",
+    "variant=\"strip\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr5e-05\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 16.33,
+  "gpu": 1
+ },
+ "10": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "lr_backbone=0.0002",
+    "variant=\"plain\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr0.0002\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 15.05,
+  "gpu": 0
+ },
+ "11": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "lr_backbone=0.0002",
+    "variant=\"plain\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr0.0002\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 16.03,
+  "gpu": 1
+ },
+ "12": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "lr_backbone=0.0002",
+    "variant=\"plain\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr0.0002\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 15.25,
+  "gpu": 0
+ },
+ "13": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "lr_backbone=0.0002",
+    "variant=\"plain\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr0.0002\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 16.1,
+  "gpu": 1
+ },
+ "14": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "lr_backbone=0.0002",
+    "variant=\"plain\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr0.0002\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 15.26,
+  "gpu": 0
+ },
+ "15": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=0",
+    "lr_backbone=0.0002",
+    "variant=\"strip\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr0.0002\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 15.79,
+  "gpu": 1
+ },
+ "16": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=0",
+    "lr_backbone=0.0002",
+    "variant=\"strip\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr0.0002\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 15.22,
+  "gpu": 0
+ },
+ "17": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=0",
+    "lr_backbone=0.0002",
+    "variant=\"strip\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr0.0002\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 16.04,
+  "gpu": 1
+ },
+ "18": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=0",
+    "lr_backbone=0.0002",
+    "variant=\"strip\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr0.0002\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 15.29,
+  "gpu": 0
+ },
+ "19": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"lrsweep\"",
+    "protocol=\"grouped\"",
+    "epochs=40",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=0",
+    "lr_backbone=0.0002",
+    "variant=\"strip\"",
+    "evals=[\"crossdomain\"]",
+    "tag=\"lr0.0002\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 15.35,
+  "gpu": 1
+ }
+}

@@ -74,16 +74,22 @@ def predict_mask(masker, rgb: np.ndarray, device, size: int = 448) -> np.ndarray
     return m
 
 
-def build(masker_path: str, out: str, max_side: int = 1600):
-    from src.models.mask_head import LeafMasker
-    dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    masker = LeafMasker(pretrained=False).to(dev).eval()
-    masker.load_state_dict(torch.load(masker_path, map_location=dev))
-    root, out = find_root(), Path(out)
+def build(masker_path: str | None, out: str, max_side: int = 1600, root: Path | None = None,
+          mapping: dict | None = None, mask_fn=None):
+    """Field test set. Defaults: DIMPSAR folders, our masker. A label-free `mask_fn(rgb)` replaces the
+    masker for plain backgrounds (LeafSnap field photos); `mapping` is folder -> class index."""
+    if mask_fn is None:
+        from src.models.mask_head import LeafMasker
+        dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        masker = LeafMasker(pretrained=False).to(dev).eval()
+        masker.load_state_dict(torch.load(masker_path, map_location=dev))
+        mask_fn = lambda rgb: predict_mask(masker, rgb, dev)  # noqa: E731
+    root, out = root or find_root(), Path(out)
+    mapping = mapping or {folder: CLASSES.index(cls) for folder, cls in DIMPSAR_TO_OURS.items()}
     for d in ("raw", "masked", "mask"):
         (out / d).mkdir(parents=True, exist_ok=True)
     rows = []
-    for folder, cls in DIMPSAR_TO_OURS.items():
+    for folder, label in mapping.items():
         files = sorted(f for f in (root / folder).rglob("*") if f.suffix.lower() in (".jpg", ".jpeg", ".png"))
         for k, f in enumerate(files):
             try:
@@ -93,10 +99,10 @@ def build(masker_path: str, out: str, max_side: int = 1600):
             s = min(1.0, max_side / max(rgb.shape[:2]))
             if s < 1:
                 rgb = cv2.resize(rgb, None, fx=s, fy=s, interpolation=cv2.INTER_AREA)
-            m = predict_mask(masker, rgb, dev)
+            m = mask_fn(rgb)
             frac = float(m.mean())
             ok = 0.005 < frac < 0.95
-            stem = f"{CLASSES.index(cls):02d}_{folder}_{k:04d}"
+            stem = f"{label:02d}_{folder}_{k:04d}"
             if ok:
                 raw_c, m_c, _ = crop_square(rgb, m)
                 masked = raw_c.copy()
@@ -104,7 +110,7 @@ def build(masker_path: str, out: str, max_side: int = 1600):
                 cv2.imwrite(str(out / "raw" / f"{stem}.jpg"), cv2.cvtColor(raw_c, cv2.COLOR_RGB2BGR), [cv2.IMWRITE_JPEG_QUALITY, 95])
                 cv2.imwrite(str(out / "masked" / f"{stem}.jpg"), cv2.cvtColor(masked, cv2.COLOR_RGB2BGR), [cv2.IMWRITE_JPEG_QUALITY, 95])
                 cv2.imwrite(str(out / "mask" / f"{stem}.png"), m_c * 255)
-            rows.append(dict(stem=stem, src=str(f.relative_to(root)), folder=folder, label=CLASSES.index(cls),
+            rows.append(dict(stem=stem, src=str(f.relative_to(root)), folder=folder, label=label,
                              mask_frac=frac, usable=ok))
     df = pd.DataFrame(rows)
     df.to_csv(out / "dimpsar_index.csv", index=False)

@@ -1,0 +1,81 @@
+pip:
+- lpips
+kernel_sources:
+- maskhead
+common:
+  exp: main
+  protocol: grouped
+  epochs: 40
+  batch_size: 32
+  workers: 3
+jobs:
+- backbone: convnext_tiny
+  fold: 0
+  seed: 3
+  variant: patchpool
+  evals:
+  - crossdomain
+  - corruptions
+- backbone: convnext_tiny
+  fold: 1
+  seed: 3
+  variant: patchpool
+  evals:
+  - crossdomain
+  - corruptions
+- backbone: convnext_tiny
+  fold: 2
+  seed: 3
+  variant: patchpool
+  evals:
+  - crossdomain
+  - corruptions
+- backbone: convnext_tiny
+  fold: 3
+  seed: 3
+  variant: patchpool
+  evals:
+  - crossdomain
+  - corruptions
+- backbone: convnext_tiny
+  fold: 4
+  seed: 3
+  variant: patchpool
+  evals:
+  - crossdomain
+  - corruptions
+- backbone: convnext_tiny
+  fold: 0
+  seed: 4
+  variant: patchpool
+  evals:
+  - crossdomain
+  - corruptions
+- backbone: convnext_tiny
+  fold: 1
+  seed: 4
+  variant: patchpool
+  evals:
+  - crossdomain
+  - corruptions
+- backbone: convnext_tiny
+  fold: 2
+  seed: 4
+  variant: patchpool
+  evals:
+  - crossdomain
+  - corruptions
+- backbone: convnext_tiny
+  fold: 3
+  seed: 4
+  variant: patchpool
+  evals:
+  - crossdomain
+  - corruptions
+- backbone: convnext_tiny
+  fold: 4
+  seed: 4
+  variant: patchpool
+  evals:
+  - crossdomain
+  - corruptions

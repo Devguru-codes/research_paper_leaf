@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import itertools
 import json
+import os
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
@@ -31,7 +32,7 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 
-from src.data.masks import crop_square, white_bg_mask
+from src.data.masks import bg_colour_mask, crop_square, white_bg_mask
 from src.data.taxonomy import CLASSES
 from src.data.venation import vein_pseudolabel
 from src.paths import cache_root, raw_root
@@ -49,7 +50,7 @@ def dhash(gray: np.ndarray, n: int = 32) -> np.ndarray:
 def _process(args):
     src, stem, out = args
     rgb = cv2.cvtColor(cv2.imread(str(src), cv2.IMREAD_COLOR), cv2.COLOR_BGR2RGB)
-    mask = white_bg_mask(rgb)
+    mask = bg_colour_mask(rgb) if os.environ.get("MEDLEAF_MASK") == "bgcolour" else white_bg_mask(rgb)
     area_frac = float(mask.mean())
     if not (out / "vein" / f"{stem}.png").exists():
         rgb_c, m_c, _ = crop_square(rgb, mask, size=SIZE)
@@ -110,8 +111,10 @@ def main():
     root, out = raw_root(), cache_root()
     for d in ("img", "mask", "vein"):
         (out / d).mkdir(parents=True, exist_ok=True)
+    # class folders: the medicinal species, or (second dataset) whatever folders the raw root holds
+    classes = CLASSES if (root / CLASSES[0]).exists() else sorted(d.name for d in root.iterdir() if d.is_dir())
     rows = []
-    for label, cls in enumerate(CLASSES):
+    for label, cls in enumerate(classes):
         for f in sorted((root / cls).iterdir()):
             if f.suffix.lower() in (".jpg", ".jpeg", ".png"):
                 rows.append(dict(rel_path=f"{cls}/{f.name}", class_name=cls, label=label,
@@ -128,7 +131,8 @@ def main():
     raw_h = np.stack([r[3] for r in res])
 
     # exact duplicates (raw photographs identical)
-    D_raw = (raw_h[:, None, :] != raw_h[None, :, :]).sum(-1)
+    h = raw_h.astype(np.float32)  # Hamming distance as two matmuls: N x N, not N x N x 1024 (29 GB for LeafSnap)
+    D_raw = np.rint(h @ (1 - h).T + (1 - h) @ h.T).astype(np.int32)
     exact = _DSU(N)
     ei, ej = np.nonzero(np.triu(D_raw == 0, 1))
     for i, j in zip(ei, ej):
@@ -141,9 +145,19 @@ def main():
     for i, j in zip(ei, ej):
         links.union(i, j)
     hi, hj = np.nonzero(np.triu(D_raw <= RAW_DHASH_THR, 1))
-    for i, j in zip(hi, hj):
+    hint = root / "specimen_groups.csv"
+    # near-duplicate hashes only when the leaf is unknown: on mostly blank frames (LeafSnap lab) they link
+    # unrelated leaves across species
+    for i, j in zip(hi, hj) if not hint.exists() else ():
         links.union(i, j)
-    pairs = [(i, j) for _, g in df.groupby("label") for i, j in itertools.combinations(g.index, 2)]
+    if hint.exists():  # the dataset names the physical leaf of every photo: group by it, no SIFT search
+        leaf = pd.read_csv(hint).set_index("rel_path").group
+        for idx in df.groupby(df.rel_path.map(leaf).fillna(df.rel_path)).indices.values():
+            for i in idx[1:]:
+                links.union(int(idx[0]), int(i))
+        pairs = []
+    else:
+        pairs = [(i, j) for _, g in df.groupby("label") for i, j in itertools.combinations(g.index, 2)]
     with ProcessPoolExecutor() as ex:
         inl = list(ex.map(_sift_inliers, ((feats[i], feats[j]) for i, j in pairs), chunksize=256))
     sift_links = [(i, j, n) for (i, j), (n, sc, hull) in zip(pairs, inl)
@@ -157,7 +171,7 @@ def main():
     counts = df.groupby("class_name").size()
     cross = sum(df.label[i] != df.label[j] for i, j in zip(hi, hj))
     audit = dict(
-        n_images=N, n_classes=len(CLASSES), n_exact_duplicate_pairs=int(len(ei)),
+        n_images=N, n_classes=len(classes), n_exact_duplicate_pairs=int(len(ei)),
         n_after_exact_dedup=int(df.keep.sum()),
         exact_duplicate_pairs=[(df.rel_path[i], df.rel_path[j]) for i, j in zip(ei, ej)],
         n_raw_dhash_links=int(len(hi)), raw_dhash_cross_class_links=int(cross),

@@ -1,6 +1,6 @@
 """Contrasts of the study (ConvNeXt-T, matched fold-seed runs) -> table + csv.
 
-  python -m src.study_contrasts results/kaggle
+  python -m src.study_contrasts results/kaggle [leafsnap]
 Each contrast is a difference in 20-way field accuracy on matched (fold, seed) runs, for raw and
 auto-masked DIMPSAR photographs. Two families, Holm-corrected separately:
   planned (fixed before any run):
@@ -24,7 +24,6 @@ import numpy as np
 import pandas as pd
 from scipy.stats import t as tdist
 
-from src.crossdomain import OVERLAP
 from src.make_tables import collect
 from src.stats import corrected_ttest, holm, select
 
@@ -33,6 +32,9 @@ PLANNED = [("total", "strip", "plain"), ("total", "slabonly", "plain"), ("total"
 POSTHOC = [("features", "patchpool", "plain"), ("location", "maskpool", "patchpool"),
            ("localisation", "strip", "maskpool"), ("localisation", "slabonly", "maskpool"),
            ("localisation", "sva", "maskpool")]
+# LeafSnap30 replication: the contrasts fixed in paper/preregistration_leafsnap.md, one Holm family
+LEAFSNAP = [("total", "strip", "plain"), ("total", "sva", "plain"), ("location", "maskpool", "patchpool"),
+            ("localisation", "strip", "maskpool"), ("geometry", "sva", "strip")]
 EQUIV = {"geometry", "global fusion"}
 MARGIN = 3.0  # accuracy points
 LABEL = {"plain": "plain", "patchpool": "patch pooling", "maskpool": "mask pooling", "strip": "strip",
@@ -42,7 +44,8 @@ LABEL = {"plain": "plain", "patchpool": "patch pooling", "maskpool": "mask pooli
 def correctness(run_dir: str, mode: str):
     z = np.load(Path(run_dir) / f"preds_dimpsar_{mode}.npz")
     lg = np.full_like(z["logits"], -1e9)
-    lg[:, OVERLAP] = z["logits"][:, OVERLAP]
+    seen = np.unique(z["label"])  # the classes the field set contains (DIMPSAR: OVERLAP; LeafSnap: all 30)
+    lg[:, seen] = z["logits"][:, seen]
     return (lg.argmax(1) == z["label"]).astype(float), z["label"]
 
 
@@ -69,8 +72,8 @@ def tost(d: np.ndarray, margin: float, test_train_ratio: float = 0.3) -> float:
     return float(max(lo, hi))
 
 
-def contrast(df, backbone, mode, fam, a, b):
-    da, db = select(df, a, backbone, "main"), select(df, b, backbone, "main")
+def contrast(df, backbone, mode, fam, a, b, exp="main"):
+    da, db = select(df, a, backbone, exp), select(df, b, backbone, exp)
     idx = da.index.intersection(db.index)
     Ca, Cb, lab = [], [], None
     for k in idx:
@@ -89,20 +92,22 @@ def contrast(df, backbone, mode, fam, a, b):
                 p_equiv=tost(per_run, MARGIN) if fam in EQUIV else float("nan"))
 
 
-def main(root: Path, backbone: str = "convnext_tiny"):
+def main(root: Path, exp: str = "main", backbone: str = "convnext_tiny"):
     df = collect(root)
     parts = []
-    for name, fam_list in (("planned", PLANNED), ("post hoc", POSTHOC)):
-        rows = [dict(contrast_set=name, **contrast(df, backbone, mode, fam, a, b))
+    sets = (("pre-registered", LEAFSNAP),) if exp == "leafsnap" else (("planned", PLANNED), ("post hoc", POSTHOC))
+    for name, fam_list in sets:
+        rows = [dict(contrast_set=name, **contrast(df, backbone, mode, fam, a, b, exp))
                 for mode in ("raw", "masked") for fam, a, b in fam_list]
         part = pd.DataFrame(rows)
         part["p_holm"] = holm(part.p.tolist())
         parts.append(part)
     res = pd.concat(parts, ignore_index=True)
     Path("results").mkdir(exist_ok=True)
-    res.to_csv("results/study_contrasts.csv", index=False)
+    sfx = "" if exp == "main" else f"_{exp}"
+    res.to_csv(f"results/study_contrasts{sfx}.csv", index=False)
     print(res.drop(columns=["contrast_set"]).round(4).to_string())
-    write_table(res, Path("paper/figures/tab_contrasts.tex"))
+    write_table(res, Path(f"paper/figures/tab_contrasts{sfx}.tex"))
 
 
 def fmt_p(p):
@@ -128,4 +133,4 @@ def write_table(res: pd.DataFrame, path: Path):
 
 
 if __name__ == "__main__":
-    main(Path(sys.argv[1] if len(sys.argv) > 1 else "results/kaggle"))
+    main(Path(sys.argv[1] if len(sys.argv) > 1 else "results/kaggle"), *sys.argv[2:3])
