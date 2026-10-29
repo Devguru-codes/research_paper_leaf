@@ -21,13 +21,16 @@ depend on augmentation. \emph{Without rotation augmentation}: plain, strip, slab
 (5 seeds) and mask pooling (3 seeds). \emph{Strong augmentation}: plain, mask pooling, strip and
 \SVA{}, 3 seeds, with background compositing (with probability 0.8 the white background is replaced
 by a random procedural texture, blended through the slightly eroded mask), Gaussian blur ($p=0.3$)
-and Gaussian noise ($p=0.3$) on top of the standard augmentation.
+and Gaussian noise ($p=0.3$) on top of the standard augmentation. A \emph{learning-rate check} retrains
+plain and strip pooling (seed 0, 5 folds) at half and twice the ConvNeXt-T backbone learning rate. The
+LeafSnap30 replication and its runs are described in \cref{sec:leafsnap}.
 
 \paragraph{Statistics.} The primary outcome is 20-way accuracy on raw DIMPSAR field photographs; the
 masked photographs are the secondary outcome. Each contrast is the mean difference over matched
 fold--seed runs, with a 95\% interval from the Nadeau--Bengio corrected resampled
 $t$-test~\citep{nadeau2003inference} (test/train ratio $0.3$, accounting for overlapping training
-sets). The study was not pre-registered, and we separate two families of contrasts, each
+sets; slightly above the $0.25$ of a 5-fold split, hence conservative). The DIMPSAR study was not pre-registered (the LeafSnap30 replication was, \cref{sec:leafsnap}),
+and we separate two families of contrasts, each
 Holm-corrected~\citep{holm1979simple} over both photo types. The \emph{planned} family was fixed
 before any run: each localised model vs.\ plain, \SVA{} vs.\ slab-only and vs.\ strip pooling
 (measured geometry), and global fusion vs.\ plain (12 tests). The \emph{post-hoc} family uses the

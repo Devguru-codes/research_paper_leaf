@@ -12,14 +12,15 @@ runs in which the first model wins and 95\% intervals as described in \cref{sec:
 cue-conflict set; Field = 20-way accuracy on DIMPSAR field photographs (auto-masked or raw).
 ConvNeXt-T: 5 folds $\times$ 5 seeds (MedLeaf-C: seed 0, the seed run for every model; Rot.\ min
 and shape bias: seed 0); EfficientNet-B0: 5 folds
-$\times$ 3 seeds; ViT-S and BioCLIP~2: 5 folds, one seed. Mask pooling was run on ConvNeXt-T only.}
+$\times$ 3 seeds; ViT-S, DINOv2 and BioCLIP~2: 5 folds, one seed. Patch pooling was run on ConvNeXt-T
+only, mask pooling on ConvNeXt-T and DINOv2.}
 \label{tab:main}
 \small
 \resizebox{\textwidth}{!}{\input{figures/tab_main.tex}}
 \end{table*}
 
 \subsection{In-domain accuracy is saturated}
-On the de-duplicated, grouped protocol every model on every backbone reaches 99.9--100\% clean
+On the de-duplicated, grouped protocol every model on every backbone reaches 99.8--100\% clean
 accuracy and $\ge98.5\%$ accuracy under any rotation (\cref{tab:main}). The studio benchmark therefore
 cannot separate architectures, and none of the added modules costs clean accuracy. All further
 results concern robustness and, primarily, transfer to field photographs.
@@ -55,13 +56,16 @@ $\pm3$ is shown only for \SVA{} vs.\ strip on masked photographs). Object-centre
 image-axis strips perform the same. Per species, \SVA{} beats plain on 17 of the 20 species and strip
 pooling on 8 (\cref{tab:fieldspecies}). In the planned family, each localised model beats plain by
 12--14 points on raw and about 7 on masked photographs (25/25 runs, Holm $p<10^{-3}$). The two-way
-bootstrap agrees with the corrected test on every significant contrast.
+bootstrap agrees with the corrected test on every significant contrast. Without the restriction to
+the 20 shared species (30-way accuracy), every model loses 3--7 points but the ordering is unchanged:
+plain 30.0\%, mask pooling 35.0\%, strip pooling 39.5\%, \SVA{} 40.5\% on raw photographs, and
+BioCLIP~2 76.2\%.
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/fig_crossdomain.pdf}
 \caption{Studio-to-field transfer: 20-way accuracy on DIMPSAR photographs with the background
-whitened by our masker (left) or kept (right). Error bars: std over runs. Mask pooling was run on
-ConvNeXt-T only.}
+whitened by our masker (left) or kept (right). Error bars: std over runs. Patch pooling was run on
+ConvNeXt-T only, mask pooling on ConvNeXt-T and DINOv2.}
 \label{fig:crossdomain}
 \end{figure}
 
@@ -115,7 +119,8 @@ The best plain setting (35.3\%) stays below the worst strip setting (43.7\%).
 \subsection{A pre-registered replication on LeafSnap30}
 \label{sec:leafsnap}
 To test whether the decomposition carries over to other data, we wrote down four predictions before
-training any model (public commit \texttt{90c47b7}, \texttt{paper/preregistration\_leafsnap.md}) and
+training any model (public commit \texttt{90c47b7}, \texttt{paper/preregistration\_leafsnap.md},
+made on 25 October 2026 about 12 hours before the first LeafSnap run was started) and
 repeated the study on LeafSnap30~\citep{leafsnap30,kumar2012leafsnap}: 30 North-American tree species,
 5{,}320 lab photographs of pressed leaves for training and 2{,}075 field phone photographs for testing
 (2{,}072 usable). Folds are grouped by the 1{,}277 physical leaves that the file names identify, after
@@ -123,10 +128,14 @@ removing 212 exact duplicates. Unlike DIMPSAR, the field photographs show one le
 with little clutter. Masks for both sets come from a label-free background-colour mask that keeps the
 most leaf-coloured component; an automatic colour check flags 5.5\% of lab and 1.8\% of field masks,
 and on inspection the real failures are concentrated on needle-leaved species (\textit{Abies concolor},
-\textit{Cryptomeria japonica}) and lab photographs that include a colour chart. They were kept, as
-pre-registered. We trained plain, patch pooling, mask pooling, strip pooling and \SVA{} (ConvNeXt-T,
-same recipe, 15 epochs, 5 folds $\times$ 2 seeds) and report 30-way accuracy with the same analysis as
-one Holm family (\cref{tab:leafsnap}).
+\textit{Cryptomeria japonica}) and lab photographs that include a colour chart. They were kept. Two
+details changed after registration, before any model was trained and without looking at results:
+the mask now keeps the most leaf-coloured rather than the largest component, after inspection showed
+that the largest was often the colour chart, and folds are grouped by the leaf identifiers of the file
+names alone, because hash-based re-shot links merged unrelated leaves on these mostly blank frames. We trained plain, patch pooling, mask pooling, strip pooling and \SVA{} (ConvNeXt-T,
+same recipe, 15 epochs, 5 folds $\times$ 2 seeds) and report 30-way accuracy with the same analysis, i.e.\ one Holm family over raw and masked photographs
+(\cref{tab:leafsnap}). Accuracies are therefore 30-way here and 20-way on DIMPSAR, and absolute values
+are not comparable across the two datasets; the contrasts are.
 
 All models reach 99.3--99.4\% on lab photographs. On raw field photographs, plain reaches 45.9\%,
 patch and mask pooling 47.4\% and 47.6\%, strip pooling 50.1\% and \SVA{} 49.5\%. The predictions fare
@@ -135,9 +144,11 @@ runs, Holm $p=0.006$), \SVA{} by $+3.6$ (9/10), which is not significant after c
 location is smaller than on DIMPSAR}, confirmed: mask minus patch pooling is $+0.1$ [$-1.8$, $+2.0$],
 against $+4.4$ on DIMPSAR at the time of registration ($+4.0$ with all 25 runs); with little background
 to discount, knowing where the leaf is adds nothing. (3)~\emph{Localisation still helps}, not
-confirmed: strip minus mask pooling is $+2.5$ (9/10) but its interval includes zero (Holm $p=0.63$).
+confirmed: strip minus mask pooling is $+2.5$ (9/10) but its interval includes zero (Holm $p=0.63$);
+with ten runs the 95\% interval is about $\pm3$ points wide, so the replication cannot distinguish a
+small localisation effect from none.
 (4)~\emph{Measured geometry adds little}, confirmed: \SVA{} minus strip pooling is $-0.6$, equivalent to
-zero within $\pm3$ points ($p=0.046$). The total architectural gain is a third of that on DIMPSAR
+zero within $\pm3$ points ($p=0.046$). In sum, two predictions were confirmed, one held for strip pooling but not for \SVA{}, and one was not confirmed. The total architectural gain is a third of that on DIMPSAR
 (4 vs.\ 13 points), as expected if most of it comes from coping with field clutter. Whitening the field
 backgrounds lowers every model to 40.7--43.5\%, probably because LeafSnap's field paper already resembles the lab
 paper; no masked-photo contrast is significant.

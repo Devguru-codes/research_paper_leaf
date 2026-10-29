@@ -17,8 +17,8 @@ every model (best 55\%) but replaces neither. Measured geometry adds little if a
 fusing the same measurements globally is equivalent to the plain model within $\pm3$ points. The
 gains are small on EfficientNet-B0 and absent on ViTs; the BioCLIP~2 foundation model reaches 81\%
 without any module, whereas a general self-supervised DINOv2 ViT reaches 52\%. A pre-registered replication on
-LeafSnap30, whose field photographs show leaves on plain paper, confirms three of four predictions:
-a smaller total gain (strip pooling $+4.1$ points), no leaf-location effect and no benefit of measured
-geometry; the localisation gain ($+2.5$) is not significant. Code, all run outputs and the probes are released at
+LeafSnap30, whose field photographs show leaves on plain paper, confirms two of four predictions
+(no leaf-location effect, no benefit of measured geometry); a smaller total gain holds for strip
+pooling ($+4.1$ points) but not for \SVA{}, and the localisation gain ($+2.5$) is not significant. Code, all run outputs and the probes are released at
 \url{https://github.com/Devguru-codes/research_paper_leaf}.
 \end{abstract}

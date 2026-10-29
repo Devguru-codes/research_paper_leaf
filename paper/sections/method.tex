@@ -51,35 +51,17 @@ binary weights. With $H_d$ the weighted number of $d$-cells, area $A=H_2$, bound
 $P=2H_1-4H_2$ and Euler characteristic $\chi=H_0-H_1+H_2$ are the digital intrinsic volumes
 (\cref{app:sva}).
 
-\paragraph{Filtration increments.} For each of $K{=}32$ directions $\theta$, a cell $c$ has height
-$h_\theta(c)=\max_{v\in c}\langle x_v,\theta\rangle$, and with the sigmoid relaxation of
-DECT~\citep{roell2024dect} the soft membership of height $h$ in slab $k$ of $T{=}16$ is
-\begin{equation}
- s_k(h)=\sigma\big(\lambda(t_k-h)\big)-\sigma\big(\lambda(t_{k-1}-h)\big),\qquad \textstyle\sum_k s_k(h)=1 ,
- \label{eq:slab}
-\end{equation}
-with uniform thresholds and $t_0=-\infty$, $t_T=+\infty$. The weighted cell counts entering slab $k$,
-$\Delta H_d(\theta,k)=\sum_{c}w_d(c)\,s_k(h_\theta(c))$, give the area and boundary-length increments
-$\Delta A=\Delta H_2$ and $\Delta P=2\Delta H_1-4\Delta H_2$ (and $\dchi$ for the Euler ablation),
-which telescope to the totals of the leaf. The token feature $\phi(\theta,k)$ collects these
-increments for both fields and their cumulative sums up to slab $k$ (8 values, signed-log scaled):
-the local width and boundary complexity of the slab, and its position in the leaf.
-
-\paragraph{Slab-restricted attention.} Token $(\theta,k)$ has query $q_{\theta k}=\mathrm{MLP}(\phi)+e_k$
-with a learned slab embedding $e_k$ and attends to the patch tokens $z_p$ only within the \emph{same}
-slab:
-\begin{equation}
- \mathrm{attn}_{(\theta,k)}(p)\propto\exp\!\Big(\tfrac{\langle W_Q q_{\theta k},\,W_K z_p\rangle}{\sqrt{d}}
- +\log\!\big(s_k(\langle x_p,\theta\rangle)\,\bar m(p)+\epsilon\big)\Big),
- \label{eq:attn}
-\end{equation}
-where $\bar m(p)$ is the leaf fraction of patch $p$. The 512 tokens are mixed by a two-layer transformer
-with a cyclic relative position bias over directions and mean-pooled. To the best of our knowledge, no
-prior work co-registers filtration-derived valuation increments with attention restricted to the
-corresponding filtration slab (\cref{sec:related}); our experiments show, however, that neither the
-measurements nor the restriction is what makes the model transfer. Implementation details, the
-efficient histogram computation, the Euler and Hadwiger token variants and the rotation property are
-given in \cref{app:sva}.
+For each of $K{=}32$ directions $\theta$, the sweep is cut into $T{=}16$ soft slabs with the sigmoid
+relaxation of DECT~\citep{roell2024dect}. For every slab, \SVA{} records how much area and boundary
+length of both fields enter it (and how much has entered so far), which describes the local width and
+boundary complexity of the leaf at that position. Each slab yields one token whose query is built from
+these measurements and which attends only to the image patches of the same slab; the 512 tokens are
+mixed by a two-layer transformer and mean-pooled. To the best of our knowledge, no prior work
+co-registers filtration-derived valuation increments with attention restricted to the corresponding
+filtration slab (\cref{sec:related}); our experiments show, however, that neither the measurements nor
+the restriction is what makes the model transfer. The equations, the efficient histogram
+computation, the Euler and Hadwiger token variants and the rotation property are given in
+\cref{app:sva}.
 
 \begin{figure*}[t]
 \centering

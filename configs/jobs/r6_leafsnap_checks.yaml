@@ -1,0 +1,182 @@
+pip:
+- lpips
+- open_clip_torch
+kernel_sources: []
+common:
+  exp: leafsnap_checks
+  protocol: grouped
+  epochs: 40
+  batch_size: 32
+  workers: 3
+jobs:
+- backbone: bioclip2
+  fold: 0
+  seed: 0
+  evals:
+  - crossdomain
+  img_size: 224
+  lr_backbone: 3.0e-05
+  epochs: 7
+  variant: plain
+- backbone: bioclip2
+  fold: 0
+  seed: 0
+  evals:
+  - crossdomain
+  img_size: 224
+  lr_backbone: 3.0e-05
+  epochs: 7
+  variant: strip
+- backbone: bioclip2
+  fold: 1
+  seed: 0
+  evals:
+  - crossdomain
+  img_size: 224
+  lr_backbone: 3.0e-05
+  epochs: 7
+  variant: plain
+- backbone: bioclip2
+  fold: 1
+  seed: 0
+  evals:
+  - crossdomain
+  img_size: 224
+  lr_backbone: 3.0e-05
+  epochs: 7
+  variant: strip
+- backbone: bioclip2
+  fold: 2
+  seed: 0
+  evals:
+  - crossdomain
+  img_size: 224
+  lr_backbone: 3.0e-05
+  epochs: 7
+  variant: plain
+- backbone: bioclip2
+  fold: 2
+  seed: 0
+  evals:
+  - crossdomain
+  img_size: 224
+  lr_backbone: 3.0e-05
+  epochs: 7
+  variant: strip
+- backbone: bioclip2
+  fold: 3
+  seed: 0
+  evals:
+  - crossdomain
+  img_size: 224
+  lr_backbone: 3.0e-05
+  epochs: 7
+  variant: plain
+- backbone: bioclip2
+  fold: 3
+  seed: 0
+  evals:
+  - crossdomain
+  img_size: 224
+  lr_backbone: 3.0e-05
+  epochs: 7
+  variant: strip
+- backbone: bioclip2
+  fold: 4
+  seed: 0
+  evals:
+  - crossdomain
+  img_size: 224
+  lr_backbone: 3.0e-05
+  epochs: 7
+  variant: plain
+- backbone: bioclip2
+  fold: 4
+  seed: 0
+  evals:
+  - crossdomain
+  img_size: 224
+  lr_backbone: 3.0e-05
+  epochs: 7
+  variant: strip
+- backbone: convnext_tiny
+  fold: 0
+  seed: 0
+  epochs: 40
+  evals:
+  - crossdomain
+  tag: ep40
+  variant: plain
+- backbone: convnext_tiny
+  fold: 0
+  seed: 0
+  epochs: 40
+  evals:
+  - crossdomain
+  tag: ep40
+  variant: strip
+- backbone: convnext_tiny
+  fold: 1
+  seed: 0
+  epochs: 40
+  evals:
+  - crossdomain
+  tag: ep40
+  variant: plain
+- backbone: convnext_tiny
+  fold: 1
+  seed: 0
+  epochs: 40
+  evals:
+  - crossdomain
+  tag: ep40
+  variant: strip
+- backbone: convnext_tiny
+  fold: 2
+  seed: 0
+  epochs: 40
+  evals:
+  - crossdomain
+  tag: ep40
+  variant: plain
+- backbone: convnext_tiny
+  fold: 2
+  seed: 0
+  epochs: 40
+  evals:
+  - crossdomain
+  tag: ep40
+  variant: strip
+- backbone: convnext_tiny
+  fold: 3
+  seed: 0
+  epochs: 40
+  evals:
+  - crossdomain
+  tag: ep40
+  variant: plain
+- backbone: convnext_tiny
+  fold: 3
+  seed: 0
+  epochs: 40
+  evals:
+  - crossdomain
+  tag: ep40
+  variant: strip
+- backbone: convnext_tiny
+  fold: 4
+  seed: 0
+  epochs: 40
+  evals:
+  - crossdomain
+  tag: ep40
+  variant: plain
+- backbone: convnext_tiny
+  fold: 4
+  seed: 0
+  epochs: 40
+  evals:
+  - crossdomain
+  tag: ep40
+  variant: strip
+data: medleaf-esa-leafsnap

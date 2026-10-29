@@ -37,8 +37,9 @@ Raw field photographs, 20-way accuracy (%), ConvNeXt-T, 5 folds × 5 seeds (25 r
   +13.5 and +8.4 points (5/5 folds each); plain's best rate reaches 35.3%.
 - **Pre-registered replication on LeafSnap30** ([predictions](paper/preregistration_leafsnap.md), committed
   before any run; field leaves on plain paper, 30-way, 10 runs per model): plain 45.9%, strip 50.1%, SVA 49.5%.
-  Three of four predictions hold: smaller total gain (strip +4.1, Holm p = 0.006), no leaf-location effect
-  (+0.1), SVA equivalent to strip (−0.6, TOST); localisation +2.5 is not significant.
+  Two of four predictions are confirmed: no leaf-location effect (+0.1) and SVA equivalent to strip
+  (−0.6, TOST). The smaller total gain holds for strip (+4.1, Holm p = 0.006) but not SVA (+3.6, n.s.);
+  localisation (+2.5) is not significant.
 
 ## Repository layout
 

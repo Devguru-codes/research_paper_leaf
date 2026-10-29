@@ -1,0 +1,196 @@
+pip:
+- lpips
+kernel_sources: []
+common:
+  exp: leafsnap
+  protocol: grouped
+  epochs: 40
+  batch_size: 32
+  workers: 3
+jobs:
+- backbone: convnext_tiny
+  fold: 0
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: plain
+- backbone: convnext_tiny
+  fold: 0
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: patchpool
+- backbone: convnext_tiny
+  fold: 0
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: maskpool
+- backbone: convnext_tiny
+  fold: 0
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: strip
+- backbone: convnext_tiny
+  fold: 0
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap
+- backbone: convnext_tiny
+  fold: 1
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: plain
+- backbone: convnext_tiny
+  fold: 1
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: patchpool
+- backbone: convnext_tiny
+  fold: 1
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: maskpool
+- backbone: convnext_tiny
+  fold: 1
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: strip
+- backbone: convnext_tiny
+  fold: 1
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap
+- backbone: convnext_tiny
+  fold: 2
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: plain
+- backbone: convnext_tiny
+  fold: 2
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: patchpool
+- backbone: convnext_tiny
+  fold: 2
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: maskpool
+- backbone: convnext_tiny
+  fold: 2
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: strip
+- backbone: convnext_tiny
+  fold: 2
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap
+- backbone: convnext_tiny
+  fold: 3
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: plain
+- backbone: convnext_tiny
+  fold: 3
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: patchpool
+- backbone: convnext_tiny
+  fold: 3
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: maskpool
+- backbone: convnext_tiny
+  fold: 3
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: strip
+- backbone: convnext_tiny
+  fold: 3
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap
+- backbone: convnext_tiny
+  fold: 4
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: plain
+- backbone: convnext_tiny
+  fold: 4
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: patchpool
+- backbone: convnext_tiny
+  fold: 4
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: maskpool
+- backbone: convnext_tiny
+  fold: 4
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: strip
+- backbone: convnext_tiny
+  fold: 4
+  seed: 4
+  epochs: 15
+  evals:
+  - crossdomain
+  variant: slabstat
+  token: ap
+  tag: ap
+data: medleaf-esa-leafsnap

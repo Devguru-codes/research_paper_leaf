@@ -33,18 +33,23 @@ and combine it with background-compositing augmentation; together they raised fi
 34\% to 53--55\%. Note that a leaf mask is needed at test time, for cropping and for these models; our
 masker costs about as much as the classifier (\cref{app:cost}). (iii)~Where a biology foundation model such as
 BioCLIP~2 can be used, use it: it reaches 81\% without any module, and none of the modules changes it.
+Recommendations (i) and (ii) matter where it cannot, e.g.\ on-device or offline inference: its
+ViT-L/14 visual tower has about ten times the parameters of ConvNeXt-T.
 
 \paragraph{Does it generalise?} The LeafSnap30 replication, with predictions fixed in advance,
 supports the clutter account. Where field leaves lie on plain paper, the leaf-location effect
 disappears, the total gain shrinks from 13 to 4 points, and measured geometry again adds nothing;
 localised pooling stays ahead of mask pooling ($+2.5$) but not significantly. Localisation is thus
-the less certain of the two ingredients outside DIMPSAR.
+the less certain of the two ingredients outside DIMPSAR. The replication also shows a limit of
+the mask-based recipe: label-free masks fail most often on needle-leaved conifers, whose leaves are
+thin and small in the frame, so leaf location and localised pooling presuppose broad leaves that can
+be segmented.
 
 \paragraph{Limitations.} (i)~Two studio-to-field pairs, and only DIMPSAR has cluttered field
 backgrounds; the medicinal pair has 20 shared species. Field
 labels come from vernacular folder names that we mapped to species and checked visually but not with a
 botanist; residual label noise would lower all models alike. The 20-way accuracy uses the knowledge of
-which species can occur. The only high-hazard species of the studio set, \textit{Nerium oleander}, is
+which species can occur; 30-way accuracy is lower but keeps the ordering of the models. The only high-hazard species of the studio set, \textit{Nerium oleander}, is
 not among the field species, so we could not evaluate confusions with a toxic look-alike in the
 field. (ii)~The field test set depends on our masker for every model: it centres the crops and excluded
 5.6\% of the photographs, probably among the hardest, and the mask-based models also use its masks

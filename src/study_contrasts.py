@@ -93,11 +93,16 @@ def contrast(df, backbone, mode, fam, a, b, exp="main"):
 
 
 def main(root: Path, exp: str = "main", backbone: str = "convnext_tiny"):
+    """exp: main | leafsnap (the pre-registered seeds 0-1) | leafsnap_all (seeds 0-4, the later extension)."""
     df = collect(root)
+    if exp == "leafsnap":
+        df = df[df.seed < 2]
+    data_exp = "leafsnap" if exp.startswith("leafsnap") else exp
     parts = []
-    sets = (("pre-registered", LEAFSNAP),) if exp == "leafsnap" else (("planned", PLANNED), ("post hoc", POSTHOC))
+    sets = ((("pre-registered" if exp == "leafsnap" else "extension"), LEAFSNAP),) if exp.startswith("leafsnap") \
+        else (("planned", PLANNED), ("post hoc", POSTHOC))
     for name, fam_list in sets:
-        rows = [dict(contrast_set=name, **contrast(df, backbone, mode, fam, a, b, exp))
+        rows = [dict(contrast_set=name, **contrast(df, backbone, mode, fam, a, b, data_exp))
                 for mode in ("raw", "masked") for fam, a, b in fam_list]
         part = pd.DataFrame(rows)
         part["p_holm"] = holm(part.p.tolist())
