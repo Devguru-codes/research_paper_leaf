@@ -57,7 +57,9 @@ def select(df, model, backbone, exp, rot_aug=True, protocol="grouped", strong_au
            & (df.protocol == protocol)]
     if "strong_aug" in d:
         d = d[d.strong_aug.fillna(False).astype(bool) == strong_aug]
-    return d.drop_duplicates(["fold", "seed"], keep="last").set_index(["fold", "seed"])
+    # tag (lr, ablation) is not part of the key: two runs per (fold, seed) would be compared at random
+    assert not d.duplicated(["fold", "seed"]).any(), f"ambiguous runs for {model}/{exp}: filter by tag first"
+    return d.set_index(["fold", "seed"])
 
 
 def paired(df: pd.DataFrame, a: str, b: str, backbone: str, exp: str = "main", rot_aug: bool = True) -> dict:

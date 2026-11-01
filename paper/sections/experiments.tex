@@ -49,7 +49,9 @@ leaf before computing the valuations); global instead of slab-restricted attenti
 seed 0, folds 0--2; the four most informative (unit weights, global attention, coarse sweep, Euler
 token) are repeated on all five folds and seeds 0--2 and compared with \SVA{} on the same runs.
 
-\paragraph{Probes.} All probes are applied to each fold's test images with fixed seeds.
+\paragraph{Probes.} All probes are applied to each fold's test images with fixed seeds, except that the
+topology edits were drawn afresh in every run (a per-process string hash entered their seed), so models
+are compared on different random edits of the same images; the released code fixes this.
 \begin{itemize}
 \item \textbf{Field photographs}: models trained on the studio images are tested on the 2{,}000 DIMPSAR
 photographs of the 20 overlapping species (\cref{app:field}), on raw crops with the background kept

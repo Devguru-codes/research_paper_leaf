@@ -7,6 +7,7 @@ ERROR is retried once (fresh version).
 """
 from __future__ import annotations
 
+import json
 import os
 import subprocess
 import sys
@@ -52,7 +53,15 @@ def pull(name):
             api = KaggleApi()
             api.authenticate()
             api.kernels_output(f"{USER}/medleaf-esa-{name.replace('_', '-')}", path=str(out), file_pattern=r".*\.(log|json|csv|npz|pt)$")
-            return True
+            # a cut-off download raises nothing: every job that ended with rc 0 must have its metrics.json
+            st = next(out.rglob("job_status.json"), None)
+            ok = sum(s["rc"] == 0 for s in json.loads(st.read_text()).values()) if st else 0
+            got = sum(1 for _ in out.rglob("metrics.json"))
+            if got >= ok:
+                return True
+            log(f"pull {name}: {got} of {ok} runs downloaded; retrying")
+            time.sleep(60)
+            continue
         except Exception as e:  # network hiccups
             log(f"pull {name} failed: {e}; retrying")
             time.sleep(60)

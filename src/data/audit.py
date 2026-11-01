@@ -109,6 +109,12 @@ class _DSU:
 
 def main():
     root, out = raw_root(), cache_root()
+    # crops and masks are reused when present: a cache built with another mask method would be kept silently
+    # (after editing src/data/masks.py itself, delete the cache folder)
+    method = os.environ.get("MEDLEAF_MASK", "white")
+    prev = json.loads((out / "audit.json").read_text()).get("mask") if (out / "audit.json").exists() else None
+    if prev not in (None, method):
+        raise SystemExit(f"{out} was built with MEDLEAF_MASK={prev}, not {method}: delete it first")
     for d in ("img", "mask", "vein"):
         (out / d).mkdir(parents=True, exist_ok=True)
     # class folders: the medicinal species, or (second dataset) whatever folders the raw root holds
@@ -171,7 +177,7 @@ def main():
     counts = df.groupby("class_name").size()
     cross = sum(df.label[i] != df.label[j] for i, j in zip(hi, hj))
     audit = dict(
-        n_images=N, n_classes=len(classes), n_exact_duplicate_pairs=int(len(ei)),
+        mask=method, n_images=N, n_classes=len(classes), n_exact_duplicate_pairs=int(len(ei)),
         n_after_exact_dedup=int(df.keep.sum()),
         exact_duplicate_pairs=[(df.rel_path[i], df.rel_path[j]) for i, j in zip(ei, ej)],
         n_raw_dhash_links=int(len(hi)), raw_dhash_cross_class_links=int(cross),

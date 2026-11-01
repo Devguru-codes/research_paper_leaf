@@ -6,6 +6,7 @@ Each writes eval_<suite>.json (summary) and, where useful, eval_<suite>_samples.
 from __future__ import annotations
 
 import json
+import zlib
 from pathlib import Path
 
 import numpy as np
@@ -108,7 +109,7 @@ def suite_topodestroy(model, items, cfg, device, out: Path, seed: int):
         pass
     rows = []
     for edit, (kind, changes) in td.EDITS.items():
-        rng = np.random.default_rng(seed + hash(edit) % 1000)
+        rng = np.random.default_rng(seed + zlib.crc32(edit.encode()) % 1000)  # hash() of a str changes per process
         fn = getattr(td, edit)
         ei, em = [], []
         for a, m, v in zip(imgs, masks, veins):

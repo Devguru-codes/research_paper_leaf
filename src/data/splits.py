@@ -13,22 +13,22 @@ import pandas as pd
 from sklearn.model_selection import StratifiedGroupKFold, StratifiedKFold
 
 
-def make_split(df: pd.DataFrame, fold: int, protocol: str = "grouped", n_folds: int = 5,
-               seed: int = 0, n_inner: int = 6):
-    """Return dict of index arrays (into df) for train / cal / test."""
+def make_split(df: pd.DataFrame, fold: int, protocol: str = "grouped", n_folds: int = 5, n_inner: int = 6):
+    """Return dict of index arrays (into df) for train / cal / test. The folds are fixed: training seeds
+    change initialisation and augmentation only, never the split."""
     if protocol == "grouped":
         d = df[df.keep].copy()
-        outer = StratifiedGroupKFold(n_splits=n_folds, shuffle=True, random_state=seed)
+        outer = StratifiedGroupKFold(n_splits=n_folds, shuffle=True, random_state=0)
         tr, te = list(outer.split(d, d.label, d.leaf_group))[fold]
         dtr = d.iloc[tr]
-        inner = StratifiedGroupKFold(n_splits=n_inner, shuffle=True, random_state=seed + 100 + fold)
+        inner = StratifiedGroupKFold(n_splits=n_inner, shuffle=True, random_state=100 + fold)
         itr, ical = next(inner.split(dtr, dtr.label, dtr.leaf_group))
         return dict(train=dtr.index[itr].to_numpy(), cal=dtr.index[ical].to_numpy(), test=d.index[te].to_numpy())
     if protocol == "random_dups":
-        outer = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=seed)
+        outer = StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=0)
         tr, te = list(outer.split(df, df.label))[fold]
         dtr = df.iloc[tr]
-        inner = StratifiedKFold(n_splits=n_inner, shuffle=True, random_state=seed + 100 + fold)
+        inner = StratifiedKFold(n_splits=n_inner, shuffle=True, random_state=100 + fold)
         itr, ical = next(inner.split(dtr, dtr.label))
         return dict(train=dtr.index[itr].to_numpy(), cal=dtr.index[ical].to_numpy(), test=df.index[te].to_numpy())
     raise ValueError(protocol)

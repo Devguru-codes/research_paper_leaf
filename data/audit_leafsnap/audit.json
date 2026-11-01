@@ -1,4 +1,5 @@
 {
+ "mask": "bgcolour",
  "n_images": 5320,
  "n_classes": 30,
  "n_exact_duplicate_pairs": 212,
