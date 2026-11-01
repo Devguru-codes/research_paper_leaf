@@ -1,0 +1,12 @@
+src.train --set exp="leafsnap_checks" protocol="grouped" epochs=7 batch_size=32 workers=3 backbone="bioclip2" fold=4 seed=0 evals=["crossdomain"] img_size=224 lr_backbone=3e-05 variant="plain"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{"epoch": 0, "train_ce": 1.9666346047284469, "train_vein": 0.379542848411596, "time": 62.28664302825928}
+{"epoch": 1, "train_ce": 0.8369405382084396, "train_vein": 0.3022399078000267, "time": 125.62124276161194}
+{"epoch": 2, "train_ce": 0.7778451791349447, "train_vein": 0.2972295379863595, "time": 189.69617080688477}
+{"epoch": 3, "train_ce": 0.7331008123901656, "train_vein": 0.29487733064957383, "time": 254.22774648666382}
+{"epoch": 4, "train_ce": 0.7112065896673022, "train_vein": 0.2928564486638555, "time": 318.3379259109497, "cal_acc": 0.9956140350877193}
+{"epoch": 5, "train_ce": 0.6928149259315347, "train_vein": 0.29157668352127075, "time": 403.652019739151}
+{"epoch": 6, "train_ce": 0.6875277898221646, "train_vein": 0.2909764599687648, "time": 467.7132806777954, "cal_acc": 0.9970760233918129}
+TEST {"acc": 0.9872549019607844, "bal_acc": 0.9876818783068783, "macro_f1": 0.9889420390747529, "nll": 0.19980773329734802, "ece": 0.13715240365149925, "mistake_severity": 4.0, "n": 1020}
+EVAL crossdomain {"n": 2072, "masked": {"acc30": 0.6143822393822393, "bal_acc30": 0.6741930823103618, "acc20": 0.6143822393822393, "bal_acc20": 0.6741930823103618, "macro_f1_20": 0.6286363892411434, "ece30": 0.11760664885885239}, "raw": {"acc30": 0.6722972972972973, "bal_acc30": 0.7595192165706016, "acc20": 0.6722972972972973, "bal_acc20": 0.7595192165706016, "macro_f1_20": 0.7063139864735025, "ece30": 0.100310344

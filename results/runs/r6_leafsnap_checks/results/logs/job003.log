@@ -1,0 +1,16 @@
+src.train --set exp="leafsnap_checks" protocol="grouped" epochs=7 batch_size=32 workers=3 backbone="bioclip2" fold=1 seed=0 evals=["crossdomain"] img_size=224 lr_backbone=3e-05 variant="strip"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING:huggingface_hub.utils._http:Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/kaggle/working/proj/src/models/esa.py:256: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  self.enc = nn.TransformerEncoder(layer, depth)
+/kaggle/working/proj/src/train.py:157: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  sched.step()
+{"epoch": 0, "train_ce": 1.6794949398850494, "train_vein": 0.38940777306286795, "time": 67.0147590637207}
+{"epoch": 1, "train_ce": 0.8134686918753498, "train_vein": 0.30234774131819886, "time": 131.13435673713684}
+{"epoch": 2, "train_ce": 0.775795247194902, "train_vein": 0.2974935331434574, "time": 195.51317501068115}
+{"epoch": 3, "train_ce": 0.7535957660315171, "train_vein": 0.29520402736258955, "time": 260.342396736145}
+{"epoch": 4, "train_ce": 0.7092870906838831, "train_vein": 0.29388025487368963, "time": 324.83091592788696, "cal_acc": 0.9883040935672515}
+{"epoch": 5, "train_ce": 0.6913015949276259, "train_vein": 0.29213238380989937, "time": 410.2940709590912}
+{"epoch": 6, "train_ce": 0.6834915662711522, "train_vein": 0.29169761178628456, "time": 475.0331108570099, "cal_acc": 0.9883040935672515}
+TEST {"acc": 0.990234375, "bal_acc": 0.9912321937321936, "macro_f1": 0.9914767777936322, "nll": 0.17919883131980896, "ece": 0.13634004564664792, "mistake_severity": 3.8, "n": 1024}
+EVAL crossdomain {"n": 2072, "masked": {"acc30": 0.6505791505791506, "bal_acc30": 0.685165872421912, "acc20": 0.6505791505791506, "bal_acc20": 0.685165872421912, "macro_f1_20": 0.6572079189535448, "ece30": 0.13940348457473123}, "raw": {"acc30": 0.6983590733590733, "bal_acc30": 0.7784927046650375, "acc20": 0.6983590733590733, "bal_acc20": 0.7784927046650375, "macro_f1_20": 0.7264149770079218, "ece30": 0.12345656126

@@ -39,8 +39,11 @@ ViT-L/14 visual tower has about ten times the parameters of ConvNeXt-T.
 \paragraph{Does it generalise?} The LeafSnap30 replication, with predictions fixed in advance,
 supports the clutter account. Where field leaves lie on plain paper, the leaf-location effect
 disappears, the total gain shrinks from 13 to 4 points, and measured geometry again adds nothing;
-localised pooling stays ahead of mask pooling ($+2.5$) but not significantly. Localisation is thus
-the less certain of the two ingredients outside DIMPSAR. The replication also shows a limit of
+localised pooling stays ahead of mask pooling ($+2.5$) but not significantly. With five seeds (beyond
+the pre-registration) the total gain is $+5.7$ for strip pooling and $+4.0$ for \SVA{}, both
+significant, and localisation is $+3.3$ in 23 of 25 runs yet still not significant after correction.
+Localisation is thus the less certain of the two ingredients outside DIMPSAR. BioCLIP~2 again
+outperforms every ImageNet model (67.9\%) and again gains nothing from strip pooling. The replication also shows a limit of
 the mask-based recipe: label-free masks fail most often on needle-leaved conifers, whose leaves are
 thin and small in the frame, so leaf location and localised pooling presuppose broad leaves that can
 be segmented.
@@ -54,7 +57,7 @@ not among the field species, so we could not evaluate confusions with a toxic lo
 field. (ii)~The field test set depends on our masker for every model: it centres the crops and excluded
 5.6\% of the photographs, probably among the hardest, and the mask-based models also use its masks
 inside the network. Its accuracy on field photographs could not be measured without ground-truth
-masks. (iii)~ConvNeXt-T results use five seeds (LeafSnap30 two),
+masks. (iii)~ConvNeXt-T results use five seeds (LeafSnap30 two pre-registered, five in total),
 EfficientNet-B0 and the key ablations three, the ViTs one; differences of 2--3 points between
 localised models are not resolved, and the ViT results are indicative only. (iv)~One fixed training
 recipe was used for all models of a backbone; a recipe tuned per model could shift individual numbers.

@@ -1,0 +1,537 @@
+{
+ "0": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"plain\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.88,
+  "gpu": 0
+ },
+ "1": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"patchpool\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.18,
+  "gpu": 1
+ },
+ "2": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"maskpool\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.44,
+  "gpu": 0
+ },
+ "3": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"strip\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.3,
+  "gpu": 1
+ },
+ "5": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"plain\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.88,
+  "gpu": 1
+ },
+ "4": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=0",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.81,
+  "gpu": 0
+ },
+ "7": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"maskpool\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.69,
+  "gpu": 0
+ },
+ "6": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"patchpool\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.59,
+  "gpu": 1
+ },
+ "8": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"strip\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.2,
+  "gpu": 0
+ },
+ "9": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=1",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 21.61,
+  "gpu": 1
+ },
+ "10": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"plain\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.44,
+  "gpu": 0
+ },
+ "11": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"patchpool\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.35,
+  "gpu": 1
+ },
+ "12": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"maskpool\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.41,
+  "gpu": 0
+ },
+ "13": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"strip\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.07,
+  "gpu": 1
+ },
+ "14": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=2",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 20.41,
+  "gpu": 0
+ },
+ "15": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"plain\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.31,
+  "gpu": 1
+ },
+ "16": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"patchpool\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.41,
+  "gpu": 0
+ },
+ "17": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"maskpool\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.4,
+  "gpu": 1
+ },
+ "18": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"strip\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.3,
+  "gpu": 0
+ },
+ "19": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=3",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 21.02,
+  "gpu": 1
+ },
+ "20": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"plain\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.32,
+  "gpu": 0
+ },
+ "21": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"patchpool\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.4,
+  "gpu": 1
+ },
+ "22": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"maskpool\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 17.57,
+  "gpu": 0
+ },
+ "23": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"strip\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 18.18,
+  "gpu": 1
+ },
+ "24": {
+  "args": [
+   [
+    "src.train",
+    "--set",
+    "exp=\"leafsnap\"",
+    "protocol=\"grouped\"",
+    "epochs=15",
+    "batch_size=32",
+    "workers=3",
+    "backbone=\"convnext_tiny\"",
+    "fold=4",
+    "seed=4",
+    "evals=[\"crossdomain\"]",
+    "variant=\"slabstat\"",
+    "token=\"ap\"",
+    "tag=\"ap\""
+   ]
+  ],
+  "rc": 0,
+  "minutes": 19.42,
+  "gpu": 0
+ }
+}

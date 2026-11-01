@@ -39,7 +39,9 @@ Raw field photographs, 20-way accuracy (%), ConvNeXt-T, 5 folds × 5 seeds (25 r
   before any run; field leaves on plain paper, 30-way, 10 runs per model): plain 45.9%, strip 50.1%, SVA 49.5%.
   Two of four predictions are confirmed: no leaf-location effect (+0.1) and SVA equivalent to strip
   (−0.6, TOST). The smaller total gain holds for strip (+4.1, Holm p = 0.006) but not SVA (+3.6, n.s.);
-  localisation (+2.5) is not significant.
+  localisation (+2.5) is not significant. Extended afterwards to five seeds (25 runs, not pre-registered):
+  strip +5.7 and SVA +4.0 (both Holm p ≤ 0.01), localisation +3.3 (23/25, Holm p = 0.21), SVA − strip −1.7.
+  Checks: 40 epochs leave strip − plain unchanged (+4.9); BioCLIP 2 reaches 67.9% and gains nothing from strip.
 
 ## Repository layout
 
@@ -99,7 +101,7 @@ data/audit_leafsnap/ the same for LeafSnap30, plus the field-photo index
 |---|---|
 | Table 1 (main results) | `results/runs/main_*`, `r2_cnx_s3`, `r2_cnx_s4`, `r2_effb0_s*`, `r3_maskpool_cnx` → `src/make_figures.py` |
 | Contrasts (Table 2) | `results/summary/study_contrasts.csv` (`src/study_contrasts.py`) |
-| LeafSnap30 replication | `paper/preregistration_leafsnap.md`, `results/runs/r5_leafsnap_s*`, `results/summary/study_contrasts_leafsnap.csv`; data: `python -m src.data.leafsnap extract`, then the audit with `MEDLEAF_MASK=bgcolour`, then `python -m src.data.leafsnap field` |
+| LeafSnap30 replication | `paper/preregistration_leafsnap.md`, `results/runs/r5_leafsnap_s*`, `results/runs/r6_leafsnap_*`, `results/summary/study_contrasts_leafsnap{,_all}.csv`; data: `python -m src.data.leafsnap extract`, then the audit with `MEDLEAF_MASK=bgcolour`, then `python -m src.data.leafsnap field` |
 | Learning-rate check | `results/runs/r5_lrsweep` |
 | Without rotation augmentation | `results/runs/main_norot*`, `r2_norot_s*` |
 | Strong augmentation | `results/runs/r2_strongaug_s*` |

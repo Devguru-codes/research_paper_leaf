@@ -153,6 +153,23 @@ zero within $\pm3$ points ($p=0.046$). In sum, two predictions were confirmed, o
 backgrounds lowers every model to 40.7--43.5\%, probably because LeafSnap's field paper already resembles the lab
 paper; no masked-photo contrast is significant.
 
+\paragraph{Extension to five seeds (not pre-registered).} Because ten runs could not resolve a
+3-point effect, we added seeds 2--4 after the pre-registered analysis was complete; the
+pre-registered verdicts above are those of seeds 0--1 and are unchanged. With 25 runs per model
+(\cref{tab:leafsnap_all}, same Holm family), plain reaches 44.9\% on raw field photographs, mask pooling
+47.3\%, strip pooling 50.6\% and \SVA{} 48.9\%. Both total gains are now significant (strip pooling
+$+5.7$ [$+3.2$, $+8.2$], 25/25, Holm $p<0.001$; \SVA{} $+4.0$, 24/25, Holm $p=0.010$), leaf location
+remains null ($+0.1$, 13/25), and localisation is $+3.3$ [$+0.3$, $+6.3$] (23/25), whose interval
+excludes zero but which does not survive the Holm correction ($p=0.21$). \SVA{} minus strip pooling
+is $-1.7$ [$-4.2$, $+0.8$] (5/25 runs in favour of \SVA{}); equivalence within $\pm3$ points is
+no longer shown ($p=0.15$), and if anything measured geometry costs a little accuracy here.
+
+Two further checks were run after the replication and were not pre-registered (seed 0, 5 folds).
+Training for 40 instead of 15 epochs leaves both models where they were (plain 45.9\%, strip pooling
+50.7\%, $+4.9$ points, 5/5 folds), so the short schedule neither creates nor hides the gain. BioCLIP~2
+reaches 67.9\% on raw field photographs (61.9\% masked), about 18 points above the best ConvNeXt-T
+model, and strip pooling adds nothing to it ($+0.0$, 3/5 folds), as on DIMPSAR.
+
 \begin{table}[t]
 \centering
 \caption{Pre-registered contrasts on LeafSnap30 field photographs (ConvNeXt-T, 10 matched runs,
